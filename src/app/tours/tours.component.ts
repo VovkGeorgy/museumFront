@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DataService} from '../service/data.service';
 
 @Component({
   selector: 'app-tours',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tours.component.css']
 })
 export class ToursComponent implements OnInit {
+  tours: any[any];
 
-  constructor() { }
+  getAllToursUrl = 'http://localhost:8090/tour/tours';
+
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit() {
+  }
+
+  updateReadForm() {
+    this.dataService.getData(this.getAllToursUrl)
+      .subscribe(tours => {
+        this.tours = tours;
+      });
   }
 
 }

@@ -11,7 +11,7 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/tours">Tours</a>
@@ -23,6 +23,21 @@
         <a class="nav-link" href="#">About us</a>
       </li>
     </ul>
-    <button class="btn btn-outline-primary" routerLink="/login" type="submit">Login</button>
+    <button *ngIf="!hasSignedIn()" class="btn btn-outline-primary" routerLink="/login">Login</button>
+
+    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+
+      <div class="btn-group" role="group" *ngIf="hasSignedIn()">
+        <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false"></button>
+        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start"
+             style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
+          <a class="dropdown-item" routerLink="/change-password">CHANGE PASSWORD</a>
+          <a class="dropdown-item" (click)="logout()">SIGN OUT</a>
+        </div>
+      </div>
+      <button type="button" class="btn btn-outline-primary" *ngIf="hasSignedIn()">You are, {{userName()}}</button>
+    </div>
+
   </div>
 </nav>
