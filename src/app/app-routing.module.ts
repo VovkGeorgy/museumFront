@@ -8,6 +8,7 @@ import {LoginComponent} from './login/login.component';
 import {ToursComponent} from './tours/tours.component';
 // import {AdminGuard} from './guard/admin.guard';
 import {NotFoundComponent} from './not-found/not-found.component';
+import {GuidesComponent} from "./guides/guides.component";
 // import {ChangePasswordComponent} from './change-password/';
 // import {ForbiddenComponent} from './forbidden';
 // import {SignupComponent} from './signup';
@@ -32,6 +33,11 @@ export const routes: Routes = [
   {
     path: 'tours',
     component: ToursComponent,
+    // canActivate: [GuestGuard]
+  },
+  {
+    path: 'guides',
+    component: GuidesComponent,
     // canActivate: [GuestGuard]
   },
   // {

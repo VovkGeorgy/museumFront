@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 
 import {AppComponent} from './app.component';
@@ -17,6 +17,9 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {AppRoutingModule} from './app-routing.module';
 import {DataService} from './service/data.service';
 import {APP_BASE_HREF} from '@angular/common';
+import {GuidesComponent} from './guides/guides.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -26,7 +29,8 @@ import {APP_BASE_HREF} from '@angular/common';
     HomeComponent,
     NotFoundComponent,
     LoginComponent,
-    ToursComponent
+    ToursComponent,
+    GuidesComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -35,6 +39,7 @@ import {APP_BASE_HREF} from '@angular/common';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    NgbModule.forRoot(),
     // RouterModule.forRoot([
     //   {path: '', component: HomeComponent},
     //   {path: 'login', component: LoginComponent},
