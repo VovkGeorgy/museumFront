@@ -4,19 +4,19 @@
     <!--<p [class]="notification.msgType" *ngIf="notification">{{notification.msgBody}}</p>-->
     <form *ngIf="!submitted" [formGroup]="loginF" (ngSubmit)="onSubmit()" #loginForm="ngForm">
 
-      <legend>{{'login.title' | translate}}</legend>
+      <legend>{{'username.title' | translate}}</legend>
       <div class="form-group">
-        <label for="username">{{'login.login' | translate}}</label>
+        <label for="username">{{'username.username' | translate}}</label>
         <input type="text" class="form-control" id="username" placeholder="user/admin"
                formControlName="username">
       </div>
       <div class="form-group">
-        <label for="password">{{'login.password' | translate}}</label>
+        <label for="password">{{'username.password' | translate}}</label>
         <input type="password" class="form-control" id="password" placeholder="123"
                formControlName="password">
       </div>
       <button type="submit" [disabled]="!loginForm.form.valid" class="btn btn-primary btn-outline-secondary">
-        {{'button.login' | translate}}
+        {{'button.username' | translate}}
       </button>
       <button *ngIf="!submitted" class="btn btn-primary btn-outline-secondary" (click)="onResetCredentials()">Reset
         Credentials

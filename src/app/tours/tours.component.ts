@@ -15,6 +15,7 @@ export class ToursComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.updateReadForm();
   }
 
   updateReadForm() {

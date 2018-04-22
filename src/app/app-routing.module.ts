@@ -9,6 +9,8 @@ import {ToursComponent} from './tours/tours.component';
 // import {AdminGuard} from './guard/admin.guard';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {GuidesComponent} from "./guides/guides.component";
+import {ExhibitsComponent} from "./exhibits/exhibits.component";
+import {VisitorComponent} from "./visitor/visitor.component";
 // import {ChangePasswordComponent} from './change-password/';
 // import {ForbiddenComponent} from './forbidden';
 // import {SignupComponent} from './signup';
@@ -38,6 +40,16 @@ export const routes: Routes = [
   {
     path: 'guides',
     component: GuidesComponent,
+    // canActivate: [GuestGuard]
+  },
+  {
+    path: 'exhibits',
+    component: ExhibitsComponent,
+    // canActivate: [GuestGuard]
+  },
+  {
+    path: 'visitors',
+    component: VisitorComponent,
     // canActivate: [GuestGuard]
   },
   // {

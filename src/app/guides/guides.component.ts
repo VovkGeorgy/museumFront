@@ -10,8 +10,10 @@ import {DataService} from "../service/data.service";
 export class GuidesComponent implements OnInit {
 
   ngOnInit() {
+    this.updateReadForm();
   }
 
+  updateTableIsHidden = false;
   updateFieldIsHidden = true;
   guides: any[any];
   tempGuideKey: any;
@@ -20,7 +22,8 @@ export class GuidesComponent implements OnInit {
     fio: new FormControl(''),
     age: new FormControl(''),
     experience: new FormControl(''),
-    languages: new FormControl('')
+    languages: new FormControl(''),
+    tourId: new FormControl('')
   });
   getAllGuidesUrl = 'http://localhost:8090/guide/guides';
   addGuideUrl = 'http://localhost:8090/guide/guides/add';
@@ -40,8 +43,9 @@ export class GuidesComponent implements OnInit {
     this.guideForm.reset();
   }
 
-  loadUpdatedFields(guide) {
+  loadUpdatedForm(guide) {
     this.updateFieldIsHidden = false;
+    this.updateTableIsHidden = true;
     this.guideForm.setValue(guide);
     this.tempGuideKey = guide.$key;
   }
@@ -54,18 +58,22 @@ export class GuidesComponent implements OnInit {
   }
 
   addUpdatedEntityToBase() {
-    let localguide = this.guideForm.getRawValue();
-    this.dataService.addData(this.updateGuideUrl + localguide.guideId, this.guideForm.getRawValue())
+    let localGuide = this.guideForm.getRawValue();
+    this.dataService.addData(this.updateGuideUrl + localGuide.guideId, this.guideForm.getRawValue())
       .subscribe(guide => {
         this.tempGuide = guide;
       });
     this.guideForm.reset();
+    this.updateReadForm();
+    this.updateTableIsHidden = false;
+    this.updateFieldIsHidden = true;
   }
 
-  deleteStudentInBase(guide) {
+  deleteEntityInBase(guide) {
     this.dataService.deleteData(this.deleteGuideUrl + guide.guideId, guide)
       .subscribe(data => {
         this.tempGuide = data;
       });
+    this.updateReadForm();
   }
 }

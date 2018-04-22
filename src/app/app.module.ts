@@ -19,6 +19,8 @@ import {DataService} from './service/data.service';
 import {APP_BASE_HREF} from '@angular/common';
 import {GuidesComponent} from './guides/guides.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ExhibitsComponent } from './exhibits/exhibits.component';
+import { VisitorComponent } from './visitor/visitor.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     NotFoundComponent,
     LoginComponent,
     ToursComponent,
-    GuidesComponent
+    GuidesComponent,
+    ExhibitsComponent,
+    VisitorComponent
   ],
   imports: [
     BrowserAnimationsModule,

@@ -23,8 +23,13 @@
             </div>
             <div class="form-group">
               <label for="inputLanguages">{{'guide.languages' | translate}}</label>
-              <input type="number" class="form-control" id="inputLanguages" placeholder="1-99"
+              <input type="text" class="form-control" id="inputLanguages" placeholder="1-99"
                      formControlName="languages">
+            </div>
+            <div class="form-group">
+              <label for="inputTourId">{{'guide.tourId' | translate}}</label>
+              <input type="number" class="form-control" id="inputTourId" placeholder="1-3"
+                     formControlName="tourId">
             </div>
             <button class="btn btn-primary btn-outline-secondary" placement="right" (click)="addEntityToBase()"
                     ngbPopover="Entity are added, please check" popoverTitle="Ok!">{{'button.add' | translate}}
@@ -43,6 +48,7 @@
               <th>{{'guide.age' | translate}}</th>
               <th>{{'guide.experience' | translate}}</th>
               <th>{{'guide.languages' | translate}}</th>
+              <th>{{'guide.tourId' | translate}}</th>
             </tr>
             </thead>
             <tbody>
@@ -52,6 +58,7 @@
               <td>{{guide.age}}</td>
               <td>{{guide.experience}}</td>
               <td>{{guide.languages}}</td>
+              <td>{{guide.tourId}}</td>
             </tr>
             </tbody>
           </table>
@@ -63,7 +70,7 @@
 
       <ngb-tab id="tab-selectbyid3" title="{{'tabs.update' | translate}}">
         <ng-template ngbTabContent>
-          <table class="table table-striped">
+          <table class="table table-striped" [hidden]="updateTableIsHidden">
             <thead>
             <tr>
               <th>Id</th>
@@ -71,6 +78,7 @@
               <th>{{'guide.age' | translate}}</th>
               <th>{{'guide.experience' | translate}}</th>
               <th>{{'guide.languages' | translate}}</th>
+              <th>{{'guide.tourId' | translate}}</th>
             </tr>
             </thead>
             <tbody>
@@ -80,8 +88,9 @@
               <td>{{guide.age}}</td>
               <td>{{guide.experience}}</td>
               <td>{{guide.languages}}</td>
+              <td>{{guide.tourId}}</td>
               <td>
-                <button class="btn btn-primary btn-outline-secondary" (click)="loadUpdatedFields(guide)">
+                <button class="btn btn-primary btn-outline-secondary" (click)="loadUpdatedForm(guide)">
                   {{'button.update' | translate}}
                 </button>
               </td>
@@ -108,8 +117,13 @@
             </div>
             <div class="form-group">
               <label for="updateLanguages">{{'guide.languages' | translate}}</label>
-              <input type="number" class="form-control" id="updateLanguages" placeholder="1-99"
+              <input type="text" class="form-control" id="updateLanguages" placeholder="ENG,CHN"
                      formControlName="languages">
+            </div>
+            <div class="form-group">
+              <label for="updateTourId">{{'guide.tourId' | translate}}</label>
+              <input type="number" class="form-control" id="updateTourId" placeholder="1-3"
+                     formControlName="tourId">
             </div>
             <button class="btn btn-primary btn-outline-secondary" placement="right" (click)="addUpdatedEntityToBase()"
                     ngbPopover="" popoverTitle="Ok!">{{'button.update' | translate}}
@@ -117,6 +131,7 @@
           </fieldset>
         </ng-template>
       </ngb-tab>
+
       <ngb-tab id="tab-selectbyid4" title="{{'tabs.delete' | translate}}">
         <ng-template ngbTabContent>
           <table class="table table-striped">
@@ -127,6 +142,7 @@
               <th>{{'guide.age' | translate}}</th>
               <th>{{'guide.experience' | translate}}</th>
               <th>{{'guide.languages' | translate}}</th>
+              <th>{{'guide.tourId' | translate}}</th>
             </tr>
             </thead>
             <tbody>
@@ -136,8 +152,9 @@
               <td>{{guide.age}}</td>
               <td>{{guide.experience}}</td>
               <td>{{guide.languages}}</td>
+              <td>{{guide.tourId}}</td>
               <td>
-                <button class="btn btn-primary btn-outline-secondary" (click)="deleteStudentInBase(guide)"
+                <button class="btn btn-primary btn-outline-secondary" (click)="deleteEntityInBase(guide)"
                         ngbPopover="" popoverTitle="Ok!">{{'button.delete' | translate}}
                 </button>
               </td>
