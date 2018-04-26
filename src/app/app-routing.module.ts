@@ -3,17 +3,15 @@ import {Routes, RouterModule} from '@angular/router';
 // import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
-// import {AdminComponent} from './admin';
-// import {LoginGuard} from './guard';
 import {ToursComponent} from './tours/tours.component';
-// import {AdminGuard} from './guard/admin.guard';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {GuidesComponent} from "./guides/guides.component";
 import {ExhibitsComponent} from "./exhibits/exhibits.component";
 import {VisitorComponent} from "./visitor/visitor.component";
-// import {ChangePasswordComponent} from './change-password/';
-// import {ForbiddenComponent} from './forbidden';
-// import {SignupComponent} from './signup';
+import {GuestGuard} from "./guard/guest.guard";
+import {AdminGuard} from "./guard/admin.guard";
+import {AboutComponent} from "./about/about.component";
+import {LoginGuard} from "./guard/login.guard";
 
 export const routes: Routes = [
   {
@@ -30,27 +28,32 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    // canActivate: [GuestGuard]
+    canActivate: [GuestGuard]
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
+    canActivate: [GuestGuard]
   },
   {
     path: 'tours',
     component: ToursComponent,
-    // canActivate: [GuestGuard]
+    canActivate: [LoginGuard]
   },
   {
     path: 'guides',
     component: GuidesComponent,
-    // canActivate: [GuestGuard]
+    canActivate: [AdminGuard]
   },
   {
     path: 'exhibits',
     component: ExhibitsComponent,
-    // canActivate: [GuestGuard]
+    canActivate: [LoginGuard]
   },
   {
     path: 'visitors',
     component: VisitorComponent,
-    // canActivate: [GuestGuard]
+    canActivate: [AdminGuard]
   },
   // {
   //   path: 'change-password',

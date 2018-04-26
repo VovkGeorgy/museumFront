@@ -19,8 +19,14 @@ import {DataService} from './service/data.service';
 import {APP_BASE_HREF} from '@angular/common';
 import {GuidesComponent} from './guides/guides.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { ExhibitsComponent } from './exhibits/exhibits.component';
-import { VisitorComponent } from './visitor/visitor.component';
+import {ExhibitsComponent} from './exhibits/exhibits.component';
+import {VisitorComponent} from './visitor/visitor.component';
+import {AuthService} from './service/auth.service'
+import {CookieService} from 'ngx-cookie-service';
+import { AboutComponent } from './about/about.component';
+import {GuestGuard} from "./guard/guest.guard";
+import {AdminGuard} from "./guard/admin.guard";
+import {LoginGuard} from './guard/login.guard';
 
 
 @NgModule({
@@ -34,7 +40,8 @@ import { VisitorComponent } from './visitor/visitor.component';
     ToursComponent,
     GuidesComponent,
     ExhibitsComponent,
-    VisitorComponent
+    VisitorComponent,
+    AboutComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -61,7 +68,12 @@ import { VisitorComponent } from './visitor/visitor.component';
     FlexLayoutModule
   ],
   providers: [
+    LoginGuard,
+    GuestGuard,
+    AdminGuard,
     TranslateService,
+    AuthService,
+    CookieService,
     DataService,
     {
       provide: APP_BASE_HREF,

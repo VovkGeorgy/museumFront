@@ -29,4 +29,8 @@ export class DataService {
   deleteData(dataUrl, data) {
     return this.http.post(dataUrl, JSON.stringify(data), httpOptions);
   }
+
+  authorization(){
+    // http.defaults.headers.common.Authorization = 'Bearer ' + act.access_token
+  }
 }

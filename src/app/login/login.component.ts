@@ -2,49 +2,54 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Subject} from 'rxjs/Subject';
 import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from "../service/auth.service";
+import {HttpParams} from "@angular/common/http";
+import {DataService} from "../service/data.service";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
 
-  loginF: FormGroup = new FormGroup({
+  logForm: FormGroup = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
   });
 
-  /**
-   * Boolean used in telling the UI
-   * that the form has been submitted
-   * and is awaiting a response
-   */
-  submitted = false;
-
-  returnUrl: string;
-
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
-
-  constructor(private router: Router,
-              private route: ActivatedRoute,
-              private formBuilder: FormBuilder) {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
 
   }
 
-  ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
+  login() {
+    const userDetail = this.logForm.value;
+    this.authService.getToken(userDetail.username, userDetail.password);
+
+
+    // this.currentUserRoles = this.authService.getRole(this.act);
+    // if (this.currentUserRoles) {
+    //   console.log(this.currentUserRoles);
+    // }
+    // console.log(response);
+    // console.log(this.accessToken);
+    //
+    // });
+
+    // const val = this.logForm.value;
+    // if (val.email && val.password) {
+    //   this.authService.getToken(val.email, val.password)
+    //     .subscribe(
+    //       () => {
+    //         console.log("User is logged in");
+    //         this.router.navigateByUrl('/');
+    //       }
+    //     );
+    // }
   }
 
-  onResetCredentials() {
-
-  }
-
-  onSubmit() {
-
-  }
 }
