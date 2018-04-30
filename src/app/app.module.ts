@@ -23,10 +23,15 @@ import {ExhibitsComponent} from './exhibits/exhibits.component';
 import {VisitorComponent} from './visitor/visitor.component';
 import {AuthService} from './service/auth.service'
 import {CookieService} from 'ngx-cookie-service';
-import { AboutComponent } from './about/about.component';
-import {GuestGuard} from "./guard/guest.guard";
+import {AboutComponent} from './about/about.component';
+import {UserGuard} from "./guard/user.guard";
 import {AdminGuard} from "./guard/admin.guard";
-import {LoginGuard} from './guard/login.guard';
+import {AnonymGuard} from './guard/anonym.guard';
+import {ForbiddenComponent} from './forbidden/forbidden.component';
+import {SignupComponent} from './signup/signup.component';
+import {ToursEditComponent} from './tours/tours-edit/tours-edit.component';
+import { ToursViewComponent } from './tours/tours-view/tours-view.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -41,7 +46,12 @@ import {LoginGuard} from './guard/login.guard';
     GuidesComponent,
     ExhibitsComponent,
     VisitorComponent,
-    AboutComponent
+    AboutComponent,
+    ForbiddenComponent,
+    SignupComponent,
+    ToursEditComponent,
+    ToursViewComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -68,8 +78,8 @@ import {LoginGuard} from './guard/login.guard';
     FlexLayoutModule
   ],
   providers: [
-    LoginGuard,
-    GuestGuard,
+    AnonymGuard,
+    UserGuard,
     AdminGuard,
     TranslateService,
     AuthService,

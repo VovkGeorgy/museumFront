@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-// import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {ToursComponent} from './tours/tours.component';
@@ -8,10 +7,15 @@ import {NotFoundComponent} from './not-found/not-found.component';
 import {GuidesComponent} from "./guides/guides.component";
 import {ExhibitsComponent} from "./exhibits/exhibits.component";
 import {VisitorComponent} from "./visitor/visitor.component";
-import {GuestGuard} from "./guard/guest.guard";
+import {UserGuard} from "./guard/user.guard";
 import {AdminGuard} from "./guard/admin.guard";
 import {AboutComponent} from "./about/about.component";
-import {LoginGuard} from "./guard/login.guard";
+import {AnonymGuard} from "./guard/anonym.guard";
+import {ForbiddenComponent} from "./forbidden/forbidden.component";
+import {SignupComponent} from "./signup/signup.component";
+import {ToursEditComponent} from "./tours/tours-edit/tours-edit.component";
+import {ToursViewComponent} from "./tours/tours-view/tours-view.component";
+import {ProfileComponent} from "./profile/profile.component";
 
 export const routes: Routes = [
   {
@@ -22,23 +26,43 @@ export const routes: Routes = [
   // {
   //   path: 'signup',
   //   component: SignupComponent,
-  //   canActivate: [GuestGuard],
+  //   canActivate: [AnonymGuard],
   //   pathMatch: 'full'
   // },
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [GuestGuard]
+    canActivate: [AnonymGuard]
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
+    canActivate: [AnonymGuard]
+  },
+  {
+    path: 'editProfile',
+    component: ProfileComponent,
+    canActivate: [UserGuard]
   },
   {
     path: 'about',
     component: AboutComponent,
-    canActivate: [GuestGuard]
+    // canActivate: [UserGuard]
   },
   {
     path: 'tours',
     component: ToursComponent,
-    canActivate: [LoginGuard]
+    canActivate: [UserGuard]
+  },
+  {
+    path: 'tours/edit',
+    component: ToursEditComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'tours/view',
+    component: ToursViewComponent,
+    canActivate: [UserGuard]
   },
   {
     path: 'guides',
@@ -48,7 +72,7 @@ export const routes: Routes = [
   {
     path: 'exhibits',
     component: ExhibitsComponent,
-    canActivate: [LoginGuard]
+    canActivate: [UserGuard]
   },
   {
     path: 'visitors',
@@ -58,7 +82,7 @@ export const routes: Routes = [
   // {
   //   path: 'change-password',
   //   component: ChangePasswordComponent,
-  //   canActivate: [LoginGuard]
+  //   canActivate: [AnonymGuard]
   // },
   // {
   //   path: 'admin',
@@ -69,10 +93,10 @@ export const routes: Routes = [
     path: '404',
     component: NotFoundComponent
   },
-  // {
-  //   path: '403',
-  //   component: ForbiddenComponent
-  // },
+  {
+    path: '403',
+    component: ForbiddenComponent
+  },
   {
     path: '**',
     redirectTo: '/404'

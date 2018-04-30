@@ -1,0 +1,45 @@
+<div class="row col-md-12">
+  <div class="col-md-2"></div>
+  <div class="col-md-2"><img style="height: 200px; width: 100%; display: block;" src="{{tour.imageUrl}}"
+                             alt="Card image"></div>
+  <div class="col-md-6">
+    <div><h3>{{tour.theme}}</h3></div>
+    <table class="table table-hover text-center">
+      <thead>
+      <tr>
+        <th scope="col">{{'tours.typeOfExhibits' | translate}}</th>
+        <th scope="col">{{'tours.duration' | translate}}</th>
+        <th scope="col">{{'tours.cost' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="table">
+        <th scope="row">{{tour.typeOfExhibits}}</th>
+        <td>{{tour.duration}}</td>
+        <td>{{tour.cost}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row col-md-12">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <table class="table table-hover text-center">
+      <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">{{'exhibits.description' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="table" *ngFor="let exhibit of exhibitsById">
+        <th scope="row"><img style="height: 200px; width: 200px; display: block;" src="{{exhibit.imageUrl}}"
+                             alt="Card image"></th>
+        <td><h5>{{exhibit.title}}</h5>
+          <p>{{exhibit.description}}</p></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

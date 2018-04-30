@@ -31,8 +31,7 @@
               <input type="email" class="form-control" id="inputEmail" placeholder="1-99"
                      formControlName="email">
             </div>
-            <button class="btn btn-primary btn-outline-secondary" placement="right" (click)="addEntityToBase()"
-                    ngbPopover="Entity are added, please check" popoverTitle="Ok!">{{'button.add' | translate}}
+            <button class="btn btn-primary btn-outline-secondary" (click)="addEntityToBase()" >{{'button.add' | translate}}
             </button>
           </fieldset>
         </ng-template>
@@ -62,8 +61,7 @@
             </tr>
             </tbody>
           </table>
-          <button class="btn btn-primary btn-outline-secondary" placement="right" (click)="loadReadForm()"
-                  ngbPopover="" popoverTitle="Ok!">{{'button.update' | translate}}
+          <button class="btn btn-primary btn-outline-secondary" (click)="loadReadForm()">{{'button.update' | translate}}
           </button>
         </ng-template>
       </ngb-tab>
@@ -125,8 +123,7 @@
               <input type="email" class="form-control" id="updateEmail" placeholder="test@tmail.com"
                      formControlName="email">
             </div>
-            <button class="btn btn-primary btn-outline-secondary" placement="right" (click)="addUpdatedEntityToBase()"
-                    ngbPopover="" popoverTitle="Ok!">{{'button.update' | translate}}
+            <button class="btn btn-primary btn-outline-secondary" (click)="addUpdatedEntityToBase()">{{'button.update' | translate}}
             </button>
           </fieldset>
         </ng-template>
@@ -154,15 +151,13 @@
               <td>{{visitor.age}}</td>
               <td>{{visitor.email}}</td>
               <td>
-                <button class="btn btn-primary btn-outline-secondary" (click)="deleteEntityInBase(visitor)"
-                        ngbPopover="" popoverTitle="Ok!">{{'button.delete' | translate}}
+                <button class="btn btn-primary btn-outline-secondary" (click)="deleteEntityInBase(visitor)">{{'button.delete' | translate}}
                 </button>
               </td>
             </tr>
             </tbody>
           </table>
-          <button class="btn btn-primary btn-outline-secondary" placement="right" (click)="updateReadForm()"
-                  ngbPopover="" popoverTitle="Ok!">{{'button.update' | translate}}
+          <button class="btn btn-primary btn-outline-secondary" (click)="loadReadForm()">{{'button.update' | translate}}
           </button>
         </ng-template>
       </ngb-tab>

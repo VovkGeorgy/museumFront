@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../service/data.service';
+import {Router} from "@angular/router";
+import {AuthService} from "../service/auth.service";
 
 @Component({
   selector: 'app-tours',
@@ -9,9 +11,11 @@ import {DataService} from '../service/data.service';
 export class ToursComponent implements OnInit {
   tours: any[any];
 
-  getAllToursUrl = 'http://localhost:8090/tour/tours';
+  getAllToursUrl = '/tour/tours';
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService,
+              private authService: AuthService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -25,4 +29,16 @@ export class ToursComponent implements OnInit {
       });
   }
 
+  editTour(tour) {
+    this.router.navigate(['/tours/edit', tour]);
+  }
+
+  viewTour(tour) {
+    this.router.navigate(['/tours/view', tour]);
+
+  }
+
+  hasRoleAdmin() {
+    return this.authService.isAdmin();
+  }
 }

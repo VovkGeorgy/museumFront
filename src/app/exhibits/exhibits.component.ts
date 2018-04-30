@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from "../service/data.service";
+import {AuthService} from "../service/auth.service";
 
 @Component({
   selector: 'app-exhibits',
@@ -11,7 +12,9 @@ export class ExhibitsComponent implements OnInit {
 
   getAllToursUrl = 'http://localhost:8090/exhibit/exhibits';
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,
+              private authService: AuthService) {
+  }
 
   ngOnInit() {
     this.updateReadForm();
@@ -22,6 +25,10 @@ export class ExhibitsComponent implements OnInit {
       .subscribe(exhibits => {
         this.exhibits = exhibits;
       });
+  }
+
+  hasRoleAdmin() {
+    return this.authService.isAdmin();
   }
 
 }

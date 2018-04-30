@@ -19,7 +19,9 @@ export class LoginComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private cookieService: CookieService
+  ) {
   }
 
   ngOnInit() {
@@ -28,8 +30,12 @@ export class LoginComponent implements OnInit {
 
   login() {
     const userDetail = this.logForm.value;
-    this.authService.getToken(userDetail.username, userDetail.password);
-
+    this.authService.getToken(userDetail.username, userDetail.password).subscribe(data => {
+      this.cookieService.set('username', userDetail.username, 1);
+      this.authService.getRole().subscribe(data => {
+        console.log('get role finish');
+      })
+    });
 
     // this.currentUserRoles = this.authService.getRole(this.act);
     // if (this.currentUserRoles) {

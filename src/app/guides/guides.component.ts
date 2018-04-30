@@ -25,10 +25,10 @@ export class GuidesComponent implements OnInit {
     languages: new FormControl(''),
     tourId: new FormControl('')
   });
-  getAllGuidesUrl = 'http://localhost:8090/guide/guides';
-  addGuideUrl = 'http://localhost:8090/guide/guides/add';
-  updateGuideUrl = 'http://localhost:8090/guide/guides/update/';
-  deleteGuideUrl = 'http://localhost:8090/guide/guides/delete/';
+  getAllGuidesUrl = '/guide/guides';
+  addGuideUrl = '/guide/guides/add';
+  updateGuideUrl = '/guide/guides/update/';
+  deleteGuideUrl = '/guide/guides/delete/';
   tempGuide: any;
 
 
@@ -36,7 +36,7 @@ export class GuidesComponent implements OnInit {
   }
 
   addEntityToBase() {
-    this.dataService.addData(this.addGuideUrl, this.guideForm.getRawValue())
+    this.dataService.postData(this.addGuideUrl, this.guideForm.getRawValue())
       .subscribe(guide => {
         this.tempGuide = guide;
       });
@@ -46,6 +46,7 @@ export class GuidesComponent implements OnInit {
   loadUpdatedForm(guide) {
     this.updateFieldIsHidden = false;
     this.updateTableIsHidden = true;
+    console.log(guide);
     this.guideForm.setValue(guide);
     this.tempGuideKey = guide.$key;
   }
@@ -59,7 +60,7 @@ export class GuidesComponent implements OnInit {
 
   addUpdatedEntityToBase() {
     let localGuide = this.guideForm.getRawValue();
-    this.dataService.addData(this.updateGuideUrl + localGuide.guideId, this.guideForm.getRawValue())
+    this.dataService.postData(this.updateGuideUrl + localGuide.guideId, this.guideForm.getRawValue())
       .subscribe(guide => {
         this.tempGuide = guide;
       });
@@ -70,7 +71,7 @@ export class GuidesComponent implements OnInit {
   }
 
   deleteEntityInBase(guide) {
-    this.dataService.deleteData(this.deleteGuideUrl + guide.guideId, guide)
+    this.dataService.postData(this.deleteGuideUrl + guide.guideId, guide)
       .subscribe(data => {
         this.tempGuide = data;
       });

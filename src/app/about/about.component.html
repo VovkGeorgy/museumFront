@@ -1,3 +1,17 @@
-<p>
-  about works!
-</p>
+<div style="height: 50px"></div>
+<div class="row col-md-12">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <p>
+      {{'about.text' | translate}}
+    </p>
+    <p>{{serverContent}}</p>
+    <p>{{protectedData}}</p>
+    <button class="btn btn-primary" (click)="getAbout()"
+            ngbPopover="">About get
+    </button>
+    <button class="btn btn-primary" (click)="getprotectdata()"
+            ngbPopover="">Protect get
+    </button>
+  </div>
+</div>

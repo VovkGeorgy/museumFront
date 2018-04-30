@@ -1,36 +1,46 @@
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'my-auth-token'
-  }),
-};
 
 @Injectable()
 export class DataService {
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'my-auth-token'
+    }),
+  };
 
   constructor(private http: HttpClient) {
   }
 
   getData(dataUrl) {
-    return this.http.get(dataUrl);
+    console.log("getData");
+    console.log(this.httpOptions.headers);
+    return this.http.get(dataUrl, this.httpOptions);
   }
 
-  loginRequest(loginUrl) {
-    return this.http.post(loginUrl, httpOptions);
+  postData(dataUrl, data) {
+    return this.http.post(dataUrl, JSON.stringify(data), this.httpOptions);
   }
 
-  addData(dataUrl, data) {
-    return this.http.post(dataUrl, JSON.stringify(data), httpOptions);
+  setHeaders(dataHeaders) {
+    console.log("setDataHeaders");
+    this.httpOptions.headers = dataHeaders;
   }
 
-  deleteData(dataUrl, data) {
-    return this.http.post(dataUrl, JSON.stringify(data), httpOptions);
+  getHeaders() {
+    console.log("getDataHeaders");
+    return this.httpOptions.headers;
   }
 
-  authorization(){
-    // http.defaults.headers.common.Authorization = 'Bearer ' + act.access_token
+  setDefaultHeaders() {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'my-auth-token'
+      }),
+    }
   }
 }

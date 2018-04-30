@@ -1,6 +1,5 @@
 <div class="album py-5">
-  <button class="btn btn-primary btn-outline-secondary" placement="right" (click)="updateReadForm()"
-          ngbPopover="" popoverTitle="Ok!">{{'button.update' | translate}}
+  <button class="btn btn-primary btn-outline-secondary"(click)="updateReadForm()">{{'button.update' | translate}}
   </button>
   <div class="container">
     <div class="row">
@@ -16,8 +15,8 @@
             <p class="card-text">{{exhibit.description}}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn btn-outline-primary">View</button>
-                <button type="button" class="btn btn-sm btn btn-outline-primary">Edit</button>
+                <button type="button" class="btn btn-sm btn btn-outline-primary">{{'button.view' | translate}}</button>
+                <button type="button" class="btn btn-sm btn btn-outline-primary" *ngIf="hasRoleAdmin()">{{'button.edit' | translate}}</button>
               </div>
               <small class="text-muted">{{exhibit.material}}</small>
             </div>

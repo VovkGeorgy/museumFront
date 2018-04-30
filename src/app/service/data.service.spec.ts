@@ -51,7 +51,7 @@ describe('DataService', () => {
 
   it(`should get null when delete data`, async(inject([DataService, HttpTestingController],
     (service: DataService, backend: HttpTestingController) => {
-      service.deleteData('/student/deleteStudent', 'student').subscribe((next) => {
+      service.postData('/student/deleteStudent', 'student').subscribe((next) => {
         expect(next).toEqual(null);
       });
 

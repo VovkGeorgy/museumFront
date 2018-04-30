@@ -36,7 +36,7 @@ export class VisitorComponent implements OnInit {
   }
 
   addEntityToBase() {
-    this.dataService.addData(this.addVisitorUrl, this.visitorForm.getRawValue())
+    this.dataService.postData(this.addVisitorUrl, this.visitorForm.getRawValue())
       .subscribe(visitor => {
         this.tempVisitor = visitor;
       });
@@ -58,8 +58,8 @@ export class VisitorComponent implements OnInit {
   }
 
   addUpdatedEntityToBase() {
-    let localvisitor = this.visitorForm.getRawValue();
-    this.dataService.addData(this.updateVisitorUrl + localvisitor.visitorId, this.visitorForm.getRawValue())
+    let localVisitor = this.visitorForm.getRawValue();
+    this.dataService.postData(this.updateVisitorUrl + localVisitor.visitorId, this.visitorForm.getRawValue())
       .subscribe(visitor => {
         this.tempVisitor = visitor;
       });
@@ -70,7 +70,7 @@ export class VisitorComponent implements OnInit {
   }
 
   deleteEntityInBase(visitor) {
-    this.dataService.deleteData(this.deleteVisitorUrl + visitor.visitorId, visitor)
+    this.dataService.postData(this.deleteVisitorUrl + visitor.visitorId, visitor)
       .subscribe(data => {
         this.tempVisitor = data;
       });

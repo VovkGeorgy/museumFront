@@ -1,6 +1,5 @@
 <div class="album py-5">
-  <button class="btn btn-primary btn-outline-secondary" placement="right" (click)="updateReadForm()"
-          ngbPopover="" popoverTitle="Ok!">{{'button.update' | translate}}
+  <button class="btn btn-primary btn-outline-secondary" (click)="updateReadForm()" >{{'button.update' | translate}}
   </button>
   <div class="container">
     <div class="row">
@@ -12,13 +11,15 @@
                  src="{{tour.imageUrl}}"
                  alt="Card image">
             <div class="card-body">
-              <p class="card-text">Type of txhibits - {{tour.typeOfExhibits}}</p>
-              <p class="card-text">Duration - {{tour.duration}}</p>
-              <p class="card-text">Cost - {{tour.cost}} $</p>
+              <p class="card-text">{{'tours.typeOfExhibits' | translate}} - {{tour.typeOfExhibits}}</p>
+              <p class="card-text">{{'tours.duration' | translate}} - {{tour.duration}}</p>
+              <p class="card-text">{{'tours.cost' | translate}} - {{tour.cost}} $</p>
             </div>
             <div class="card-body">
-              <a href="#" class="card-link">View</a>
-              <a href="#" class="card-link">Edit</a>
+              <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="viewTour(tour)">{{'button.view'
+                | translate}}</button>
+              <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="editTour(tour)"
+                      *ngIf="hasRoleAdmin()">{{'button.edit' | translate}}</button>
             </div>
           </div>
         </div>

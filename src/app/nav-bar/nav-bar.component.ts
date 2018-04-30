@@ -26,23 +26,25 @@ export class NavBarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/']);
   }
 
   hasSignedIn() {
     if (this.cookieService.get('username')) {
       this.logButtonName = this.cookieService.get('username');
       return true;
+    } else {
+      return false;
     }
-    return false;
   }
 
   hasRoleAdmin() {
-    if (JSON.stringify(this.cookieService.get('roles')).search('ROLE_ADMIN') !== -1) {
-      return true;
-    }
-    return false;
+    return this.authService.isAdmin();
   }
+
+  hasRoleUser() {
+    return this.authService.isUser();
+  }
+
 
   userName() {
   }
