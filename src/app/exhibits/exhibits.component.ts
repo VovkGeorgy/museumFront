@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from "../service/data.service";
 import {AuthService} from "../service/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-exhibits',
@@ -13,6 +14,7 @@ export class ExhibitsComponent implements OnInit {
   getAllToursUrl = 'http://localhost:8090/exhibit/exhibits';
 
   constructor(private dataService: DataService,
+              private router: Router,
               private authService: AuthService) {
   }
 
@@ -31,4 +33,11 @@ export class ExhibitsComponent implements OnInit {
     return this.authService.isAdmin();
   }
 
+  editExhibit(exhibit) {
+    this.router.navigate(['/exhibits/edit', exhibit]);
+  }
+
+  viewExhibit(exhibit) {
+    this.router.navigate(['/exhibits/view', exhibit]);
+  }
 }

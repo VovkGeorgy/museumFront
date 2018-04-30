@@ -35,7 +35,6 @@ export class ToursComponent implements OnInit {
 
   viewTour(tour) {
     this.router.navigate(['/tours/view', tour]);
-
   }
 
   hasRoleAdmin() {

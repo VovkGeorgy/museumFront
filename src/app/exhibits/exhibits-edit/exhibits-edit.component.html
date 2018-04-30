@@ -1,0 +1,40 @@
+<div class="row col-md-12">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <fieldset [formGroup]="exhibitForm" [hidden]="updateFieldIsHidden">
+      <legend>Update exhibit entity</legend>
+      <div class="form-group">
+        <label for="updateTitle">{{'exhibits.title' | translate}}</label>
+        <input type="text" class="form-control" id="updateTitle" placeholder="title"
+               formControlName="title">
+      </div>
+      <div class="form-group">
+        <label for="updateDated">{{'exhibits.dated' | translate}}</label>
+        <input type="text" class="form-control" id="updateDated" placeholder="dated"
+               formControlName="dated">
+      </div>
+      <div class="form-group">
+        <label for="updateMaterial">{{'exhibits.material' | translate}}</label>
+        <input type="text" class="form-control" id="updateMaterial" placeholder="material"
+               formControlName="material">
+      </div>
+      <div class="form-group">
+        <label for="updateArchiveNum">{{'exhibits.archiveNum' | translate}}</label>
+        <input type="text" class="form-control" id="updateArchiveNum" placeholder="archiveNum"
+               formControlName="archiveNum">
+      </div>
+      <div class="form-group">
+        <label for="exampleTextarea">{{'exhibits.description' | translate}}</label>
+        <textarea class="form-control" id="exampleTextarea" rows="4" placeholder="description"
+                  formControlName="description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="updateImageUrl">{{'exhibits.imageUrl' | translate}}</label>
+        <input type="text" class="form-control" id="updateImageUrl" placeholder="imageUrl"
+               formControlName="imageUrl">
+      </div>
+      <button class="btn btn-primary" (click)="updateExhibit()">{{'button.update' | translate}}
+      </button>
+    </fieldset>
+  </div>
+</div>

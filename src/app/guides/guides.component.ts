@@ -19,6 +19,8 @@ export class GuidesComponent implements OnInit {
   tempGuideKey: any;
   guideForm: FormGroup = new FormGroup({
     guideId: new FormControl(''),
+    username: new FormControl(''),
+    password: new FormControl(''),
     fio: new FormControl(''),
     age: new FormControl(''),
     experience: new FormControl(''),

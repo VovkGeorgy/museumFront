@@ -37,6 +37,8 @@
   "guide": {
     "naming": "Экскурсоводы",
     "title": "Добавить экскурсовода",
+    "username": "Имя",
+    "password": "Пароль",
     "fio": "Фио",
     "age": "Возраст",
     "experience": "Опыт",
@@ -49,7 +51,8 @@
     "dated": "Датировка",
     "material": "Материал",
     "archiveNum": "Номер в архиве",
-    "description": "Описание"
+    "description": "Описание",
+    "imageUrl": "URL Картинки"
   },
   "visitor": {
     "title": "Добавить посетителя",
