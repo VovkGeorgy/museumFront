@@ -30,8 +30,6 @@ export class ToursEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.tour = params;
-      console.log(params);
-      console.log(this.tour);
       this.tourForm.setValue(this.tour);
     });
   }

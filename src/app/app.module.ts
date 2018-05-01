@@ -30,10 +30,10 @@ import {AnonymGuard} from './guard/anonym.guard';
 import {ForbiddenComponent} from './forbidden/forbidden.component';
 import {SignupComponent} from './signup/signup.component';
 import {ToursEditComponent} from './tours/tours-edit/tours-edit.component';
-import { ToursViewComponent } from './tours/tours-view/tours-view.component';
-import { ProfileComponent } from './profile/profile.component';
-import { ExhibitsEditComponent } from './exhibits/exhibits-edit/exhibits-edit.component';
-import { ExhibitsViewComponent } from './exhibits/exhibits-view/exhibits-view.component';
+import {ToursViewComponent} from './tours/tours-view/tours-view.component';
+import {ProfileComponent} from './profile/profile.component';
+import {ExhibitsEditComponent} from './exhibits/exhibits-edit/exhibits-edit.component';
+import {ExhibitsViewComponent} from './exhibits/exhibits-view/exhibits-view.component';
 
 
 @NgModule({

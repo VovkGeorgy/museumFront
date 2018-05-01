@@ -25,10 +25,10 @@ export class VisitorComponent implements OnInit {
     age: new FormControl(''),
     email: new FormControl(''),
   });
-  getAllVisitorsUrl = 'http://localhost:8090/visitor/visitors';
-  addVisitorUrl = 'http://localhost:8090/visitor/visitors/add';
-  updateVisitorUrl = 'http://localhost:8090/visitor/visitors/update/';
-  deleteVisitorUrl = 'http://localhost:8090/visitor/visitors/delete/';
+  getAllVisitorsUrl = '/visitor/visitors';
+  addVisitorUrl = '/visitor/visitors/add';
+  updateVisitorUrl = '/visitor/visitors/update/';
+  deleteVisitorUrl = '/visitor/visitors/delete/';
   tempVisitor: any;
 
 
@@ -41,6 +41,7 @@ export class VisitorComponent implements OnInit {
         this.tempVisitor = visitor;
       });
     this.visitorForm.reset();
+    this.loadReadForm();
   }
 
   loadUpdateForm(visitor) {
@@ -64,9 +65,9 @@ export class VisitorComponent implements OnInit {
         this.tempVisitor = visitor;
       });
     this.visitorForm.reset();
-    this.loadReadForm();
     this.updateTableIsHidden = false;
     this.updateFieldIsHidden = true;
+    this.loadReadForm();
   }
 
   deleteEntityInBase(visitor) {

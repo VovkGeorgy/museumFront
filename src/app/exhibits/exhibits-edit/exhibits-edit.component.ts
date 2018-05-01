@@ -30,8 +30,6 @@ export class ExhibitsEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.exhibit = params;
-      console.log(params);
-      console.log(this.exhibit);
       this.exhibitForm.setValue(this.exhibit);
     });
   }

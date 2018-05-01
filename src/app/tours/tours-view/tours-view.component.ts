@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {DataService} from "../../service/data.service";
 
 @Component({
@@ -7,15 +7,15 @@ import {DataService} from "../../service/data.service";
   templateUrl: './tours-view.component.html',
   styleUrls: ['./tours-view.component.css']
 })
+
 export class ToursViewComponent implements OnInit {
 
-  constructor(private router: Router,
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private dataService: DataService) {
   }
 
   tour: any;
-  exhibits: any[any];
+  exhibitsOfCurrentTour: any[any];
   exhibitsById: any[any] = [];
   getAllTourExhibitsUrl = '/tour/exhibits/';
 
@@ -23,20 +23,46 @@ export class ToursViewComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.tour = params;
-      // console.log(params);
-      // console.log(this.tour);
-      // this.tourForm.setValue(this.tour);
       this.dataService.getData(this.getAllTourExhibitsUrl + this.tour.tourId)
         .subscribe(exhibits => {
-          console.log(exhibits);
-          this.exhibits = exhibits;
-          this.exhibits.forEach(elem => {
+          this.exhibitsOfCurrentTour = exhibits;
+          this.exhibitsOfCurrentTour.forEach(elem => {
               this.exhibitsById.push(elem.exhibitByExhibitId);
             }
           );
-          console.log(this.exhibitsById);
         });
     });
   }
+
+  // deleteExhibitOfTour(exhibit) {
+  // console.log(this.tour.tourId);
+  // console.log(exhibit.exhibitId);
+  // let obj = {
+  //   'tourId': this.tour.tourId,
+  //   'exhibitId': exhibit.exhibitId
+  // };
+  // this.dataService.postData(this.test, obj).subscribe(no => {
+  //   console.log('postData');
+  //
+  // this.exhibitsOfCurrentTour.forEach(elem => {
+  // if (elem.exhibitId == exhibit.exhibitId) {
+  //   let ind = this.exhibitsOfCurrentTour.indexOf(elem);
+  //   this.exhibitsOfCurrentTour.splice(ind, 1);
+  // }
+  // });
+  // let obj = {
+  // 'tourId': this.tour.tourId,
+  // 'tourId': 1,
+  // 'exhibitId': exhibit.exhibitId
+  // 'exhibitId': 10
+  // };
+  // console.log(this.exhibitsOfCurrentTour);
+  // this.dataService.postData(this.test + this.tour.tourId, this.exhibitsOfCurrentTour).subscribe(no => {
+  //   console.log('get in postData');
+  //   console.log(no);
+  // }
+//
+// );
+// }
 
 }

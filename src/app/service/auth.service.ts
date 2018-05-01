@@ -29,7 +29,6 @@ export class AuthService {
       'Authorization': 'Basic ' + btoa('Client:Secret'),
       'Content-Type': 'application/x-www-form-urlencoded'
     });
-    console.log('getToken-start');
     let body = new HttpParams();
     body = body.set('username', username);
     body = body.set('password', password);
@@ -47,20 +46,14 @@ export class AuthService {
   }
 
   getRole() {
-    console.log('getRole-start');
     return this.http.get('/abo/whoiam', {headers: this.dataService.getHeaders()}).map((data: any) => {
       // this.rolesObject = data;
-      console.log(data);
       // console.log(this.rolesObject);
       data.forEach(elem => {
-        console.log(elem);
-        // this.rolesArray.push(data.map(function(a) {return a["authority"];}));
-        console.log(this.rolesArray);
         this.rolesArray.push(elem.authority);
       });
       this.rolesString = this.rolesArray.join(", ");
       this.cookieService.set('roles', this.rolesString, 1);
-      console.log(this.accessToken);
       this.router.navigate(['/']);
     })
   }

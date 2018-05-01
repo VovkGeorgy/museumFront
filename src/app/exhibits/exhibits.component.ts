@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 export class ExhibitsComponent implements OnInit {
   exhibits: any[any];
 
-  getAllToursUrl = 'http://localhost:8090/exhibit/exhibits';
+  getAllToursUrl = '/exhibit/exhibits';
 
   constructor(private dataService: DataService,
               private router: Router,

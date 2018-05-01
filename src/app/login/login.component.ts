@@ -1,10 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Subject} from 'rxjs/Subject';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
 import {AuthService} from "../service/auth.service";
-import {HttpParams} from "@angular/common/http";
-import {DataService} from "../service/data.service";
 import {CookieService} from "ngx-cookie-service";
 
 @Component({
@@ -33,7 +29,6 @@ export class LoginComponent implements OnInit {
     this.authService.getToken(userDetail.username, userDetail.password).subscribe(data => {
       this.cookieService.set('username', userDetail.username, 1);
       this.authService.getRole().subscribe(data => {
-        console.log('get role finish');
       })
     });
 

@@ -30,6 +30,7 @@
       <tr>
         <th scope="col"></th>
         <th scope="col">{{'exhibits.description' | translate}}</th>
+        <th scope="col"></th>
       </tr>
       </thead>
       <tbody>
@@ -38,6 +39,9 @@
                              alt="Card image"></th>
         <td><h5>{{exhibit.title}}</h5>
           <p>{{exhibit.description}}</p></td>
+        <!--<td><button class="btn btn-primary btn-outline-secondary" (click)="deleteExhibitOfTour(exhibit)">{{'button.delete' |-->
+          <!--translate}}-->
+        <!--</button></td>-->
       </tr>
       </tbody>
     </table>

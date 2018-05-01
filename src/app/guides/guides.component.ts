@@ -48,7 +48,6 @@ export class GuidesComponent implements OnInit {
   loadUpdatedForm(guide) {
     this.updateFieldIsHidden = false;
     this.updateTableIsHidden = true;
-    console.log(guide);
     this.guideForm.setValue(guide);
     this.tempGuideKey = guide.$key;
   }

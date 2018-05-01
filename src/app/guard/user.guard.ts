@@ -21,14 +21,11 @@ export class UserGuard implements CanActivate {
       if (JSON.stringify(this.cookieService.get('roles')).search('ROLE_USER') !== -1) {
         return true;
       } else {
-        console.log('HAS NO NEEDED ROLE');
         this.router.navigate(['/403']);
         return false;
       }
 
     } else {
-      console.log('NOT AN USER ROLE');
-      let row = 'Only for admin, please login';
       this.router.navigate(['/403']);
       return false;
     }

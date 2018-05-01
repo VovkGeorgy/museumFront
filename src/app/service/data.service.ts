@@ -16,8 +16,6 @@ export class DataService {
   }
 
   getData(dataUrl) {
-    console.log("getData");
-    console.log(this.httpOptions.headers);
     return this.http.get(dataUrl, this.httpOptions);
   }
 
@@ -26,12 +24,10 @@ export class DataService {
   }
 
   setHeaders(dataHeaders) {
-    console.log("setDataHeaders");
     this.httpOptions.headers = dataHeaders;
   }
 
   getHeaders() {
-    console.log("getDataHeaders");
     return this.httpOptions.headers;
   }
 

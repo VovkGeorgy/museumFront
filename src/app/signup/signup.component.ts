@@ -34,11 +34,9 @@ export class SignupComponent implements OnInit {
     this.dataService.postData(this.addVisitorUrl, this.visitorForm.getRawValue())
       .subscribe(visitor => {
         this.tempVisitor = visitor;
-        console.log('addVisitor');
         this.authService.getToken(this.tempVisitor.username, this.tempVisitor.password).subscribe(data => {
           this.cookieService.set('username', this.tempVisitor.username, 1);
           this.authService.getRole().subscribe(data => {
-            console.log('get role finish in signup');
           })
         });
       });
