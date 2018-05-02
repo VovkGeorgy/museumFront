@@ -69,9 +69,6 @@ export class ProfileComponent implements OnInit {
         this.display = 'block';
       });
     this.visitorForm.reset();
-    // this.loadReadForm();
-    // this.updateTableIsHidden = false;
-    // this.updateFieldIsHidden = true;
   }
 
   updateGuideInBase() {

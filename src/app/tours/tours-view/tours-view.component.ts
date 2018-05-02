@@ -34,35 +34,4 @@ export class ToursViewComponent implements OnInit {
     });
   }
 
-  // deleteExhibitOfTour(exhibit) {
-  // console.log(this.tour.tourId);
-  // console.log(exhibit.exhibitId);
-  // let obj = {
-  //   'tourId': this.tour.tourId,
-  //   'exhibitId': exhibit.exhibitId
-  // };
-  // this.dataService.postData(this.test, obj).subscribe(no => {
-  //   console.log('postData');
-  //
-  // this.exhibitsOfCurrentTour.forEach(elem => {
-  // if (elem.exhibitId == exhibit.exhibitId) {
-  //   let ind = this.exhibitsOfCurrentTour.indexOf(elem);
-  //   this.exhibitsOfCurrentTour.splice(ind, 1);
-  // }
-  // });
-  // let obj = {
-  // 'tourId': this.tour.tourId,
-  // 'tourId': 1,
-  // 'exhibitId': exhibit.exhibitId
-  // 'exhibitId': 10
-  // };
-  // console.log(this.exhibitsOfCurrentTour);
-  // this.dataService.postData(this.test + this.tour.tourId, this.exhibitsOfCurrentTour).subscribe(no => {
-  //   console.log('get in postData');
-  //   console.log(no);
-  // }
-//
-// );
-// }
-
 }

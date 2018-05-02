@@ -65,13 +65,6 @@ import {ExhibitsViewComponent} from './exhibits/exhibits-view/exhibits-view.comp
     HttpClientModule,
     AppRoutingModule,
     NgbModule.forRoot(),
-    // RouterModule.forRoot([
-    //   {path: '', component: HomeComponent},
-    //   {path: 'login', component: LoginComponent},
-    //   {path: 'tours', component: ToursComponent},
-    //   {path: '**', component: NotFoundComponent},
-    //   // redirection: '/home....'; pathMatch: 'Full'
-    // ]),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

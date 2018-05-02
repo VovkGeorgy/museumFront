@@ -12,7 +12,8 @@ export class ExhibitsEditComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private dataService: DataService) { }
+              private dataService: DataService) {
+  }
 
   exhibit: any;
   tempExhibit: any;

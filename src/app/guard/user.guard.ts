@@ -10,12 +10,6 @@ export class UserGuard implements CanActivate {
   }
 
   canActivate(): boolean {
-    // if (this.cookieService.get('jwtAccess')) {
-    //   this.router.navigate(['/login']);
-    //   return false;
-    // } else {
-    //   return true;
-    // }
 
     if (this.cookieService.get('jwtAccess')) {
       if (JSON.stringify(this.cookieService.get('roles')).search('ROLE_USER') !== -1) {

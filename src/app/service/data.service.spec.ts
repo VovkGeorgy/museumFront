@@ -26,36 +26,38 @@ describe('DataService', () => {
     backend.verify();
   }));
 
-  it(`should send a get request for data (students)`, async(inject([DataService, HttpTestingController],
+  it(`should send a get request for data (tours)`, async(inject([DataService, HttpTestingController],
     (service: DataService, backend: HttpTestingController) => {
-      service.getData('/student/getAllStudents').subscribe((next) => {
+      service.getData('/tour/tours').subscribe((next) => {
         expect(next).toEqual({
-          'studentId': 1,
-          'fio': 'Vovk G.A.',
-          'workGroup': 21,
-          'yearsOld': 22
+          'tourId': 1,
+          'theme': 'Italian Renaissance',
+          'typeOfExhibits': 'paintings',
+          'duration': 2,
+          'cost': 220
         });
       });
 
       backend.match({
-        url: '/student/getAllStudents',
+        url: '/tour/tours',
         method: 'GET'
       })[0].flush({
-        'studentId': 1,
-        'fio': 'Vovk G.A.',
-        'workGroup': 21,
-        'yearsOld': 22
+        'tourId': 1,
+        'theme': 'Italian Renaissance',
+        'typeOfExhibits': 'paintings',
+        'duration': 2,
+        'cost': 220
       });
     })));
 
 
   it(`should get null when delete data`, async(inject([DataService, HttpTestingController],
     (service: DataService, backend: HttpTestingController) => {
-      service.postData('/student/deleteStudent', 'student').subscribe((next) => {
+      service.postData('/tour/tours/delete/{tourId}', 'tourId').subscribe((next) => {
         expect(next).toEqual(null);
       });
 
-      backend.expectOne('/student/deleteStudent')
+      backend.expectOne('/tour/tours/delete/{tourId}')
         .flush(null, {status: 200, statusText: 'Ok'});
     })));
 

@@ -32,25 +32,6 @@ export class LoginComponent implements OnInit {
       })
     });
 
-    // this.currentUserRoles = this.authService.getRole(this.act);
-    // if (this.currentUserRoles) {
-    //   console.log(this.currentUserRoles);
-    // }
-    // console.log(response);
-    // console.log(this.accessToken);
-    //
-    // });
-
-    // const val = this.logForm.value;
-    // if (val.email && val.password) {
-    //   this.authService.getToken(val.email, val.password)
-    //     .subscribe(
-    //       () => {
-    //         console.log("User is logged in");
-    //         this.router.navigateByUrl('/');
-    //       }
-    //     );
-    // }
   }
 
 }
