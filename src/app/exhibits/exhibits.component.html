@@ -1,6 +1,7 @@
+<div style="text-align: center">
+  <a *ngIf="!hasRoleUser()">{{'login.message' | translate}}</a>
+</div>
 <div class="album py-5">
-  <button class="btn btn-primary btn-outline-secondary" (click)="updateReadForm()">{{'button.update' | translate}}
-  </button>
   <div class="container">
     <div class="row">
       <div class="col-md-4" *ngFor="let exhibit of exhibits">
@@ -15,7 +16,7 @@
             <p class="card-text">{{exhibit.description}}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="viewExhibit(exhibit)">{{'button.view' |
+                <button type="button" *ngIf="hasRoleUser()" class="btn btn-sm btn btn-outline-primary" (click)="viewExhibit(exhibit)">{{'button.view' |
                   translate}}
                 </button>
                 <button type="button" class="btn btn-sm btn btn-outline-primary" *ngIf="hasRoleAdmin()"

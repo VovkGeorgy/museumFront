@@ -25,6 +25,7 @@ export class ExhibitsViewComponent implements OnInit {
       this.exhibit = params;
       this.dataService.getData(this.getAllExhibitToursUrl + this.exhibit.exhibitId)
         .subscribe(tours => {
+          console.log(tours);
           this.tours = tours;
           this.tours.forEach(elem => {
               this.toursById.push(elem.tourByTourId);

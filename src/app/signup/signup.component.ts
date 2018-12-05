@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
-import {DataService} from "../service/data.service";
-import {AuthService} from "../service/auth.service";
-import {CookieService} from "ngx-cookie-service";
+import {FormControl, FormGroup} from '@angular/forms';
+import {DataService} from '../service/data.service';
+import {AuthService} from '../service/auth.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-signup',
@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
 
   constructor(private dataService: DataService,
               private authService: AuthService,
-              private cookieService: CookieService,) {
+              private cookieService: CookieService, ) {
   }
 
   ngOnInit() {
@@ -36,8 +36,8 @@ export class SignupComponent implements OnInit {
         this.tempVisitor = visitor;
         this.authService.getToken(this.tempVisitor.username, this.tempVisitor.password).subscribe(data => {
           this.cookieService.set('username', this.tempVisitor.username, 1);
-          this.authService.getRole().subscribe(data => {
-          })
+          this.authService.getRole().subscribe(some => {
+          });
         });
       });
   }

@@ -1,0 +1,11 @@
+#tour-image {
+  height: 200px;
+  width: 100%;
+  display: block;
+}
+
+#exhibit-image {
+  height: 200px;
+  width: 200px;
+  display: block;
+}

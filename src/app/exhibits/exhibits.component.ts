@@ -33,6 +33,10 @@ export class ExhibitsComponent implements OnInit {
     return this.authService.isAdmin();
   }
 
+  hasRoleUser() {
+    return this.authService.isUser();
+  }
+
   editExhibit(exhibit) {
     this.router.navigate(['/exhibits/edit', exhibit]);
   }

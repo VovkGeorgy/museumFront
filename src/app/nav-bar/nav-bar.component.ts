@@ -45,10 +45,6 @@ export class NavBarComponent implements OnInit {
     return this.authService.isUser();
   }
 
-
-  userName() {
-  }
-
   changeLanguage(language: string) {
     this.translate.use(language);
   }

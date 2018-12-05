@@ -1,6 +1,6 @@
 <div class="row col-md-12">
   <div class="col-md-2"></div>
-  <div class="col-md-2"><img style="height: 200px; width: 100%; display: block;" src="{{tour.imageUrl}}"
+  <div class="col-md-2"><img id="tour-image" src="{{tour.imageUrl}}"
                              alt="Card image"></div>
   <div class="col-md-6">
     <div><h3>{{tour.theme}}</h3></div>
@@ -20,6 +20,22 @@
       </tr>
       </tbody>
     </table>
+    <div *ngIf="isFavourite; then delete else add"></div>
+    <ng-template #add>
+      <div style="float: right">
+        <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="addToFavorites(tour)">
+          {{'button.addToFavorites' | translate}}
+        </button>
+      </div>
+    </ng-template>
+    <ng-template #delete>
+      <div style="float: right">
+        <a>Tour already in favorites</a>
+        <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="deleteFromFavorites(tour)">
+          {{'button.delete'| translate}}
+        </button>
+      </div>
+    </ng-template>
   </div>
 </div>
 <div class="row col-md-12">
@@ -35,7 +51,7 @@
       </thead>
       <tbody>
       <tr class="table" *ngFor="let exhibit of exhibitsById">
-        <th scope="row"><img style="height: 200px; width: 200px; display: block;" src="{{exhibit.imageUrl}}"
+        <th scope="row"><img id="exhibit-image" src="{{exhibit.imageUrl}}"
                              alt="Card image"></th>
         <td><h5>{{exhibit.title}}</h5>
           <p>{{exhibit.description}}</p></td>

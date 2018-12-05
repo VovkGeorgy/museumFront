@@ -43,7 +43,6 @@ export const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent,
-    // canActivate: [UserGuard]
   },
   {
     path: 'tours',
@@ -68,7 +67,6 @@ export const routes: Routes = [
   {
     path: 'exhibits',
     component: ExhibitsComponent,
-    canActivate: [UserGuard]
   },
   {
     path: 'exhibits/edit',
@@ -85,16 +83,6 @@ export const routes: Routes = [
     component: VisitorComponent,
     canActivate: [AdminGuard]
   },
-  // {
-  //   path: 'change-password',
-  //   component: ChangePasswordComponent,
-  //   canActivate: [AnonymGuard]
-  // },
-  // {
-  //   path: 'admin',
-  //   component: AdminComponent,
-  //   canActivate: [AdminGuard]
-  // },
   {
     path: '404',
     component: NotFoundComponent

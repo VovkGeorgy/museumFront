@@ -20,7 +20,7 @@
         <a class="nav-link" routerLink="/guides" *ngIf="hasRoleAdmin()">{{'guide.naming' | translate}}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/exhibits" *ngIf="hasRoleUser()">{{'exhibits.naming' | translate}}</a>
+        <a class="nav-link" routerLink="/exhibits">{{'exhibits.naming' | translate}}</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/visitors" *ngIf="hasRoleAdmin()">{{'visitor.naming' | translate}}</a>
@@ -29,30 +29,28 @@
         <a class="nav-link" routerLink="/about">{{'navbar.aboutUs' | translate}}</a>
       </li>
     </ul>
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <button type="button" class="btn btn-primary btn-sm" (click)="changeLanguage('en')">EN</button>
-      <button type="button" class="btn btn-primary btn-sm" (click)="changeLanguage('ru')">RU</button>
-    </div>
     <div style="width: 20px"></div>
     <button *ngIf="!hasSignedIn()" class="btn btn-outline-primary btn-sm" routerLink="/login">{{'button.login' | translate}}
     </button>
     <div style="width: 10px"></div>
     <button *ngIf="!hasSignedIn()" class="btn btn-outline-primary btn-sm" routerLink="/signup">{{'button.signup' | translate}}
     </button>
-
     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
       <div class="btn-group" role="group" *ngIf="hasSignedIn()">
         <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle btn-sm" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false"></button>
         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start"
-             style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
+             style=" position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
           <a class="dropdown-item" routerLink="/editProfile">{{'button.editProfile' | translate}}</a>
           <a class="dropdown-item" routerLink="/" (click)="logout()">{{'button.logout' | translate}}</a>
         </div>
       </div>
       <button type="button" class="btn btn-outline-primary btn-sm" *ngIf="hasSignedIn()">{{logButtonName}}</button>
     </div>
-    <div style="width: 20px"></div>
-
+    <div style="width: 10px"></div>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <button type="button" class="btn btn-primary btn-sm" (click)="changeLanguage('en')">EN</button>
+      <button type="button" class="btn btn-primary btn-sm" (click)="changeLanguage('ru')">RU</button>
+    </div>
   </div>
 </nav>

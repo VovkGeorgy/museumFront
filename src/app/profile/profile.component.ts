@@ -21,6 +21,8 @@ export class ProfileComponent implements OnInit {
   });
   guideForm: FormGroup = new FormGroup({
     guideId: new FormControl(''),
+    username: new FormControl(''),
+    password: new FormControl(''),
     fio: new FormControl(''),
     age: new FormControl(''),
     experience: new FormControl(''),
@@ -37,6 +39,10 @@ export class ProfileComponent implements OnInit {
   updateGuideUrl = '/guide/guides/update/';
   display = 'none';
   disabled = '';
+  toursByVisitorId: any[any] = [];
+  getAllVisitorToursUrl = '/visitor/tours/';
+  tours: any[any];
+
 
   constructor(private dataService: DataService,
               private authService: AuthService,
@@ -55,6 +61,16 @@ export class ProfileComponent implements OnInit {
       this.dataService.postData(this.getVisitorUrl, this.cookieService.get('username')).subscribe(data => {
         this.tempVisitor = data;
         this.visitorForm.setValue(this.tempVisitor);
+
+        // this.dataService.getData(this.getAllVisitorToursUrl + this.tempVisitor.visitorId)
+        //   .subscribe(tours => {
+        //     this.tours = tours;
+        //     console.log(this.tours);
+        //     this.tours.forEach(elem => {
+        //         this.toursByVisitorId.push(elem.tourByTourId);
+        //       }
+        //     );
+        //   });
       });
     }
 
