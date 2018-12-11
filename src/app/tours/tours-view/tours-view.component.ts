@@ -41,36 +41,36 @@ export class ToursViewComponent implements OnInit {
         });
       this.dataService.postData(this.getVisitorUrl, this.cookieService.get("username")).subscribe(data => {
         this.visitor = data;
-        this.checkToFavorites();
+        this.isTourInFavorites();
       });
     });
   }
 
   addToFavorites(tour) {
     const idObject = {
-      "tourId": tour.tourId,
+      "tourId": this.tour.tourId,
       "visitorId": this.visitor.visitorId,
     };
     console.log(idObject);
     this.dataService.postData(this.addTourToVisitorUrl, idObject).subscribe(data => {
       console.log("addTourToVisitor");
-      this.checkToFavorites();
+      this.isTourInFavorites();
     });
   }
 
   deleteFromFavorites(tour) {
     const tempTVObj = {
-      "tourId": tour.tourId,
+      "tourId": this.tour.tourId,
       "visitorId": this.visitor.visitorId,
     };
     console.log(tempTVObj);
     this.dataService.postData(this.removeTourFromVisitorUrl, tempTVObj).subscribe(data => {
       console.log("RemoveTourFromVisitor");
-      this.checkToFavorites();
+      this.isTourInFavorites();
     });
   }
 
-  checkToFavorites(){
+  isTourInFavorites(){
     console.log(this.tour.tourId);
     console.log(this.visitor.visitorId);
     const tempTVObj = {

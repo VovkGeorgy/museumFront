@@ -1,6 +1,6 @@
 <div class="row col-md-12 {{disabled}}">
   <div class="col-md-3"></div>
-  <div class="col-md-6" [hidden]="isAdmin" style="background: black">
+  <div class="col-md-6" [hidden]="isAdmin()" style="background: black">
     <fieldset [formGroup]="visitorForm">
       <legend>{{'login.profile' | translate}}</legend>
       <div class="form-group">
@@ -28,40 +28,45 @@
         <input type="email" class="form-control" id="updateEmail" placeholder="test@tmail.com"
                formControlName="email">
       </div>
-      <button type="button" class="btn btn-outline-primary" (click)="updateVisitorInBase()">{{'button.update' | translate}}
+      <button type="button" class="btn btn-outline-primary" (click)="updateVisitorInBase()">{{'button.update' |
+        translate}}
       </button>
     </fieldset>
   </div>
 </div>
 
-<!--<div class="row col-md-12">-->
-  <!--<div class="col-md-2"></div>-->
-  <!--<div class="col-md-8">-->
-    <!--<table class="table table-hover text-center">-->
-      <!--<thead>-->
-      <!--<tr>-->
-        <!--<th scope="col"></th>-->
-        <!--<th scope="col">{{'tours.theme' | translate}}</th>-->
-        <!--<th scope="col">{{'tours.duration' | translate}}</th>-->
-        <!--<th scope="col">{{'tours.cost' | translate}}</th>-->
-      <!--</tr>-->
-      <!--</thead>-->
-      <!--<tbody>-->
-      <!--<tr class="table" *ngFor="let tour of toursByVisitorId">-->
-        <!--<th scope="row"><img style="height: 200px; width: 200px; display: block;" src="{{tour.imageUrl}}"-->
-                             <!--alt="Card image"></th>-->
-        <!--<td><h5>{{tour.theme}}</h5></td>-->
-        <!--<td>{{tour.duration}}</td>-->
-        <!--<td>{{tour.cost}}</td>-->
-      <!--</tr>-->
-      <!--</tbody>-->
-    <!--</table>-->
-  <!--</div>-->
-<!--</div>-->
+<div _ngcontent-c6="" style="text-align: center"><h5>{{'visitor.favouriteTours' |
+  translate}}</h5></div>
+<div class="album py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let tour of favouriteVisitorTours">
+        <div class="card mb-4 box-shadow">
+          <div class="card mb-3">
+            <h6 class="card-header">{{tour.theme}}</h6>
+            <img style="height: 200px; width: 100%; display: block;"
+                 src="{{tour.imageUrl}}"
+                 alt="Card image">
+            <div class="card-body">
+              <p class="card-text">{{'tours.typeOfExhibits' | translate}} - {{tour.typeOfExhibits}}</p>
+              <p class="card-text">{{'tours.duration' | translate}} - {{tour.duration}} {{'tours.hour' | translate}}</p>
+              <p class="card-text">{{'tours.cost' | translate}} - {{tour.cost}} $</p>
+            </div>
+            <div class="card-body">
+              <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="viewTour(tour)">{{'button.view'
+                | translate}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="row col-md-12 {{disabled}}">
   <div class="col-md-3"></div>
-  <div class="col-md-6" [hidden]="!isAdmin" style="background: black">
+  <div class="col-md-6" [hidden]="!isAdmin()" style="background: black">
     <fieldset [formGroup]="guideForm">
       <legend>{{'login.profile' | translate}}</legend>
       <div class="form-group">
@@ -99,7 +104,8 @@
         <input type="number" class="form-control" id="updateTourId" placeholder="1-3"
                formControlName="tourId">
       </div>
-      <button type="button" class="btn btn-outline-primary" (click)="updateGuideInBase()">{{'button.update' | translate}}
+      <button type="button" class="btn btn-outline-primary" (click)="updateGuideInBase()">{{'button.update' |
+        translate}}
       </button>
     </fieldset>
   </div>
