@@ -25,7 +25,6 @@ export class GuidesComponent implements OnInit {
     age: new FormControl(''),
     experience: new FormControl(''),
     languages: new FormControl(''),
-    tourId: new FormControl('')
   });
   getAllGuidesUrl = '/guide/guides';
   addGuideUrl = '/guide/guides/add';
