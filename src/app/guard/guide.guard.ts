@@ -3,14 +3,14 @@ import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from "
 import {CookieService} from "ngx-cookie-service";
 
 @Injectable()
-export class AdminGuard implements CanActivate {
+export class GuideGuard implements CanActivate {
   constructor(private router: Router,
               private cookieService: CookieService) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (this.cookieService.get("jwtAccess")) {
-      if (JSON.stringify(this.cookieService.get("roles")).search("ROLE_ADMIN") !== -1) {
+      if (JSON.stringify(this.cookieService.get("roles")).search("ROLE_GUIDE") !== -1) {
         return true;
       } else {
         this.router.navigate(["/403"]);
@@ -23,4 +23,3 @@ export class AdminGuard implements CanActivate {
     }
   }
 }
-

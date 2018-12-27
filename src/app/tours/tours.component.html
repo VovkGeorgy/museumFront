@@ -19,7 +19,7 @@
                 | translate}}
               </button>
               <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="editTour(tour)"
-                      *ngIf="hasRoleAdmin()">{{'button.edit' | translate}}
+                      *ngIf="isGuide()">{{'button.edit' | translate}}
               </button>
             </div>
           </div>

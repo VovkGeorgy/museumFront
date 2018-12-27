@@ -83,23 +83,23 @@ export class AuthService {
    * @returns {boolean}
    */
   isAdmin() {
-    if (JSON.stringify(this.cookieService.get("roles")).search("ROLE_ADMIN") !== -1) {
-      return true;
-    } else {
-      return false;
-    }
+    return JSON.stringify(this.cookieService.get("roles")).search("ROLE_ADMIN") !== -1;
   }
 
   /**
-   * Check role of current user is USER
+   * Check role of current user is GUIDE
    * @returns {boolean}
    */
-  isUser() {
-    if (JSON.stringify(this.cookieService.get("roles")).search("ROLE_USER") !== -1) {
-      return true;
-    } else {
-      return false;
-    }
+  isGuide() {
+    return JSON.stringify(this.cookieService.get("roles")).search("ROLE_GUIDE") !== -1;
+  }
+
+  /**
+   * Check role of current user is VISITOR
+   * @returns {boolean}
+   */
+  isVisitor() {
+    return JSON.stringify(this.cookieService.get("roles")).search("ROLE_VISITOR") !== -1;
   }
 
 }

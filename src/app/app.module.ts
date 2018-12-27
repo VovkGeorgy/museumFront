@@ -24,7 +24,7 @@ import {VisitorComponent} from './visitor/visitor.component';
 import {AuthService} from './service/auth.service'
 import {CookieService} from 'ngx-cookie-service';
 import {AboutComponent} from './about/about.component';
-import {UserGuard} from "./guard/user.guard";
+import {VisitorGuard} from "./guard/visitor.guard";
 import {AdminGuard} from "./guard/admin.guard";
 import {AnonymGuard} from './guard/anonym.guard';
 import {ForbiddenComponent} from './forbidden/forbidden.component';
@@ -76,7 +76,7 @@ import {ExhibitsViewComponent} from './exhibits/exhibits-view/exhibits-view.comp
   ],
   providers: [
     AnonymGuard,
-    UserGuard,
+    VisitorGuard,
     AdminGuard,
     TranslateService,
     AuthService,

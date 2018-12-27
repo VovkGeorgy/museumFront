@@ -37,12 +37,16 @@ export class NavBarComponent implements OnInit {
     }
   }
 
-  hasRoleAdmin() {
+  isAdmin() {
     return this.authService.isAdmin();
   }
 
-  hasRoleUser() {
-    return this.authService.isUser();
+  isGuide() {
+    return this.authService.isGuide();
+  }
+
+  isVisitor() {
+    return this.authService.isVisitor();
   }
 
   changeLanguage(language: string) {

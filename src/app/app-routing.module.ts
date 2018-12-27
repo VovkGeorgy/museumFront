@@ -7,7 +7,7 @@ import {NotFoundComponent} from './not-found/not-found.component';
 import {GuidesComponent} from "./guides/guides.component";
 import {ExhibitsComponent} from "./exhibits/exhibits.component";
 import {VisitorComponent} from "./visitor/visitor.component";
-import {UserGuard} from "./guard/user.guard";
+import {VisitorGuard} from "./guard/visitor.guard";
 import {AdminGuard} from "./guard/admin.guard";
 import {AboutComponent} from "./about/about.component";
 import {AnonymGuard} from "./guard/anonym.guard";
@@ -38,7 +38,7 @@ export const routes: Routes = [
   {
     path: 'editProfile',
     component: ProfileComponent,
-    canActivate: [UserGuard]
+    canActivate: [VisitorGuard]
   },
   {
     path: 'about',
@@ -47,7 +47,7 @@ export const routes: Routes = [
   {
     path: 'tours',
     component: ToursComponent,
-    canActivate: [UserGuard]
+    canActivate: [VisitorGuard]
   },
   {
     path: 'tours/edit',
@@ -57,7 +57,7 @@ export const routes: Routes = [
   {
     path: 'tours/view',
     component: ToursViewComponent,
-    canActivate: [UserGuard]
+    canActivate: [VisitorGuard]
   },
   {
     path: 'guides',
@@ -76,7 +76,7 @@ export const routes: Routes = [
   {
     path: 'exhibits/view',
     component: ExhibitsViewComponent,
-    canActivate: [UserGuard]
+    canActivate: [VisitorGuard]
   },
   {
     path: 'visitors',

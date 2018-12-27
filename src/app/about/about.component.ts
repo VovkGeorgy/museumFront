@@ -9,9 +9,19 @@ import {DataService} from "../service/data.service";
 
 export class AboutComponent implements OnInit {
 
+  adminDataUrl = "/abo/adminOnly";
+  data : any;
+
   constructor(private dataService: DataService) {
   }
 
   ngOnInit() {
+  }
+
+  getAdminData(){
+    this.dataService.getData(this.adminDataUrl)
+      .subscribe(data => {
+        this.data = data;
+      });
   }
 }

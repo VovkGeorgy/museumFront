@@ -22,7 +22,7 @@ import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "../../service/auth.service";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 import {AdminGuard} from "../../guard/admin.guard";
-import {UserGuard} from "../../guard/user.guard";
+import {VisitorGuard} from "../../guard/visitor.guard";
 import {AnonymGuard} from "../../guard/anonym.guard";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from "../../app-routing.module";
@@ -76,7 +76,7 @@ describe('ExhibitsViewComponent', () => {
       ],
       providers: [
         AnonymGuard,
-        UserGuard,
+        VisitorGuard,
         AdminGuard,
         TranslateService,
         AuthService,

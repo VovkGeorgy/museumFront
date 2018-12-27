@@ -11,7 +11,7 @@ import {APP_BASE_HREF} from "@angular/common";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppRoutingModule} from "./app-routing.module";
 import {AnonymGuard} from "./guard/anonym.guard";
-import {UserGuard} from "./guard/user.guard";
+import {VisitorGuard} from "./guard/visitor.guard";
 import {AuthService} from "./service/auth.service";
 import {AdminGuard} from './guard/admin.guard';
 import {CookieService} from 'ngx-cookie-service';
@@ -73,7 +73,7 @@ describe('AppComponent', () => {
       ],
       providers: [
         AnonymGuard,
-        UserGuard,
+        VisitorGuard,
         AdminGuard,
         TranslateService,
         AuthService,

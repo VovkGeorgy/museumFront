@@ -1,5 +1,5 @@
 <div style="text-align: center">
-  <a *ngIf="!hasRoleUser()">{{'login.message' | translate}}</a>
+  <a *ngIf="!isVisitor()">{{'login.message' | translate}}</a>
 </div>
 <div class="album py-5">
   <div class="container">
@@ -16,10 +16,10 @@
             <p class="card-text">{{exhibit.description}}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" *ngIf="hasRoleUser()" class="btn btn-sm btn btn-outline-primary" (click)="viewExhibit(exhibit)">{{'button.view' |
+                <button type="button" *ngIf="isVisitor()" class="btn btn-sm btn btn-outline-primary" (click)="viewExhibit(exhibit)">{{'button.view' |
                   translate}}
                 </button>
-                <button type="button" class="btn btn-sm btn btn-outline-primary" *ngIf="hasRoleAdmin()"
+                <button type="button" class="btn btn-sm btn btn-outline-primary" *ngIf="isGuide()"
                         (click)="editExhibit(exhibit)">{{'button.edit' | translate}}
                 </button>
               </div>

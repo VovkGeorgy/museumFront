@@ -11,7 +11,7 @@ import {DataService} from "../service/data.service";
 import {APP_BASE_HREF} from "@angular/common";
 import {AppRoutingModule} from "../app-routing.module";
 import {AnonymGuard} from "../guard/anonym.guard";
-import {UserGuard} from "../guard/user.guard";
+import {VisitorGuard} from "../guard/visitor.guard";
 import {AdminGuard} from '../guard/admin.guard';
 import {AuthService} from "../service/auth.service";
 import {CookieService} from "ngx-cookie-service";
@@ -76,7 +76,7 @@ describe('ExhibitsComponent', () => {
       ],
       providers: [
         AnonymGuard,
-        UserGuard,
+        VisitorGuard,
         AdminGuard,
         TranslateService,
         AuthService,

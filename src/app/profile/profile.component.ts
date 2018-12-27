@@ -44,7 +44,6 @@ export class ProfileComponent implements OnInit {
   favouriteVisitorTours: any[any] = [];
   showFavourites: boolean = false;
 
-
   constructor(private dataService: DataService,
               private authService: AuthService,
               private cookieService: CookieService,
@@ -52,7 +51,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.isAdmin()) {
+    if (this.isGuide()) {
       this.getGuideData();
     } else {
       this.getVisitorData();
@@ -114,7 +113,7 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  isAdmin() {
-    return this.authService.isAdmin();
+  isGuide() {
+    return this.authService.isGuide();
   }
 }

@@ -37,7 +37,7 @@ export class ToursComponent implements OnInit {
     this.router.navigate(['/tours/view', tour]);
   }
 
-  hasRoleAdmin() {
-    return this.authService.isAdmin();
+  isGuide() {
+    return this.authService.isGuide();
   }
 }

@@ -25,7 +25,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {HttpLoaderFactory} from "../app.module";
 import {AnonymGuard} from "../guard/anonym.guard";
-import {UserGuard} from "../guard/user.guard";
+import {VisitorGuard} from "../guard/visitor.guard";
 import {AdminGuard} from "../guard/admin.guard";
 import {TranslateService} from '@ngx-translate/core';
 import {AuthService} from "../service/auth.service";
@@ -77,7 +77,7 @@ describe('HomeComponent', () => {
       ],
       providers: [
         AnonymGuard,
-        UserGuard,
+        VisitorGuard,
         AdminGuard,
         TranslateService,
         AuthService,

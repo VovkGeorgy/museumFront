@@ -1,16 +1,16 @@
 import {Injectable} from "@angular/core";
-import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
+import {Router, CanActivate} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 
 @Injectable()
-export class AdminGuard implements CanActivate {
+export class VisitorGuard implements CanActivate {
   constructor(private router: Router,
               private cookieService: CookieService) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(): boolean {
     if (this.cookieService.get("jwtAccess")) {
-      if (JSON.stringify(this.cookieService.get("roles")).search("ROLE_ADMIN") !== -1) {
+      if (JSON.stringify(this.cookieService.get("roles")).search("ROLE_VISITOR") !== -1) {
         return true;
       } else {
         this.router.navigate(["/403"]);
@@ -18,9 +18,8 @@ export class AdminGuard implements CanActivate {
       }
 
     } else {
-      this.router.navigate(["/login"]);
+      this.router.navigate(["/403"]);
       return false;
     }
   }
 }
-
