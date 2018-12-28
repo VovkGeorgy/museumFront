@@ -65,11 +65,7 @@ export class ProfileComponent implements OnInit {
       this.showFavourites = true;
       this.dataService.getData(this.getAllVisitorToursUrl + this.tempVisitor.visitorId)
         .subscribe(tours => {
-          this.toursByVisitorId = tours;
-          this.toursByVisitorId.forEach(elem => {
-              this.favouriteVisitorTours.push(elem.tourByTourId);
-            }
-          );
+          this.favouriteVisitorTours = tours;
         });
     });
   }

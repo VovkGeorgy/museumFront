@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DataService} from "../../service/data.service";
 
 @Component({
-  selector: 'app-exhibits-view',
-  templateUrl: './exhibits-view.component.html',
-  styleUrls: ['./exhibits-view.component.css']
+  selector: "app-exhibits-view",
+  templateUrl: "./exhibits-view.component.html",
+  styleUrls: ["./exhibits-view.component.css"]
 })
 export class ExhibitsViewComponent implements OnInit {
 
@@ -16,21 +16,14 @@ export class ExhibitsViewComponent implements OnInit {
 
   exhibit: any;
   tours: any[any];
-  toursById: any[any] = [];
-  getAllExhibitToursUrl = '/exhibit/tours/';
-
+  getAllExhibitToursUrl = "/exhibit/exhibits/tours/";
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.exhibit = params;
       this.dataService.getData(this.getAllExhibitToursUrl + this.exhibit.exhibitId)
         .subscribe(tours => {
-          console.log(tours);
           this.tours = tours;
-          this.tours.forEach(elem => {
-              this.toursById.push(elem.tourByTourId);
-            }
-          );
         });
     });
   }

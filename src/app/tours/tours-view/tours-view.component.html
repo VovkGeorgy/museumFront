@@ -20,7 +20,7 @@
       </tr>
       </tbody>
     </table>
-    <div *ngIf="isFavourite; then delete else add"></div>
+    <div *ngIf="isFavourite && isVisitor(); then delete else add"></div>
     <ng-template #add>
       <div style="float: right">
         <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="addToFavorites(tour)">
