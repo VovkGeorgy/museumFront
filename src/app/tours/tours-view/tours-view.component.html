@@ -1,4 +1,4 @@
-<div class="row col-md-12">
+<div class="row col-md-12" *ngIf="tour">
   <div class="col-md-2"></div>
   <div class="col-md-2"><img id="tour-image" src="{{tour.imageUrl}}"
                              alt="Card image"></div>
@@ -20,16 +20,16 @@
       </tr>
       </tbody>
     </table>
-    <div *ngIf="isFavourite && isVisitor(); then delete else add"></div>
+    <div *ngIf="isFavourite; then delete else add"></div>
     <ng-template #add>
-      <div style="float: right">
+      <div style="float: right" [hidden]="!isVisitor()">
         <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="addToFavorites(tour)">
           {{'button.addToFavorites' | translate}}
         </button>
       </div>
     </ng-template>
     <ng-template #delete>
-      <div style="float: right">
+      <div style="float: right" [hidden]="!isVisitor()">
         <a>Tour already in favorites</a>
         <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="deleteFromFavorites(tour)">
           {{'button.delete'| translate}}

@@ -16,9 +16,8 @@ export class VisitorGuard implements CanActivate {
         this.router.navigate(["/403"]);
         return false;
       }
-
     } else {
-      this.router.navigate(["/403"]);
+      this.router.navigate(["/login"]);
       return false;
     }
   }

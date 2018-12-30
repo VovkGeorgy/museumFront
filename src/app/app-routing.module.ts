@@ -18,6 +18,7 @@ import {ToursViewComponent} from "./tours/tours-view/tours-view.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {ExhibitsEditComponent} from "./exhibits/exhibits-edit/exhibits-edit.component";
 import {ExhibitsViewComponent} from "./exhibits/exhibits-view/exhibits-view.component";
+import {GuideGuard} from "./guard/guide.guard";
 
 export const routes: Routes = [
   {
@@ -52,7 +53,7 @@ export const routes: Routes = [
   {
     path: 'tours/edit',
     component: ToursEditComponent,
-    canActivate: [AdminGuard]
+    canActivate: [GuideGuard]
   },
   {
     path: 'tours/view',

@@ -37,10 +37,9 @@ export class ProfileComponent implements OnInit {
   getGuideUrl = "/guide/guides/getByUsername";
   updateVisitorUrl = "/visitor/visitors/update/";
   updateGuideUrl = "/guide/guides/update/";
+  getAllVisitorToursUrl = "/visitor/tours/findAll/";
   display = "none";
   disabled = "";
-  toursByVisitorId: any[any] = [];
-  getAllVisitorToursUrl = "/visitor/tours/findAll/";
   favouriteVisitorTours: any[any] = [];
   showFavourites: boolean = false;
 

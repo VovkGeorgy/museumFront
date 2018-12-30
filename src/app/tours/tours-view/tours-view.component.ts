@@ -23,22 +23,27 @@ export class ToursViewComponent implements OnInit {
   exhibitsById: any[any];
   isFavourite: boolean;
   getAllTourExhibitsUrl = "/tour/exhibits/";
+  getTourUrl = "/tour/tours/";
   getVisitorUrl = "/visitor/visitors/getByUsername";
   addTourToVisitorUrl = "/visitor/visitors/addTour";
   removeTourFromVisitorUrl = "/visitor/visitors/removeTour";
   checkTourFromVisitorUrl = "/visitor/toursCheck";
 
-
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.tour = params;
-      this.dataService.getData(this.getAllTourExhibitsUrl + this.tour.tourId)
-        .subscribe(exhibits => {
-          this.exhibitsById = exhibits;
-        });
-      this.dataService.postData(this.getVisitorUrl, this.cookieService.get("username")).subscribe(data => {
-        this.visitor = data;
-        this.isTourInFavorites();
+      this.dataService.getData(this.getTourUrl + params.tourId).subscribe(tour => {
+        this.tour = tour;
+        console.log(tour);
+        this.dataService.getData(this.getAllTourExhibitsUrl + this.tour.tourId)
+          .subscribe(exhibits => {
+            this.exhibitsById = exhibits;
+          });
+        if (this.isVisitor()) {
+          this.dataService.postData(this.getVisitorUrl, this.cookieService.get("username")).subscribe(data => {
+            this.visitor = data;
+            this.isTourInFavorites();
+          });
+        }
       });
     });
   }
