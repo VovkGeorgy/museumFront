@@ -1,16 +1,15 @@
 import {Component, OnInit} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
-import {DataService} from "../service/data.service";
-import {AuthService} from "../service/auth.service";
+import {DataService} from "../../service/data.service";
 import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: "app-profile",
-  templateUrl: "./profile.component.html",
-  styleUrls: ["./profile.component.css"]
+  selector: "app-visitor-profile",
+  templateUrl: "./visitor-profile.component.html",
+  styleUrls: ["./visitor-profile.component.css"]
 })
-export class ProfileComponent implements OnInit {
+export class VisitorProfileComponent implements OnInit {
 
   visitorForm: FormGroup = new FormGroup({
     visitorId: new FormControl(""),
@@ -21,62 +20,34 @@ export class ProfileComponent implements OnInit {
     email: new FormControl(""),
     tourEntitySet: new FormControl("")
   });
-  guideForm: FormGroup = new FormGroup({
-    guideId: new FormControl(""),
-    username: new FormControl(""),
-    password: new FormControl(""),
-    fio: new FormControl(""),
-    age: new FormControl(""),
-    experience: new FormControl(""),
-    languages: new FormControl(""),
-    tourId: new FormControl("")
-  });
-
   visitor: any[any];
-  tempGuide: any[any];
   getVisitorUrl = "/visitor/visitors/getByUsername";
-  getGuideUrl = "/guide/guides/getByUsername";
   updateVisitorUrl = "/visitor/visitors/update/";
-  updateGuideUrl = "/guide/guides/update/";
   removeTourFromVisitorUrl = "/visitor/visitors/removeTour";
   display = "none";
   disabled = "";
   favouriteVisitorTours: any[any] = [];
-  showFavourites: boolean = false;
 
   constructor(private dataService: DataService,
-              private authService: AuthService,
               private cookieService: CookieService,
               private router: Router) {
   }
 
   ngOnInit() {
-    if (this.isGuide()) {
-      this.getGuideData();
-    } else {
-      this.getVisitorData();
-    }
+    this.getVisitorData();
   }
 
   getVisitorData() {
     this.dataService.postData(this.getVisitorUrl, this.cookieService.get("username")).subscribe(data => {
       this.visitor = data;
       this.visitorForm.setValue(this.visitor);
-      this.showFavourites = true;
       this.favouriteVisitorTours = this.visitor.tourEntitySet;
-    });
-  }
-
-  getGuideData() {
-    this.dataService.postData(this.getGuideUrl, this.cookieService.get("username")).subscribe(data => {
-      console.log(data);
-      this.tempGuide = data;
-      this.guideForm.setValue(this.tempGuide);
     });
   }
 
   updateVisitorInBase() {
     let localVisitor = this.visitorForm.getRawValue();
+    console.log(localVisitor);
     this.dataService.postData(this.updateVisitorUrl + localVisitor.visitorId, localVisitor)
       .subscribe(visitor => {
         this.visitor = visitor;
@@ -86,17 +57,6 @@ export class ProfileComponent implements OnInit {
     this.visitorForm.reset();
   }
 
-  updateGuideInBase() {
-    let localGuide = this.guideForm.getRawValue();
-    this.dataService.postData(this.updateGuideUrl + localGuide.guideId, this.guideForm.getRawValue())
-      .subscribe(guide => {
-        this.tempGuide = guide;
-        this.disabled = "disabled";
-        this.display = "block";
-      });
-    this.guideForm.reset();
-  }
-
   closeModal() {
     this.display = "none";
     this.ngOnInit();
@@ -104,10 +64,6 @@ export class ProfileComponent implements OnInit {
 
   viewTour(tour) {
     this.router.navigate(["/tours/view", tour]);
-  }
-
-  isGuide() {
-    return this.authService.isGuide();
   }
 
   deleteFromFavorites(tour) {

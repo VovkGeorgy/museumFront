@@ -42,7 +42,7 @@
                 aria-haspopup="true" aria-expanded="false"></button>
         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start"
              style=" position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 34px, 0px);">
-          <a class="dropdown-item" routerLink="/editProfile">{{'button.editProfile' | translate}}</a>
+          <a class="dropdown-item" routerLink="/" (click)="goToProfileEditor()">{{'button.editProfile' | translate}}</a>
           <a class="dropdown-item" routerLink="/" (click)="logout()">{{'button.logout' | translate}}</a>
         </div>
       </div>

@@ -1,9 +1,9 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from './home/home.component';
-import {LoginComponent} from './login/login.component';
-import {ToursComponent} from './tours/tours.component';
-import {NotFoundComponent} from './not-found/not-found.component';
+import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
+import {HomeComponent} from "./home/home.component";
+import {LoginComponent} from "./login/login.component";
+import {ToursComponent} from "./tours/tours.component";
+import {NotFoundComponent} from "./not-found/not-found.component";
 import {GuidesComponent} from "./guides/guides.component";
 import {ExhibitsComponent} from "./exhibits/exhibits.component";
 import {VisitorComponent} from "./visitor/visitor.component";
@@ -19,82 +19,94 @@ import {ProfileComponent} from "./profile/profile.component";
 import {ExhibitsEditComponent} from "./exhibits/exhibits-edit/exhibits-edit.component";
 import {ExhibitsViewComponent} from "./exhibits/exhibits-view/exhibits-view.component";
 import {GuideGuard} from "./guard/guide.guard";
+import {GuideProfileComponent} from "./profile/guide-profile/guide-profile.component";
+import {VisitorProfileComponent} from "./profile/visitor-profile/visitor-profile.component";
 
 export const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: HomeComponent,
-    pathMatch: 'full'
+    pathMatch: "full"
   },
   {
-    path: 'login',
+    path: "login",
     component: LoginComponent,
     canActivate: [AnonymGuard]
   },
   {
-    path: 'signup',
+    path: "signup",
     component: SignupComponent,
     canActivate: [AnonymGuard]
   },
   {
-    path: 'editProfile',
+    path: "editProfile",
     component: ProfileComponent,
     canActivate: [VisitorGuard]
   },
   {
-    path: 'about',
+    path: "about",
     component: AboutComponent,
   },
   {
-    path: 'tours',
+    path: "tours",
     component: ToursComponent,
     canActivate: [VisitorGuard]
   },
   {
-    path: 'tours/edit',
+    path: "tours/edit",
     component: ToursEditComponent,
     canActivate: [GuideGuard]
   },
   {
-    path: 'tours/view',
+    path: "tours/view",
     component: ToursViewComponent,
     canActivate: [VisitorGuard]
   },
   {
-    path: 'guides',
+    path: "guides",
     component: GuidesComponent,
     canActivate: [AdminGuard]
   },
   {
-    path: 'exhibits',
+    path: "exhibits",
     component: ExhibitsComponent,
   },
   {
-    path: 'exhibits/edit',
+    path: "exhibits/edit",
     component: ExhibitsEditComponent,
-    canActivate: [AdminGuard]
+    canActivate: [GuideGuard]
   },
   {
-    path: 'exhibits/view',
+    path: "exhibits/view",
     component: ExhibitsViewComponent,
     canActivate: [VisitorGuard]
   },
   {
-    path: 'visitors',
+    path: "visitors",
     component: VisitorComponent,
     canActivate: [AdminGuard]
   },
   {
-    path: '404',
+    path: "guide-profile",
+    component: GuideProfileComponent,
+    canActivate: [GuideGuard]
+  },
+  {
+    path: "visitor-profile",
+    component: VisitorProfileComponent,
+    canActivate: [VisitorGuard]
+  },
+  {
+    path: "404",
     component: NotFoundComponent
   },
   {
-    path: '403',
+    path: "403",
     component: ForbiddenComponent
   },
   {
-    path: '**',
-    redirectTo: '/404'
+    path: "**",
+    redirectTo: "/404"
   }
 ];
 

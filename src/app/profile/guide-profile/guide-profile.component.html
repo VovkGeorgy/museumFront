@@ -1,0 +1,115 @@
+<div class="row col-md-12 {{disabled}}">
+  <div class="col-md-3"></div>
+  <div class="col-md-6" [hidden]="!isGuide()" style="background: black">
+    <fieldset [formGroup]="guideForm">
+      <legend>{{'login.profile' | translate}}</legend>
+      <div class="form-group">
+        <label for="updateFio">{{'guide.fio' | translate}}</label>
+        <input type="text" class="form-control" id="updateFio" placeholder="Ivanov I. I."
+               formControlName="fio">
+      </div>
+      <div class="form-group">
+        <label for="updateUsername">{{'guide.username' | translate}}</label>
+        <input type="text" class="form-control" id="updateUsername" placeholder="Username"
+               formControlName="username">
+      </div>
+      <div class="form-group">
+        <label for="updatePassword">{{'guide.password' | translate}}</label>
+        <input type="text" class="form-control" id="updatePassword" placeholder="Password"
+               formControlName="password">
+      </div>
+      <div class="form-group">
+        <label for="updateAge">{{'guide.age' | translate}}</label>
+        <input type="number" class="form-control" id="updateAge" placeholder="1-31"
+               formControlName="age">
+      </div>
+      <div class="form-group">
+        <label for="updateExperience">{{'guide.experience' | translate}}</label>
+        <input type="number" class="form-control" id="updateExperience" placeholder="1-99"
+               formControlName="experience">
+      </div>
+      <div class="form-group">
+        <label for="updateLanguages">{{'guide.languages' | translate}}</label>
+        <input type="text" class="form-control" id="updateLanguages" placeholder="ENG,CHN"
+               formControlName="languages">
+      </div>
+      <button type="button" class="btn btn-outline-primary" (click)="updateGuideInBase()">{{'button.update' |
+        translate}}
+      </button>
+    </fieldset>
+  </div>
+</div>
+
+
+<div class="row col-md-12">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <table class="table table-hover text-center">
+      <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">{{'tours.description' | translate}}</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="table" *ngFor="let tour of guideTours">
+        <th scope="row"><img id="tour-image" src="{{tour.imageUrl}}"
+                             alt="Card image"></th>
+        <td><p class="card-text">{{'tours.typeOfExhibits' | translate}} - {{tour.typeOfExhibits}}</p>
+          <p class="card-text">{{'tours.duration' | translate}} - {{tour.duration}} {{'tours.hour' | translate}}</p>
+          <p class="card-text">{{'tours.cost' | translate}} - {{tour.cost}} $</p>
+          <button style="float: inherit" type="button" class="btn btn-sm btn btn-outline-primary" (click)="viewTour(tour)">{{'button.view'
+            | translate}}
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!--<div _ngcontent-c6="" style="text-align: center"><h5>{{'guide.tours' |-->
+<!--translate}}</h5></div>-->
+<!--<div class="album py-5">-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-md-4" *ngFor="let tour of guideTours">-->
+<!--<div class="card mb-4 box-shadow">-->
+<!--<div class="card mb-3">-->
+<!--<h6 class="card-header">{{tour.theme}}</h6>-->
+<!--<img style="height: 200px; width: 100%; display: block;"-->
+<!--src="{{tour.imageUrl}}"-->
+<!--alt="Card image">-->
+<!--<div class="card-body">-->
+<!--<p class="card-text">{{'tours.typeOfExhibits' | translate}} - {{tour.typeOfExhibits}}</p>-->
+<!--<p class="card-text">{{'tours.duration' | translate}} - {{tour.duration}} {{'tours.hour' | translate}}</p>-->
+<!--<p class="card-text">{{'tours.cost' | translate}} - {{tour.cost}} $</p>-->
+<!--</div>-->
+<!--<div class="card-body">-->
+<!--<button type="button" class="btn btn-sm btn btn-outline-primary" (click)="viewTour(tour)">{{'button.view'-->
+<!--| translate}}-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<div class="modal" [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+      </div>
+      <div class="modal-body">
+        <p>{{'modal.changesSaved' | translate}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

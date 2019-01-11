@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
 import {DataService} from "../service/data.service";
 
 @Component({
-  selector: 'app-visitor',
-  templateUrl: './visitor.component.html',
-  styleUrls: ['./visitor.component.css']
+  selector: "app-visitor",
+  templateUrl: "./visitor.component.html",
+  styleUrls: ["./visitor.component.css"]
 })
 export class VisitorComponent implements OnInit {
 
@@ -18,17 +18,17 @@ export class VisitorComponent implements OnInit {
   visitors: any[any];
   tempVisitorKey: any;
   visitorForm: FormGroup = new FormGroup({
-    visitorId: new FormControl(''),
-    username: new FormControl(''),
-    password: new FormControl(''),
-    fio: new FormControl(''),
-    age: new FormControl(''),
-    email: new FormControl(''),
+    visitorId: new FormControl(""),
+    username: new FormControl(""),
+    password: new FormControl(""),
+    fio: new FormControl(""),
+    age: new FormControl(""),
+    email: new FormControl(""),
   });
-  getAllVisitorsUrl = '/visitor/visitors';
-  addVisitorUrl = '/visitor/visitors/add';
-  updateVisitorUrl = '/visitor/visitors/update/';
-  deleteVisitorUrl = '/visitor/visitors/delete/';
+  getAllVisitorsUrl = "/visitor/visitors";
+  addVisitorUrl = "/visitor/visitors/add";
+  updateVisitorUrl = "/visitor/visitors/update/";
+  deleteVisitorUrl = "/visitor/visitors/delete/";
   tempVisitor: any;
 
 

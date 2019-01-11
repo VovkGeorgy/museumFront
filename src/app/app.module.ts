@@ -35,6 +35,9 @@ import {ProfileComponent} from './profile/profile.component';
 import {ExhibitsEditComponent} from './exhibits/exhibits-edit/exhibits-edit.component';
 import {ExhibitsViewComponent} from './exhibits/exhibits-view/exhibits-view.component';
 import {GuideGuard} from "./guard/guide.guard";
+import { GuideProfileComponent } from './profile/guide-profile/guide-profile.component';
+import { VisitorProfileComponent } from './profile/visitor-profile/visitor-profile.component';
+import {NgxSpinnerModule} from "ngx-spinner";
 
 
 @NgModule({
@@ -56,7 +59,9 @@ import {GuideGuard} from "./guard/guide.guard";
     ToursViewComponent,
     ProfileComponent,
     ExhibitsEditComponent,
-    ExhibitsViewComponent
+    ExhibitsViewComponent,
+    GuideProfileComponent,
+    VisitorProfileComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -65,6 +70,7 @@ import {GuideGuard} from "./guard/guide.guard";
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    NgxSpinnerModule,
     NgbModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

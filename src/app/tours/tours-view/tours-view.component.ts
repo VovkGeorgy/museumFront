@@ -33,7 +33,6 @@ export class ToursViewComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.dataService.getData(this.getTourUrl + params.tourId).subscribe(tour => {
         this.tour = tour;
-        console.log(tour);
         this.dataService.getData(this.getAllTourExhibitsUrl + this.tour.tourId)
           .subscribe(exhibits => {
             this.exhibitsById = exhibits;
@@ -63,7 +62,6 @@ export class ToursViewComponent implements OnInit {
       "tourId": this.tour.tourId,
       "visitorId": this.visitor.visitorId,
     };
-    console.log(tempTVObj);
     this.dataService.postData(this.removeTourFromVisitorUrl, tempTVObj).subscribe(data => {
       this.isTourInFavorites();
     });

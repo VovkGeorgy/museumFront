@@ -39,6 +39,7 @@
     "duration": "Duration",
     "hour": "Hour(s)",
     "cost": "Cost",
+    "description": "Description",
     "imageUrl": "Image URL"
   },
   "guide": {
@@ -50,7 +51,8 @@
     "age": "Age",
     "experience": "Experience",
     "languages": "Languages",
-    "tourId": "TourId"
+    "tourId": "TourId",
+    "tours": "Your tours"
   },
   "exhibits": {
     "naming": "Exhibits",

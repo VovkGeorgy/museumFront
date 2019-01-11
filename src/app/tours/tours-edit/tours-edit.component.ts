@@ -42,7 +42,7 @@ export class ToursEditComponent implements OnInit {
 
   updateTour() {
     let localTour = this.tourForm.getRawValue();
-    this.dataService.postData(this.updateTourUrl + localTour.tourId, this.tourForm.getRawValue())
+    this.dataService.postData(this.updateTourUrl + localTour.tourId, localTour)
       .subscribe(tour => {
         this.tempTour = tour;
         this.router.navigate(["/tours"]);

@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 import {TranslateService} from "@ngx-translate/core";
 import {AuthService} from "../service/auth.service";
 
 @Component({
-  selector: 'app-nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  selector: "app-nav-bar",
+  templateUrl: "./nav-bar.component.html",
+  styleUrls: ["./nav-bar.component.css"]
 })
 export class NavBarComponent implements OnInit {
 
@@ -17,11 +17,10 @@ export class NavBarComponent implements OnInit {
               private authService: AuthService,) {
   }
 
-  user: any;
   logButtonName: any;
 
   ngOnInit() {
-    this.logButtonName = this.translate.get('button.login');
+    this.logButtonName = this.translate.get("button.login");
   }
 
   logout() {
@@ -29,12 +28,17 @@ export class NavBarComponent implements OnInit {
   }
 
   hasSignedIn() {
-    if (this.cookieService.get('username')) {
-      this.logButtonName = this.cookieService.get('username');
+    if (this.cookieService.get("username")) {
+      this.logButtonName = this.cookieService.get("username");
       return true;
     } else {
       return false;
     }
+  }
+
+  goToProfileEditor() {
+    if (this.isGuide() && this.isVisitor()) this.router.navigate(["/guide-profile"]);
+    if (!this.isGuide() && this.isVisitor()) this.router.navigate(["/visitor-profile"]);
   }
 
   isAdmin() {
