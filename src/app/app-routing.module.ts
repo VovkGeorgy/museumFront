@@ -15,7 +15,6 @@ import {ForbiddenComponent} from "./forbidden/forbidden.component";
 import {SignupComponent} from "./signup/signup.component";
 import {ToursEditComponent} from "./tours/tours-edit/tours-edit.component";
 import {ToursViewComponent} from "./tours/tours-view/tours-view.component";
-import {ProfileComponent} from "./profile/profile.component";
 import {ExhibitsEditComponent} from "./exhibits/exhibits-edit/exhibits-edit.component";
 import {ExhibitsViewComponent} from "./exhibits/exhibits-view/exhibits-view.component";
 import {GuideGuard} from "./guard/guide.guard";
@@ -37,11 +36,6 @@ export const routes: Routes = [
     path: "signup",
     component: SignupComponent,
     canActivate: [AnonymGuard]
-  },
-  {
-    path: "editProfile",
-    component: ProfileComponent,
-    canActivate: [VisitorGuard]
   },
   {
     path: "about",

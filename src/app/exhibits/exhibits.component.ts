@@ -38,10 +38,10 @@ export class ExhibitsComponent implements OnInit {
   }
 
   editExhibit(exhibit) {
-    this.router.navigate(["/exhibits/edit", exhibit]);
+    this.router.navigate(["/exhibits/edit", {exhibitId: exhibit.exhibitId}]);
   }
 
   viewExhibit(exhibit) {
-    this.router.navigate(["/exhibits/view", exhibit]);
+    this.router.navigate(["/exhibits/view", {exhibitId: exhibit.exhibitId}]);
   }
 }

@@ -1,26 +1,26 @@
 <div class="row col-md-12">
   <div class="col-md-3"></div>
   <div class="col-md-6">
-    <fieldset [formGroup]="exhibitForm" [hidden]="updateFieldIsHidden">
+    <fieldset [formGroup]="exhibitForm">
       <legend>Update exhibit entity</legend>
       <div class="form-group">
         <label for="updateTitle">{{'exhibits.title' | translate}}</label>
-        <input type="text" class="form-control" id="updateTitle" placeholder="title"
+        <input class="form-control" id="updateTitle" placeholder="title"
                formControlName="title">
       </div>
       <div class="form-group">
         <label for="updateDated">{{'exhibits.dated' | translate}}</label>
-        <input type="text" class="form-control" id="updateDated" placeholder="dated"
+        <input class="form-control" id="updateDated" placeholder="dated"
                formControlName="dated">
       </div>
       <div class="form-group">
         <label for="updateMaterial">{{'exhibits.material' | translate}}</label>
-        <input type="text" class="form-control" id="updateMaterial" placeholder="material"
+        <input class="form-control" id="updateMaterial" placeholder="material"
                formControlName="material">
       </div>
       <div class="form-group">
         <label for="updateArchiveNum">{{'exhibits.archiveNum' | translate}}</label>
-        <input type="text" class="form-control" id="updateArchiveNum" placeholder="archiveNum"
+        <input class="form-control" id="updateArchiveNum" placeholder="archiveNum"
                formControlName="archiveNum">
       </div>
       <div class="form-group">
@@ -30,11 +30,32 @@
       </div>
       <div class="form-group">
         <label for="updateImageUrl">{{'exhibits.imageUrl' | translate}}</label>
-        <input type="text" class="form-control" id="updateImageUrl" placeholder="imageUrl"
+        <input class="form-control" id="updateImageUrl" placeholder="imageUrl"
                formControlName="imageUrl">
       </div>
       <button class="btn btn-primary" (click)="updateExhibit()">{{'button.update' | translate}}
       </button>
     </fieldset>
+  </div>
+</div>
+<div class="row col-md-12">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div><h5 style="text-align: center">{{'exhibits.tours' | translate}}</h5></div>
+    <table class="table table-hover text-center">
+      <tbody>
+      <tr class="table" *ngFor="let tour of exhibitTours">
+        <th><img id="tour-image" src="{{tour.imageUrl}}"
+                 alt="Card image"></th>
+        <td><p class="card-text">{{'tours.typeOfExhibits' | translate}} - {{tour.typeOfExhibits}}</p>
+          <p class="card-text">{{'tours.duration' | translate}} - {{tour.duration}} {{'tours.hour' | translate}}</p>
+          <p class="card-text">{{'tours.cost' | translate}} - {{tour.cost}} $</p>
+          <button style="float: inherit" type="button" class="btn btn-sm btn btn-outline-primary" (click)="viewTour(tour)">{{'button.view'
+            | translate}}
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>

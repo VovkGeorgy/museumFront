@@ -61,7 +61,8 @@
     "material": "Материал",
     "archiveNum": "Номер в архиве",
     "description": "Описание",
-    "imageUrl": "URL Картинки"
+    "imageUrl": "URL Картинки",
+    "tours": "Туры экспоната"
   },
   "visitor": {
     "title": "Добавить посетителя",

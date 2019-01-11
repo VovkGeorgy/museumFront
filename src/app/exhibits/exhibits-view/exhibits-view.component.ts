@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {DataService} from "../../service/data.service";
 
 @Component({
@@ -9,22 +9,24 @@ import {DataService} from "../../service/data.service";
 })
 export class ExhibitsViewComponent implements OnInit {
 
-  constructor(private router: Router,
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private dataService: DataService) {
   }
 
   exhibit: any;
   tours: any[any];
   getAllExhibitToursUrl = "/exhibit/exhibits/tours/";
+  getExhibitUrl = "/exhibit/exhibits/";
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.exhibit = params;
-      this.dataService.getData(this.getAllExhibitToursUrl + this.exhibit.exhibitId)
-        .subscribe(tours => {
-          this.tours = tours;
-        });
+      this.dataService.getData(this.getExhibitUrl + params.exhibitId).subscribe(exhibit => {
+        this.exhibit = exhibit;
+        this.dataService.getData(this.getAllExhibitToursUrl + params.exhibitId)
+          .subscribe(tours => {
+            this.tours = tours;
+          });
+      });
     });
   }
 }

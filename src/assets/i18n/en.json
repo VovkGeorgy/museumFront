@@ -61,7 +61,8 @@
     "material": "Material",
     "archiveNum": "Archive Number",
     "description": "Description",
-    "imageUrl": "Image URL"
+    "imageUrl": "Image URL",
+    "tours": "Exhibit tours"
   },
   "visitor": {
     "title": "Create visitor",
