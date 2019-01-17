@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {DataService} from "../../service/data.service";
 import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "../../service/auth.service";
 import {TourService} from "../../service/entity/tour.service";
+import {VisitorService} from "../../service/entity/visitor.service";
 
 @Component({
   selector: "app-tours-view",
@@ -14,9 +14,9 @@ import {TourService} from "../../service/entity/tour.service";
 export class ToursViewComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
+              private visitorService: VisitorService,
               private authService: AuthService,
               private tourService: TourService,
-              private dataService: DataService,
               private cookieService: CookieService) {
   }
 
@@ -24,10 +24,6 @@ export class ToursViewComponent implements OnInit {
   visitor: any;
   exhibitsById: any[any];
   isFavourite: boolean;
-  getVisitorUrl = "/visitor/visitors/getByUsername";
-  addTourToVisitorUrl = "/visitor/visitors/addTour";
-  removeTourFromVisitorUrl = "/visitor/visitors/removeTour";
-  checkTourFromVisitorUrl = "/visitor/toursCheck";
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -37,7 +33,7 @@ export class ToursViewComponent implements OnInit {
           this.exhibitsById = exhibits;
         });
         if (this.isVisitor()) {
-          this.dataService.postData(this.getVisitorUrl, this.cookieService.get("username")).subscribe(data => {
+          this.visitorService.getVisitorByUsername(this.cookieService.get("username")).subscribe(data => {
             this.visitor = data;
             this.isTourInFavorites();
           });
@@ -47,31 +43,19 @@ export class ToursViewComponent implements OnInit {
   }
 
   addToFavorites(tour) {
-    const idObject = {
-      "tourId": this.tour.tourId,
-      "visitorId": this.visitor.visitorId,
-    };
-    this.dataService.postData(this.addTourToVisitorUrl, idObject).subscribe(data => {
+    this.visitorService.addTourToVisitor(this.tour.tourId, this.visitor.visitorId).subscribe(data => {
       this.isTourInFavorites();
     });
   }
 
   deleteFromFavorites(tour) {
-    const tempTVObj = {
-      "tourId": this.tour.tourId,
-      "visitorId": this.visitor.visitorId,
-    };
-    this.dataService.postData(this.removeTourFromVisitorUrl, tempTVObj).subscribe(data => {
+    this.visitorService.removeTourFromVisitor(this.tour.tourId, this.visitor.visitorId).subscribe(data => {
       this.isTourInFavorites();
     });
   }
 
   isTourInFavorites() {
-    const tempTVObj = {
-      "tourId": this.tour.tourId,
-      "visitorId": this.visitor.visitorId,
-    };
-    this.dataService.postData(this.checkTourFromVisitorUrl, tempTVObj).subscribe(data => {
+    this.visitorService.checkTourInFavourites(this.tour.tourId, this.visitor.visitorId).subscribe(data => {
       this.isFavourite = data as boolean;
     });
   }

@@ -39,6 +39,7 @@ import {VisitorProfileComponent} from "./profile/visitor-profile/visitor-profile
 import {NgxSpinnerModule} from "ngx-spinner";
 import {ExhibitsService} from "./service/entity/exhibits.service";
 import {TourService} from "./service/entity/tour.service";
+import {VisitorService} from "./service/entity/visitor.service";
 
 
 @NgModule({
@@ -92,6 +93,7 @@ import {TourService} from "./service/entity/tour.service";
     DataService,
     ExhibitsService,
     TourService,
+    VisitorService,
     {
       provide: APP_BASE_HREF,
       useValue: "/"

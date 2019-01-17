@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
-import {DataService} from "../service/data.service";
 import {AuthService} from "../service/auth.service";
 import {CookieService} from "ngx-cookie-service";
+import {VisitorService} from "../service/entity/visitor.service";
 
 @Component({
   selector: "app-signup",
@@ -20,9 +20,8 @@ export class SignupComponent implements OnInit {
     email: new FormControl(""),
   });
   tempVisitor: any;
-  addVisitorUrl = "http://localhost:8090/visitor/visitors/add";
 
-  constructor(private dataService: DataService,
+  constructor(private visitorService: VisitorService,
               private authService: AuthService,
               private cookieService: CookieService) {
   }
@@ -31,14 +30,13 @@ export class SignupComponent implements OnInit {
   }
 
   signupUser() {
-    this.dataService.postData(this.addVisitorUrl, this.visitorForm.getRawValue())
-      .subscribe(visitor => {
-        this.tempVisitor = visitor;
-        this.authService.getToken(this.tempVisitor.username, this.tempVisitor.password).subscribe(data => {
-          this.cookieService.set("username", this.tempVisitor.username, 1);
-          this.authService.getRole().subscribe(some => {
-          });
+    this.visitorService.addVisitor(this.visitorForm.getRawValue()).subscribe(visitor => {
+      this.tempVisitor = visitor;
+      this.authService.getToken(this.tempVisitor.username, this.tempVisitor.password).subscribe(data => {
+        this.cookieService.set("username", this.tempVisitor.username, 1);
+        this.authService.getRole().subscribe(some => {
         });
       });
+    });
   }
 }

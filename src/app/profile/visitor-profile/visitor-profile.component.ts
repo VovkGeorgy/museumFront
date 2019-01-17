@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
-import {DataService} from "../../service/data.service";
 import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
+import {VisitorService} from "../../service/entity/visitor.service";
 
 @Component({
   selector: "app-visitor-profile",
@@ -21,14 +21,11 @@ export class VisitorProfileComponent implements OnInit {
     tourEntitySet: new FormControl("")
   });
   visitor: any[any];
-  getVisitorUrl = "/visitor/visitors/getByUsername";
-  updateVisitorUrl = "/visitor/visitors/update/";
-  removeTourFromVisitorUrl = "/visitor/visitors/removeTour";
   display = "none";
   disabled = "";
   favouriteVisitorTours: any[any] = [];
 
-  constructor(private dataService: DataService,
+  constructor(private visitorService: VisitorService,
               private cookieService: CookieService,
               private router: Router) {
   }
@@ -38,7 +35,7 @@ export class VisitorProfileComponent implements OnInit {
   }
 
   getVisitorData() {
-    this.dataService.postData(this.getVisitorUrl, this.cookieService.get("username")).subscribe(data => {
+    this.visitorService.getVisitorByUsername(this.cookieService.get("username")).subscribe(data => {
       this.visitor = data;
       this.visitorForm.setValue(this.visitor);
       this.favouriteVisitorTours = this.visitor.tourEntitySet;
@@ -47,12 +44,11 @@ export class VisitorProfileComponent implements OnInit {
 
   updateVisitorInBase() {
     let localVisitor = this.visitorForm.getRawValue();
-    this.dataService.postData(this.updateVisitorUrl + localVisitor.visitorId, localVisitor)
-      .subscribe(visitor => {
-        this.visitor = visitor;
-        this.disabled = "disabled";
-        this.display = "block";
-      });
+    this.visitorService.updateVisitor(localVisitor.visitorId, localVisitor).subscribe(visitor => {
+      this.visitor = visitor;
+      this.disabled = "disabled";
+      this.display = "block";
+    });
     this.visitorForm.reset();
   }
 
@@ -66,13 +62,8 @@ export class VisitorProfileComponent implements OnInit {
   }
 
   deleteFromFavorites(tour) {
-    const tempTVObj = {
-      "tourId": tour.tourId,
-      "visitorId": this.visitor.visitorId,
-    };
-    this.dataService.postData(this.removeTourFromVisitorUrl, tempTVObj).subscribe(data => {
+    this.visitorService.removeTourFromVisitor(tour.tourId, this.visitor.visitorId).subscribe(data => {
       this.ngOnInit();
     });
   }
-
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
-import {DataService} from "../service/data.service";
+import {VisitorService} from "../service/entity/visitor.service";
 
 @Component({
   selector: "app-visitor",
@@ -25,21 +25,16 @@ export class VisitorComponent implements OnInit {
     age: new FormControl(""),
     email: new FormControl(""),
   });
-  getAllVisitorsUrl = "/visitor/visitors";
-  addVisitorUrl = "/visitor/visitors/add";
-  updateVisitorUrl = "/visitor/visitors/update/";
-  deleteVisitorUrl = "/visitor/visitors/delete/";
   tempVisitor: any;
 
 
-  constructor(private dataService: DataService) {
+  constructor(private visitorService: VisitorService) {
   }
 
   addEntityToBase() {
-    this.dataService.postData(this.addVisitorUrl, this.visitorForm.getRawValue())
-      .subscribe(visitor => {
-        this.tempVisitor = visitor;
-      });
+    this.visitorService.addVisitor(this.visitorForm.getRawValue()).subscribe(visitor => {
+      this.tempVisitor = visitor;
+    });
     this.visitorForm.reset();
     this.loadReadForm();
   }
@@ -52,18 +47,16 @@ export class VisitorComponent implements OnInit {
   }
 
   loadReadForm() {
-    this.dataService.getData(this.getAllVisitorsUrl)
-      .subscribe(visitors => {
-        this.visitors = visitors;
-      });
+    this.visitorService.getAllVisitors().subscribe(visitors => {
+      this.visitors = visitors;
+    });
   }
 
   addUpdatedEntityToBase() {
     let localVisitor = this.visitorForm.getRawValue();
-    this.dataService.postData(this.updateVisitorUrl + localVisitor.visitorId, this.visitorForm.getRawValue())
-      .subscribe(visitor => {
-        this.tempVisitor = visitor;
-      });
+    this.visitorService.updateVisitor(localVisitor.visitorId, this.visitorForm.getRawValue()).subscribe(visitor => {
+      this.tempVisitor = visitor;
+    });
     this.visitorForm.reset();
     this.updateTableIsHidden = false;
     this.updateFieldIsHidden = true;
@@ -71,11 +64,9 @@ export class VisitorComponent implements OnInit {
   }
 
   deleteEntityInBase(visitor) {
-    this.dataService.postData(this.deleteVisitorUrl + visitor.visitorId, visitor)
-      .subscribe(data => {
-        this.tempVisitor = data;
-      });
+    this.visitorService.deleteVisitor(visitor.visitorId, visitor).subscribe(data => {
+      this.tempVisitor = data;
+    });
     this.loadReadForm();
   }
-
 }
