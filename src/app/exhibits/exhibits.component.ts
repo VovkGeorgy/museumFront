@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
-import {DataService} from "../service/data.service";
 import {AuthService} from "../service/auth.service";
 import {Router} from "@angular/router";
+import {ExhibitsService} from "../service/exhibits.service";
 
 @Component({
   selector: "app-exhibits",
@@ -11,11 +11,9 @@ import {Router} from "@angular/router";
 export class ExhibitsComponent implements OnInit {
   exhibits: any[any];
 
-  getAllToursUrl = "/exhibit/exhibits";
-
-  constructor(private dataService: DataService,
-              private router: Router,
-              private authService: AuthService) {
+  constructor(private router: Router,
+              private authService: AuthService,
+              private exhibitsService: ExhibitsService) {
   }
 
   ngOnInit() {
@@ -23,10 +21,9 @@ export class ExhibitsComponent implements OnInit {
   }
 
   updateReadForm() {
-    this.dataService.getData(this.getAllToursUrl)
-      .subscribe(exhibits => {
-        this.exhibits = exhibits;
-      });
+    this.exhibitsService.getAllExhibits().subscribe(exhibits => {
+      this.exhibits = exhibits;
+    });
   }
 
   isGuide() {

@@ -43,6 +43,9 @@
         <td><h5>{{tour.theme}}</h5></td>
         <td>{{tour.duration}}</td>
         <td>{{tour.cost}}</td>
+        <button style="float: inherit" type="button" class="btn btn-sm btn btn-outline-primary" (click)="viewTour(tour)">{{'button.view'
+          | translate}}
+        </button>
       </tr>
       </tbody>
     </table>

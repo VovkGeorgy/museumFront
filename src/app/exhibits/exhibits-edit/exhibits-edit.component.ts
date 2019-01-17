@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {DataService} from "../../service/data.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {ExhibitsService} from "../../service/exhibits.service";
 
 @Component({
   selector: "app-exhibits-edit",
@@ -12,14 +12,12 @@ export class ExhibitsEditComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private dataService: DataService) {
+              private exhibitService: ExhibitsService) {
   }
 
   exhibit: any[any];
   exhibitTours: [any];
   tempExhibit: any;
-  updateExhibitUrl = "/exhibit/exhibits/update/";
-  getExhibitUrl = "/exhibit/exhibits/";
   exhibitForm: FormGroup = new FormGroup({
     exhibitId: new FormControl(""),
     title: new FormControl(""),
@@ -33,7 +31,7 @@ export class ExhibitsEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.dataService.getData(this.getExhibitUrl + params.exhibitId).subscribe(exhibit => {
+      this.exhibitService.getExhibit(params.exhibitId).subscribe(exhibit => {
         this.exhibit = exhibit;
         this.exhibitTours = this.exhibit.tourEntitySet;
         this.exhibitForm.setValue(this.exhibit);
@@ -43,7 +41,7 @@ export class ExhibitsEditComponent implements OnInit {
 
   updateExhibit() {
     let localExhibit = this.exhibitForm.getRawValue();
-    this.dataService.postData(this.updateExhibitUrl + localExhibit.exhibitId, this.exhibitForm.getRawValue())
+    this.exhibitService.updateExhibit(localExhibit.exhibitId, this.exhibitForm.getRawValue())
       .subscribe(exhibit => {
         this.tempExhibit = exhibit;
         this.router.navigate(["/exhibits"]);

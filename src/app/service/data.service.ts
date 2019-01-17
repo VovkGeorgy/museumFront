@@ -1,5 +1,5 @@
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Injectable} from "@angular/core";
 
 
 @Injectable()
@@ -7,8 +7,8 @@ export class DataService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'my-auth-token'
+      "Content-Type": "application/json",
+      "Authorization": "my-auth-token"
     }),
   };
 
@@ -48,9 +48,9 @@ export class DataService {
   setDefaultHeaders() {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'my-auth-token'
+        "Content-Type": "application/json",
+        "Authorization": "my-auth-token"
       }),
-    }
+    };
   }
 }
