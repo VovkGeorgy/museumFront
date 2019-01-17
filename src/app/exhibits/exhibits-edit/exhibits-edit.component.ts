@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
-import {ExhibitsService} from "../../service/exhibits.service";
+import {ExhibitsService} from "../../service/entity/exhibits.service";
 
 @Component({
   selector: "app-exhibits-edit",

@@ -37,7 +37,8 @@ import {GuideGuard} from "./guard/guide.guard";
 import {GuideProfileComponent} from "./profile/guide-profile/guide-profile.component";
 import {VisitorProfileComponent} from "./profile/visitor-profile/visitor-profile.component";
 import {NgxSpinnerModule} from "ngx-spinner";
-import {ExhibitsService} from "./service/exhibits.service";
+import {ExhibitsService} from "./service/entity/exhibits.service";
+import {TourService} from "./service/entity/tour.service";
 
 
 @NgModule({
@@ -90,6 +91,7 @@ import {ExhibitsService} from "./service/exhibits.service";
     CookieService,
     DataService,
     ExhibitsService,
+    TourService,
     {
       provide: APP_BASE_HREF,
       useValue: "/"

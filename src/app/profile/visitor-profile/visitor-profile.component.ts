@@ -47,7 +47,6 @@ export class VisitorProfileComponent implements OnInit {
 
   updateVisitorInBase() {
     let localVisitor = this.visitorForm.getRawValue();
-    console.log(localVisitor);
     this.dataService.postData(this.updateVisitorUrl + localVisitor.visitorId, localVisitor)
       .subscribe(visitor => {
         this.visitor = visitor;

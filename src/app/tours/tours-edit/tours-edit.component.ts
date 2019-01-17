@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {DataService} from "../../service/data.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {TourService} from "../../service/entity/tour.service";
 
 @Component({
   selector: "app-tours-edit",
@@ -12,14 +12,11 @@ export class ToursEditComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private dataService: DataService) {
+              private tourService: TourService) {
   }
 
   tour: any;
-  guide: any;
-  tempTour: any;
-  updateTourUrl = "/tour/tours/update/";
-  getTourUrl = "/tour/tours/";
+  tempTour: any[any];
   tourForm: FormGroup = new FormGroup({
     tourId: new FormControl(""),
     theme: new FormControl(""),
@@ -27,22 +24,24 @@ export class ToursEditComponent implements OnInit {
     duration: new FormControl(""),
     cost: new FormControl(""),
     imageUrl: new FormControl(""),
-    guideEntity: new FormControl(""),
+    guideEntity: new FormControl("")
   });
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.dataService.getData(this.getTourUrl + params.tourId).subscribe(tour => {
+      this.tourService.getTour(params.tourId).subscribe(tour => {
         this.tour = tour;
-        this.guide = this.tour.guideEntity;
-        this.tourForm.setValue(this.tour);
+        this.tourService.getTourGuide(params.tourId).subscribe(guide => {
+          this.tour.guideEntity = guide;
+          this.tourForm.setValue(this.tour);
+        });
       });
     });
   }
 
   updateTour() {
     let localTour = this.tourForm.getRawValue();
-    this.dataService.postData(this.updateTourUrl + localTour.tourId, localTour)
+    this.tourService.updateTour(localTour.tourId, localTour)
       .subscribe(tour => {
         this.tempTour = tour;
         this.router.navigate(["/tours"]);

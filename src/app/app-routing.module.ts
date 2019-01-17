@@ -78,7 +78,7 @@ export const routes: Routes = [
   {
     path: "visitors",
     component: VisitorComponent,
-    canActivate: [AdminGuard]
+    canActivate: [GuideGuard]
   },
   {
     path: "guide-profile",

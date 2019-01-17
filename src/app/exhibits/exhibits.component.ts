@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {AuthService} from "../service/auth.service";
 import {Router} from "@angular/router";
-import {ExhibitsService} from "../service/exhibits.service";
+import {ExhibitsService} from "../service/entity/exhibits.service";
 
 @Component({
   selector: "app-exhibits",

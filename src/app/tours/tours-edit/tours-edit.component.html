@@ -5,12 +5,12 @@
       <legend>Update tour entity</legend>
       <div class="form-group">
         <label for="updateFio">{{'tours.theme' | translate}}</label>
-        <input type="text" class="form-control" id="updateFio" placeholder="theme"
+        <input class="form-control" id="updateFio" placeholder="theme"
                formControlName="theme">
       </div>
       <div class="form-group">
         <label for="updateAge">{{'tours.typeOfExhibits' | translate}}</label>
-        <input type="text" class="form-control" id="updateAge" placeholder="typeOfExhibits"
+        <input class="form-control" id="updateAge" placeholder="typeOfExhibits"
                formControlName="typeOfExhibits">
       </div>
       <div class="form-group">
@@ -25,7 +25,7 @@
       </div>
       <div class="form-group">
         <label for="updateTourId">{{'tours.imageUrl' | translate}}</label>
-        <input type="text" class="form-control" id="updateTourId" placeholder="imageUrl"
+        <input class="form-control" id="updateTourId" placeholder="imageUrl"
                formControlName="imageUrl">
       </div>
       <button class="btn btn-primary" (click)="updateTour()">{{'button.update' | translate}}

@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
-import {DataService} from "../service/data.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../service/auth.service";
+import {TourService} from "../service/entity/tour.service";
 
 @Component({
   selector: "app-tours",
@@ -12,9 +12,7 @@ export class ToursComponent implements OnInit {
   tours: any[any];
   tourId: number;
 
-  getAllToursUrl = "/tour/tours";
-
-  constructor(private dataService: DataService,
+  constructor(private tourService: TourService,
               private authService: AuthService,
               private router: Router) {
   }
@@ -24,10 +22,9 @@ export class ToursComponent implements OnInit {
   }
 
   updateReadForm() {
-    this.dataService.getData(this.getAllToursUrl)
-      .subscribe(tours => {
-        this.tours = tours;
-      });
+    this.tourService.getAllTours().subscribe(tours => {
+      this.tours = tours;
+    });
   }
 
   editTour(tour) {

@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {DataService} from "../../service/data.service";
 import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "../../service/auth.service";
+import {TourService} from "../../service/entity/tour.service";
 
 @Component({
   selector: "app-tours-view",
@@ -14,6 +15,7 @@ export class ToursViewComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private authService: AuthService,
+              private tourService: TourService,
               private dataService: DataService,
               private cookieService: CookieService) {
   }
@@ -22,8 +24,6 @@ export class ToursViewComponent implements OnInit {
   visitor: any;
   exhibitsById: any[any];
   isFavourite: boolean;
-  getAllTourExhibitsUrl = "/tour/exhibits/";
-  getTourUrl = "/tour/tours/";
   getVisitorUrl = "/visitor/visitors/getByUsername";
   addTourToVisitorUrl = "/visitor/visitors/addTour";
   removeTourFromVisitorUrl = "/visitor/visitors/removeTour";
@@ -31,12 +31,11 @@ export class ToursViewComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.dataService.getData(this.getTourUrl + params.tourId).subscribe(tour => {
+      this.tourService.getTour(params.tourId).subscribe(tour => {
         this.tour = tour;
-        this.dataService.getData(this.getAllTourExhibitsUrl + this.tour.tourId)
-          .subscribe(exhibits => {
-            this.exhibitsById = exhibits;
-          });
+        this.tourService.getAllTourExhibits(this.tour.tourId).subscribe(exhibits => {
+          this.exhibitsById = exhibits;
+        });
         if (this.isVisitor()) {
           this.dataService.postData(this.getVisitorUrl, this.cookieService.get("username")).subscribe(data => {
             this.visitor = data;
