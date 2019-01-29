@@ -4,6 +4,7 @@ import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "../../service/auth.service";
 import {DataService} from "../../service/data.service";
 import {Router} from "@angular/router";
+import {GuidesService} from "../../service/entity/guides.service";
 
 @Component({
   selector: "app-guide-profile",
@@ -25,12 +26,10 @@ export class GuideProfileComponent implements OnInit {
   });
   tempGuide: any[any];
   guideTours: any[any] = [];
-  getGuideUrl = "/guide/guides/getByUsername";
-  updateGuideUrl = "/guide/guides/update/";
   display = "none";
   disabled = "";
 
-  constructor(private dataService: DataService,
+  constructor(private guideService: GuidesService,
               private authService: AuthService,
               private cookieService: CookieService,
               private router: Router) {
@@ -41,7 +40,7 @@ export class GuideProfileComponent implements OnInit {
   }
 
   getGuideData() {
-    this.dataService.postData(this.getGuideUrl, this.cookieService.get("username")).subscribe(data => {
+    this.guideService.getGuideByUsername(this.cookieService.get("username")).subscribe(data => {
       this.tempGuide = data;
       this.guideForm.setValue(this.tempGuide);
       this.guideTours = this.tempGuide.tourEntitySet;
@@ -50,12 +49,11 @@ export class GuideProfileComponent implements OnInit {
 
   updateGuideInBase() {
     let localGuide = this.guideForm.getRawValue();
-    this.dataService.postData(this.updateGuideUrl + localGuide.guideId, this.guideForm.getRawValue())
-      .subscribe(guide => {
-        this.tempGuide = guide;
-        this.disabled = "disabled";
-        this.display = "block";
-      });
+    this.guideService.updateGuide(localGuide.guideId, this.guideForm.getRawValue()).subscribe(guide => {
+      this.tempGuide = guide;
+      this.disabled = "disabled";
+      this.display = "block";
+    });
     this.guideForm.reset();
   }
 

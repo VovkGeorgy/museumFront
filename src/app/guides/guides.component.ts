@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
-import {DataService} from "../service/data.service";
+import {GuidesService} from "../service/entity/guides.service";
 
 @Component({
-  selector: 'app-guides',
-  templateUrl: './guides.component.html',
-  styleUrls: ['./guides.component.css']
+  selector: "app-guides",
+  templateUrl: "./guides.component.html",
+  styleUrls: ["./guides.component.css"]
 })
 export class GuidesComponent implements OnInit {
 
@@ -18,29 +18,23 @@ export class GuidesComponent implements OnInit {
   guides: any[any];
   tempGuideKey: any;
   guideForm: FormGroup = new FormGroup({
-    guideId: new FormControl(''),
-    username: new FormControl(''),
-    password: new FormControl(''),
-    fio: new FormControl(''),
-    age: new FormControl(''),
-    experience: new FormControl(''),
-    languages: new FormControl(''),
+    guideId: new FormControl(""),
+    username: new FormControl(""),
+    password: new FormControl(""),
+    fio: new FormControl(""),
+    age: new FormControl(""),
+    experience: new FormControl(""),
+    languages: new FormControl(""),
   });
-  getAllGuidesUrl = '/guide/guides';
-  addGuideUrl = '/guide/guides/add';
-  updateGuideUrl = '/guide/guides/update/';
-  deleteGuideUrl = '/guide/guides/delete/';
   tempGuide: any;
 
-
-  constructor(private dataService: DataService) {
+  constructor(private guideService: GuidesService) {
   }
 
   addEntityToBase() {
-    this.dataService.postData(this.addGuideUrl, this.guideForm.getRawValue())
-      .subscribe(guide => {
-        this.tempGuide = guide;
-      });
+    this.guideService.addGuide(this.guideForm.getRawValue()).subscribe(guide => {
+      this.tempGuide = guide;
+    });
     this.guideForm.reset();
   }
 
@@ -52,18 +46,16 @@ export class GuidesComponent implements OnInit {
   }
 
   updateReadForm() {
-    this.dataService.getData(this.getAllGuidesUrl)
-      .subscribe(guides => {
-        this.guides = guides;
-      });
+    this.guideService.getAllGuides().subscribe(guides => {
+      this.guides = guides;
+    });
   }
 
   addUpdatedEntityToBase() {
     let localGuide = this.guideForm.getRawValue();
-    this.dataService.postData(this.updateGuideUrl + localGuide.guideId, this.guideForm.getRawValue())
-      .subscribe(guide => {
-        this.tempGuide = guide;
-      });
+    this.guideService.updateGuide(localGuide.guideId, this.guideForm.getRawValue()).subscribe(guide => {
+      this.tempGuide = guide;
+    });
     this.guideForm.reset();
     this.updateReadForm();
     this.updateTableIsHidden = false;
@@ -71,10 +63,9 @@ export class GuidesComponent implements OnInit {
   }
 
   deleteEntityInBase(guide) {
-    this.dataService.postData(this.deleteGuideUrl + guide.guideId, guide)
-      .subscribe(data => {
-        this.tempGuide = data;
-      });
+    this.guideService.deleteGuide(guide.guideId).subscribe(data => {
+      this.tempGuide = data;
+    });
     this.updateReadForm();
   }
 }

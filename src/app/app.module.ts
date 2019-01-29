@@ -40,6 +40,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
 import {ExhibitsService} from "./service/entity/exhibits.service";
 import {TourService} from "./service/entity/tour.service";
 import {VisitorService} from "./service/entity/visitor.service";
+import {GuidesService} from "./service/entity/guides.service";
 
 
 @NgModule({
@@ -94,6 +95,7 @@ import {VisitorService} from "./service/entity/visitor.service";
     ExhibitsService,
     TourService,
     VisitorService,
+    GuidesService,
     {
       provide: APP_BASE_HREF,
       useValue: "/"
