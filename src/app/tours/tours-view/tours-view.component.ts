@@ -29,7 +29,7 @@ export class ToursViewComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.tourService.getTour(params.tourId).subscribe(tour => {
         this.tour = tour;
-        this.tourService.getAllTourExhibits(this.tour.tourId).subscribe(exhibits => {
+        this.tourService.getTourExhibits(this.tour.tourId).subscribe(exhibits => {
           this.exhibitsById = exhibits;
         });
         if (this.isVisitor()) {

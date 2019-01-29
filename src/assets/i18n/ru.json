@@ -29,7 +29,8 @@
     "edit": "Изменить",
     "editProfile": "Профиль",
     "signup": "Зарегистрироваться",
-    "addToFavorites": "Добавить в избранное"
+    "addToFavorites": "Добавить в избранное",
+    "exclude": "Исключить"
   },
   "tours": {
     "theme": "Тематика",
@@ -40,7 +41,8 @@
     "hour": "Час(а)",
     "cost": "Стоимость",
     "description": "Описание",
-    "imageUrl": "URL Картинки"
+    "imageUrl": "URL Картинки",
+    "removeFromTour": "Убрать из тура"
   },
   "guide": {
     "naming": "Экскурсоводы",

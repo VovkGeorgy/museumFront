@@ -16,7 +16,8 @@ export class ToursEditComponent implements OnInit {
   }
 
   tour: any;
-  tempTour: any[any];
+  exhibits: any;
+  visitors: any;
   tourForm: FormGroup = new FormGroup({
     tourId: new FormControl(""),
     theme: new FormControl(""),
@@ -24,7 +25,9 @@ export class ToursEditComponent implements OnInit {
     duration: new FormControl(""),
     cost: new FormControl(""),
     imageUrl: new FormControl(""),
-    guideEntity: new FormControl("")
+    guideEntity: new FormControl(""),
+    exhibitEntityList: new FormControl(""),
+    visitorEntitySet: new FormControl("")
   });
 
   ngOnInit() {
@@ -33,7 +36,16 @@ export class ToursEditComponent implements OnInit {
         this.tour = tour;
         this.tourService.getTourGuide(params.tourId).subscribe(guide => {
           this.tour.guideEntity = guide;
-          this.tourForm.setValue(this.tour);
+          this.tourService.getTourExhibits(params.tourId).subscribe(exhibits => {
+            this.tour.exhibitEntityList = exhibits;
+            this.exhibits = exhibits;
+            this.tourService.getTourVisitors(params.tourId).subscribe(visitors => {
+              this.tour.visitorEntitySet = visitors;
+              this.visitors = visitors;
+              this.tourForm.setValue(this.tour);
+              console.log(this.tour);
+            });
+          });
         });
       });
     });
@@ -41,10 +53,26 @@ export class ToursEditComponent implements OnInit {
 
   updateTour() {
     let localTour = this.tourForm.getRawValue();
+    console.log(localTour);
     this.tourService.updateTour(localTour.tourId, localTour)
       .subscribe(tour => {
-        this.tempTour = tour;
         this.router.navigate(["/tours"]);
       });
+  }
+
+  removeVisitorFromTour(visitor: any) {
+    this.tourService.removeVisitorFromTour(this.tour.tourId, visitor.visitorId).subscribe(data => {
+      this.ngOnInit();
+    });
+  }
+
+  viewExhibit(exhibit) {
+    this.router.navigate(["/exhibits/view", {exhibitId: exhibit.exhibitId}]);
+  }
+
+  removeExhibitFromTour(exhibit: any) {
+    this.tourService.removeExhibitFromTour(this.tour.tourId, exhibit.exhibitId).subscribe(data => {
+      this.ngOnInit();
+    });
   }
 }

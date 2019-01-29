@@ -22,7 +22,7 @@ export class ToursComponent implements OnInit {
   }
 
   updateReadForm() {
-    this.tourService.getAllTours().subscribe(tours => {
+    this.tourService.getTours().subscribe(tours => {
       this.tours = tours;
     });
   }

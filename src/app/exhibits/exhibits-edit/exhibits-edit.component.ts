@@ -51,4 +51,10 @@ export class ExhibitsEditComponent implements OnInit {
   viewTour(tour) {
     this.router.navigate(["/tours/view", {tourId: tour.tourId}]);
   }
+
+  removeTourFromExhibit(tour: any) {
+    this.exhibitService.removeTourFromExhibit(tour.tourId, this.exhibit.exhibitId).subscribe(data => {
+      this.ngOnInit();
+    });
+  }
 }

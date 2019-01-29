@@ -9,6 +9,12 @@ export class ExhibitsService {
   private updateExhibitUrl = "/exhibit/exhibits/update/";
   private getExhibitUrl = "/exhibit/exhibits/";
   private getAllExhibitToursUrl = "/exhibit/exhibits/tours/";
+  private removeTourFromExhibitUrl = "/exhibit/exhibits/removeTour";
+
+  private tourExhibitDao = {
+    "tourId": null,
+    "exhibitId": null,
+  };
 
   constructor(private dataService: DataService) {
   }
@@ -27,5 +33,11 @@ export class ExhibitsService {
 
   getAllExhibitTours(id: number) {
     return this.dataService.getData(this.getAllExhibitToursUrl + id);
+  }
+
+  removeTourFromExhibit(tourId: number, exhibitId: number) {
+    this.tourExhibitDao.tourId = tourId;
+    this.tourExhibitDao.exhibitId = exhibitId;
+    return this.dataService.postData(this.removeTourFromExhibitUrl, this.tourExhibitDao);
   }
 }

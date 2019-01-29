@@ -29,7 +29,8 @@
     "edit": "Edit",
     "editProfile": "Profile",
     "signup": "Sign up",
-    "addToFavorites": "Add to favorites"
+    "addToFavorites": "Add to favorites",
+    "exclude": "Exclude"
   },
   "tours": {
     "theme": "Theme",
@@ -40,7 +41,8 @@
     "hour": "Hour(s)",
     "cost": "Cost",
     "description": "Description",
-    "imageUrl": "Image URL"
+    "imageUrl": "Image URL",
+    "removeFromTour": "Remove from Tour"
   },
   "guide": {
     "naming": "Guide",
