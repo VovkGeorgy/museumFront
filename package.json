@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "webpack-dev-server --port=4200",
+    "start": "ng serve",
     "lint": "ng lint",
     "build": "webpack",
     "test": "karma start ./karma.conf.js",
@@ -62,7 +62,7 @@
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
     "typescript": "~2.5.3",
-    "webpack-dev-server": "~3.11.0",
+    "webpack-dev-server": "3.3.1",
     "@angular-devkit/core": "0.3.2",
     "@ngtools/webpack": "1.10.2",
     "webpack": "~3.11.0",
