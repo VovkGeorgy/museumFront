@@ -42,7 +42,13 @@
     "cost": "Стоимость",
     "description": "Описание",
     "imageUrl": "URL Картинки",
-    "removeFromTour": "Убрать из тура"
+    "removeFromTour": "Убрать из тура",
+    "guides": "Гиды тура",
+    "visitors": "Посетители тура",
+    "exhibits": "Экспонаты тура",
+    "noGuides": "Нет гидов на данном туре",
+    "noVisitors": "Нет посетителей этого тура",
+    "noExhibits": "В этом туре нет экспонатов"
   },
   "guide": {
     "naming": "Экскурсоводы",

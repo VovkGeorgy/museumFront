@@ -42,7 +42,13 @@
     "cost": "Cost",
     "description": "Description",
     "imageUrl": "Image URL",
-    "removeFromTour": "Remove from Tour"
+    "removeFromTour": "Remove from Tour",
+    "guides": "Tour guides",
+    "visitors": "Tour visitors",
+    "exhibits": "Tour exhibits",
+    "noGuides": "There is no guides on this tour",
+    "noVisitors": "There is no visitors on this tour",
+    "noExhibits": "There is no exhibits on this tour"
   },
   "guide": {
     "naming": "Guide",

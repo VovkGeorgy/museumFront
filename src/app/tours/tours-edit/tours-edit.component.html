@@ -34,8 +34,54 @@
   </div>
 </div>
 
+<ng-template #noGuides>
+  <div style="text-align: center"><h5>{{'tours.noGuides' |translate}}</h5></div>
+</ng-template>
 
-<div class="row col-md-12">
+<div style="text-align: center" *ngIf="guide != null"><h5>{{'tours.guides' |translate}}</h5></div>
+
+<div class="row col-md-12" *ngIf="guide != null; else noGuides">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <table class="table text-center">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>{{'guide.username' | translate}}</th>
+        <th>{{'guide.password' | translate}}</th>
+        <th>{{'guide.fio' | translate}}</th>
+        <th>{{'guide.age' | translate}}</th>
+        <th>{{'guide.experience' | translate}}</th>
+        <th>{{'guide.languages' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="table align-middle">
+        <td class="align-middle">{{guide.guideId}}</td>
+        <td class="align-middle">{{guide.username}}</td>
+        <td class="align-middle">{{guide.password}}</td>
+        <td class="align-middle">{{guide.fio}}</td>
+        <td class="align-middle">{{guide.age}}</td>
+        <td class="align-middle">{{guide.experience}}</td>
+        <td class="align-middle">{{guide.languages}}</td>
+        <td>
+          <button class="btn btn-primary btn-outline-secondary" *ngIf="isAdmin()" (click)="removeGuideFromTour(guide)">{{'button.exclude' |
+            translate}}
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #noVisitors>
+  <div style="text-align: center"><h5>{{'tours.noVisitors' |translate}}</h5></div>
+</ng-template>
+
+<div style="text-align: center" *ngIf="visitors != null && visitors.length != 0"><h5>{{'tours.visitors' |translate}}</h5></div>
+
+<div class="row col-md-12" *ngIf="visitors != null && visitors.length != 0; else noVisitors">
   <div class="col-md-2"></div>
   <div class="col-md-8">
     <table class="table text-center">
@@ -69,7 +115,13 @@
   </div>
 </div>
 
-<div class="album py-5">
+<ng-template #noExhibits>
+  <div style="text-align: center"><h5>{{'tours.noExhibits' |translate}}</h5></div>
+</ng-template>
+
+<div style="text-align: center" *ngIf="exhibits != null && exhibits.length != 0"><h5>{{'tours.exhibits' |translate}}</h5></div>
+
+<div class="album py-5" *ngIf="exhibits != null && exhibits.length != 0; else noExhibits">
   <div class="container">
     <div class="row">
       <div class="col-md-4" *ngFor="let exhibit of exhibits">

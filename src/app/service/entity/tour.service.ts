@@ -15,6 +15,7 @@ export class TourService {
   private getTourVisitorsUrl = "/tour/tours/visitors/";
   private removeTourFromVisitorUrl = "/visitor/visitors/removeTour";
   private removeTourFromExhibitUrl = "/exhibit/exhibits/removeTour";
+  private removeTourFromGuideUrl = "/guide/guides/removeTour";
 
   private tourVisitorDao = {
     "tourId": null,
@@ -24,6 +25,11 @@ export class TourService {
   private tourExhibitDao = {
     "tourId": null,
     "exhibitId": null,
+  };
+
+  private tourGuideDao = {
+    "tourId": null,
+    "guideId": null,
   };
 
   getTour(id: number) {
@@ -60,5 +66,11 @@ export class TourService {
     this.tourExhibitDao.tourId = tourId;
     this.tourExhibitDao.exhibitId = exhibitId;
     return this.dataService.postData(this.removeTourFromExhibitUrl, this.tourExhibitDao);
+  }
+
+  removeGuideFromTour(tourId: number, guideId: number) {
+    this.tourGuideDao.tourId = tourId;
+    this.tourGuideDao.guideId = guideId;
+    return this.dataService.postData(this.removeTourFromGuideUrl, this.tourGuideDao);
   }
 }

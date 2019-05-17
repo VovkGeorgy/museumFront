@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {TourService} from "../../service/entity/tour.service";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: "app-tours-edit",
@@ -12,12 +13,14 @@ export class ToursEditComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private tourService: TourService) {
+              private tourService: TourService,
+              private authService: AuthService) {
   }
 
   tour: any;
   exhibits: any;
   visitors: any;
+  guide: any;
   tourForm: FormGroup = new FormGroup({
     tourId: new FormControl(""),
     theme: new FormControl(""),
@@ -36,6 +39,7 @@ export class ToursEditComponent implements OnInit {
         this.tour = tour;
         this.tourService.getTourGuide(params.tourId).subscribe(guide => {
           this.tour.guideEntity = guide;
+          this.guide = guide;
           this.tourService.getTourExhibits(params.tourId).subscribe(exhibits => {
             this.tour.exhibitEntityList = exhibits;
             this.exhibits = exhibits;
@@ -43,7 +47,6 @@ export class ToursEditComponent implements OnInit {
               this.tour.visitorEntitySet = visitors;
               this.visitors = visitors;
               this.tourForm.setValue(this.tour);
-              console.log(this.tour);
             });
           });
         });
@@ -53,7 +56,6 @@ export class ToursEditComponent implements OnInit {
 
   updateTour() {
     let localTour = this.tourForm.getRawValue();
-    console.log(localTour);
     this.tourService.updateTour(localTour.tourId, localTour)
       .subscribe(tour => {
         this.router.navigate(["/tours"]);
@@ -74,5 +76,15 @@ export class ToursEditComponent implements OnInit {
     this.tourService.removeExhibitFromTour(this.tour.tourId, exhibit.exhibitId).subscribe(data => {
       this.ngOnInit();
     });
+  }
+
+  removeGuideFromTour(guide: any) {
+    this.tourService.removeGuideFromTour(this.tour.tourId, guide.guideId).subscribe(data => {
+      this.ngOnInit();
+    });
+  }
+
+  isAdmin() {
+    return this.authService.isAdmin();
   }
 }
