@@ -1,25 +1,25 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {HomeComponent} from "./home/home.component";
-import {LoginComponent} from "./login/login.component";
-import {ToursComponent} from "./tours/tours.component";
-import {NotFoundComponent} from "./not-found/not-found.component";
-import {GuidesComponent} from "./guides/guides.component";
-import {ExhibitsComponent} from "./exhibits/exhibits.component";
-import {VisitorComponent} from "./visitor/visitor.component";
-import {VisitorGuard} from "./guard/visitor.guard";
-import {AdminGuard} from "./guard/admin.guard";
-import {AboutComponent} from "./about/about.component";
-import {AnonymGuard} from "./guard/anonym.guard";
-import {ForbiddenComponent} from "./forbidden/forbidden.component";
-import {SignupComponent} from "./signup/signup.component";
-import {ToursEditComponent} from "./tours/tours-edit/tours-edit.component";
-import {ToursViewComponent} from "./tours/tours-view/tours-view.component";
-import {ExhibitsEditComponent} from "./exhibits/exhibits-edit/exhibits-edit.component";
-import {ExhibitsViewComponent} from "./exhibits/exhibits-view/exhibits-view.component";
-import {GuideGuard} from "./guard/guide.guard";
-import {GuideProfileComponent} from "./profile/guide-profile/guide-profile.component";
-import {VisitorProfileComponent} from "./profile/visitor-profile/visitor-profile.component";
+import {HomeComponent} from "./features/home/components/home/home.component";
+import {LoginComponent} from "./features/login/components/login/login.component";
+import {ToursPresentationComponent} from "./features/tours/components/tours-presentation/tours-presentation.component";
+import {NotFoundComponent} from "./features/not-found/components/not-found/not-found.component";
+import {GuidesComponent} from "./features/guides/components/guides/guides.component";
+import {ExhibitsPresentationComponent} from "./features/exhibits/components/exhibits-presentation/exhibits-presentation.component";
+import {VisitorsComponent} from "./features/visitors/components/visitors/visitors.component";
+import {VisitorGuard} from "./shell/guards/visitor.guard";
+import {AdminGuard} from "./shell/guards/admin.guard";
+import {AboutComponent} from "./features/about/components/about/about.component";
+import {AnonymGuard} from "./shell/guards/anonym.guard";
+import {ForbiddenComponent} from "./features/forbiden/components/forbidden/forbidden.component";
+import {SignupComponent} from "./features/sing-up/components/signup/signup.component";
+import {TourEditComponent} from "./features/tours/components/tour-edit/tour-edit.component";
+import {TourViewComponent} from "./features/tours/components/tour-view/tour-view.component";
+import {ExhibitEditComponent} from "./features/exhibits/components/exhibit-edit/exhibit-edit.component";
+import {ExhibitViewComponent} from "./features/exhibits/components/exhibit-view/exhibit-view.component";
+import {GuideGuard} from "./shell/guards/guide.guard";
+import {GuideProfileComponent} from "./features/profile/components/guide-profile/guide-profile.component";
+import {VisitorProfileComponent} from "./features/profile/components/visitor-profile/visitor-profile.component";
 
 export const routes: Routes = [
   {
@@ -43,17 +43,17 @@ export const routes: Routes = [
   },
   {
     path: "tours",
-    component: ToursComponent,
+    component: ToursPresentationComponent,
     canActivate: [VisitorGuard]
   },
   {
     path: "tours/edit",
-    component: ToursEditComponent,
+    component: TourEditComponent,
     canActivate: [GuideGuard]
   },
   {
     path: "tours/view",
-    component: ToursViewComponent,
+    component: TourViewComponent,
     canActivate: [VisitorGuard]
   },
   {
@@ -63,21 +63,21 @@ export const routes: Routes = [
   },
   {
     path: "exhibits",
-    component: ExhibitsComponent,
+    component: ExhibitsPresentationComponent,
   },
   {
     path: "exhibits/edit",
-    component: ExhibitsEditComponent,
+    component: ExhibitEditComponent,
     canActivate: [GuideGuard]
   },
   {
     path: "exhibits/view",
-    component: ExhibitsViewComponent,
+    component: ExhibitViewComponent,
     canActivate: [VisitorGuard]
   },
   {
     path: "visitors",
-    component: VisitorComponent,
+    component: VisitorsComponent,
     canActivate: [GuideGuard]
   },
   {
