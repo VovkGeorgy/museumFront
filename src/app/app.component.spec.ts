@@ -6,32 +6,30 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 import {HttpLoaderFactory} from "./app.module";
-import {DataService} from "./service/data.service";
+import {DataService} from "./core/services/data.service";
 import {APP_BASE_HREF} from "@angular/common";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppRoutingModule} from "./app-routing.module";
-import {AnonymGuard} from "./guard/anonym.guard";
-import {UserGuard} from "./guard/user.guard";
-import {AuthService} from "./service/auth.service";
-import {AdminGuard} from './guard/admin.guard';
+import {AnonymGuard} from "./shell/guards/anonym.guard";
+import {VisitorGuard} from "./shell/guards/visitor.guard";
+import {AuthService} from "./core/services/auth.service";
+import {AdminGuard} from './shell/guards/admin.guard';
 import {CookieService} from 'ngx-cookie-service';
-import {NavBarComponent} from "./nav-bar/nav-bar.component";
-import {NotFoundComponent} from "./not-found/not-found.component";
-import {GuidesComponent} from "./guides/guides.component";
-import {VisitorComponent} from "./visitor/visitor.component";
+import {NavBarComponent} from "./features/nav-bar/components/nav-bar/nav-bar.component";
+import {NotFoundComponent} from "./features/not-found/components/not-found/not-found.component";
+import {GuidesComponent} from "./features/guides/components/guides/guides.component";
+import {VisitorsComponent} from "./features/visitors/components/visitors/visitors.component";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
-import {HomeComponent} from "./home/home.component";
-import {LoginComponent} from "./login/login.component";
-import {ToursComponent} from "./tours/tours.component";
-import {ExhibitsComponent} from "./exhibits/exhibits.component";
-import {AboutComponent} from "./about/about.component";
-import {ForbiddenComponent} from "./forbidden/forbidden.component";
-import {SignupComponent} from "./signup/signup.component";
-import {ToursEditComponent} from "./tours/tours-edit/tours-edit.component";
-import {ToursViewComponent} from "./tours/tours-view/tours-view.component";
-import {ProfileComponent} from "./profile/profile.component";
-import {ExhibitsEditComponent} from "./exhibits/exhibits-edit/exhibits-edit.component";
-import {ExhibitsViewComponent} from './exhibits/exhibits-view/exhibits-view.component';
+import {HomeComponent} from "./features/home/components/home/home.component";
+import {LoginComponent} from "./features/login/components/login/login.component";
+import {ToursPresentationComponent} from "./features/tours/components/tours-presentation/tours-presentation.component";
+import {ExhibitsPresentationComponent} from "./features/exhibits/components/exhibits-presentation/exhibits-presentation.component";
+import {AboutComponent} from "./features/about/components/about/about.component";
+import {ForbiddenComponent} from "./features/forbiden/components/forbidden/forbidden.component";
+import {SignupComponent} from "./features/sing-up/components/signup/signup.component";
+import {TourEditComponent} from "./features/tours/components/tour-edit/tour-edit.component";
+import {TourViewComponent} from "./features/tours/components/tour-view/tour-view.component";
+import {ExhibitEditComponent} from "./features/exhibits/components/exhibit-edit/exhibit-edit.component";
+import {ExhibitViewComponent} from './features/exhibits/components/exhibit-view/exhibit-view.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -43,18 +41,17 @@ describe('AppComponent', () => {
         HomeComponent,
         NotFoundComponent,
         LoginComponent,
-        ToursComponent,
+        ToursPresentationComponent,
         GuidesComponent,
-        ExhibitsComponent,
-        VisitorComponent,
+        ExhibitsPresentationComponent,
+        VisitorsComponent,
         AboutComponent,
         ForbiddenComponent,
         SignupComponent,
-        ToursEditComponent,
-        ToursViewComponent,
-        ProfileComponent,
-        ExhibitsEditComponent,
-        ExhibitsViewComponent
+        TourEditComponent,
+        TourViewComponent,
+        ExhibitEditComponent,
+        ExhibitViewComponent
       ],
       imports: [
         BrowserModule,
@@ -73,7 +70,7 @@ describe('AppComponent', () => {
       ],
       providers: [
         AnonymGuard,
-        UserGuard,
+        VisitorGuard,
         AdminGuard,
         TranslateService,
         AuthService,

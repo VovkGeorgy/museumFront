@@ -29,7 +29,8 @@
     "edit": "Edit",
     "editProfile": "Profile",
     "signup": "Sign up",
-    "addToFavorites": "Add to favorites"
+    "addToFavorites": "Add to favorites",
+    "exclude": "Exclude"
   },
   "tours": {
     "theme": "Theme",
@@ -39,7 +40,15 @@
     "duration": "Duration",
     "hour": "Hour(s)",
     "cost": "Cost",
-    "imageUrl": "Image URL"
+    "description": "Description",
+    "imageUrl": "Image URL",
+    "removeFromTour": "Remove from Tour",
+    "guides": "Tour guides",
+    "visitors": "Tour visitors",
+    "exhibits": "Tour exhibits",
+    "noGuides": "There is no guides on this tour",
+    "noVisitors": "There is no visitors on this tour",
+    "noExhibits": "There is no exhibits on this tour"
   },
   "guide": {
     "naming": "Guide",
@@ -50,7 +59,8 @@
     "age": "Age",
     "experience": "Experience",
     "languages": "Languages",
-    "tourId": "TourId"
+    "tourId": "TourId",
+    "tours": "Your tours"
   },
   "exhibits": {
     "naming": "Exhibits",
@@ -59,7 +69,8 @@
     "material": "Material",
     "archiveNum": "Archive Number",
     "description": "Description",
-    "imageUrl": "Image URL"
+    "imageUrl": "Image URL",
+    "tours": "Exhibit tours"
   },
   "visitor": {
     "title": "Create visitor",

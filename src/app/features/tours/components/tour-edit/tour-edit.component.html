@@ -1,0 +1,153 @@
+<div class="row col-md-12">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <fieldset [formGroup]="tourForm">
+      <legend>Update tour entity</legend>
+      <div class="form-group">
+        <label for="updateFio">{{'tours.theme' | translate}}</label>
+        <input class="form-control" id="updateFio" placeholder="theme"
+               formControlName="theme">
+      </div>
+      <div class="form-group">
+        <label for="updateAge">{{'tours.typeOfExhibits' | translate}}</label>
+        <input class="form-control" id="updateAge" placeholder="typeOfExhibits"
+               formControlName="typeOfExhibits">
+      </div>
+      <div class="form-group">
+        <label for="updateExperience">{{'tours.duration' | translate}}</label>
+        <input type="number" class="form-control" id="updateExperience" placeholder="duration"
+               formControlName="duration">
+      </div>
+      <div class="form-group">
+        <label for="updateLanguages">{{'tours.cost' | translate}}</label>
+        <input type="number" class="form-control" id="updateLanguages" placeholder="cost"
+               formControlName="cost">
+      </div>
+      <div class="form-group">
+        <label for="updateTourId">{{'tours.imageUrl' | translate}}</label>
+        <input class="form-control" id="updateTourId" placeholder="imageUrl"
+               formControlName="imageUrl">
+      </div>
+      <button class="btn btn-primary" (click)="updateTour()">{{'button.update' | translate}}
+      </button>
+    </fieldset>
+  </div>
+</div>
+
+<ng-template #noGuides>
+  <div style="text-align: center"><h5>{{'tours.noGuides' |translate}}</h5></div>
+</ng-template>
+
+<div style="text-align: center" *ngIf="guide != null"><h5>{{'tours.guides' |translate}}</h5></div>
+
+<div class="row col-md-12" *ngIf="guide != null; else noGuides">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <table class="table text-center">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>{{'guide.username' | translate}}</th>
+        <th>{{'guide.password' | translate}}</th>
+        <th>{{'guide.fio' | translate}}</th>
+        <th>{{'guide.age' | translate}}</th>
+        <th>{{'guide.experience' | translate}}</th>
+        <th>{{'guide.languages' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="table align-middle">
+        <td class="align-middle">{{guide.guideId}}</td>
+        <td class="align-middle">{{guide.username}}</td>
+        <td class="align-middle">{{guide.password}}</td>
+        <td class="align-middle">{{guide.fio}}</td>
+        <td class="align-middle">{{guide.age}}</td>
+        <td class="align-middle">{{guide.experience}}</td>
+        <td class="align-middle">{{guide.languages}}</td>
+        <td>
+          <button class="btn btn-primary btn-outline-secondary" *ngIf="isAdmin()" (click)="removeGuideFromTour(guide)">{{'button.exclude' |
+            translate}}
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #noVisitors>
+  <div style="text-align: center"><h5>{{'tours.noVisitors' |translate}}</h5></div>
+</ng-template>
+
+<div style="text-align: center" *ngIf="visitors != null && visitors.length != 0"><h5>{{'tours.visitors' |translate}}</h5></div>
+
+<div class="row col-md-12" *ngIf="visitors != null && visitors.length != 0; else noVisitors">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <table class="table text-center">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>{{'visitor.username' | translate}}</th>
+        <th>{{'visitor.password' | translate}}</th>
+        <th>{{'visitor.fio' | translate}}</th>
+        <th>{{'visitor.age' | translate}}</th>
+        <th>{{'visitor.email' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="table align-middle" *ngFor="let visitor of visitors">
+        <td class="align-middle">{{visitor.visitorId}}</td>
+        <td class="align-middle">{{visitor.username}}</td>
+        <td class="align-middle">{{visitor.password}}</td>
+        <td class="align-middle">{{visitor.fio}}</td>
+        <td class="align-middle">{{visitor.age}}</td>
+        <td class="align-middle">{{visitor.email}}</td>
+        <td>
+          <button style="float: inherit" type="button" class="btn btn-primary btn-outline-secondary"
+                  (click)="removeVisitorFromTour(visitor)">{{'button.exclude' |
+            translate}}
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #noExhibits>
+  <div style="text-align: center"><h5>{{'tours.noExhibits' |translate}}</h5></div>
+</ng-template>
+
+<div style="text-align: center" *ngIf="exhibits != null && exhibits.length != 0"><h5>{{'tours.exhibits' |translate}}</h5></div>
+
+<div class="album py-5" *ngIf="exhibits != null && exhibits.length != 0; else noExhibits">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let exhibit of exhibits">
+        <div class="card mb-4 box-shadow">
+          <h6 class="card-header">{{exhibit.title}}</h6>
+          <img class="card-img-top"
+               data-src="{{exhibit.imageUrl}}/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+               alt="Thumbnail [100%x225]"
+               src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22208%22%20height%3D%22226%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20208%20226%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_16282840b21%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A11pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_16282840b21%22%3E%3Crect%20width%3D%22208%22%20height%3D%22226%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2266.9375%22%20y%3D%22118.0390625%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+               data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
+          <div class="card-body">
+            <p class="card-text">{{exhibit.description}}</p>
+          </div>
+          <div class="card-body">
+            <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="viewExhibit(exhibit)">
+              {{'button.view' | translate}}
+            </button>
+            <div style="float: right">
+              <small>{{'tours.removeFromTour'| translate}}</small>
+              <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="removeExhibitFromTour(exhibit)">
+                {{'button.delete'| translate}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

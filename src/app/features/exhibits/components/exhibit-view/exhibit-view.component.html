@@ -1,0 +1,56 @@
+<div class="row col-md-12" *ngIf="exhibit">
+  <div class="col-md-2"></div>
+  <div class="col-md-2"><img style="height: 200px; width: 100%; display: block;" src="{{exhibit.imageUrl}}"
+                             alt="Card image"></div>
+  <div class="col-md-6">
+    <div><h3>{{exhibit.title}}</h3></div>
+    <table class="table table-hover text-center">
+      <thead>
+      <tr>
+        <th scope="col">{{'exhibits.dated' | translate}}</th>
+        <th scope="col">{{'exhibits.material' | translate}}</th>
+        <th scope="col">{{'exhibits.archiveNum' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="table">
+        <th>{{exhibit.dated}}</th>
+        <td>{{exhibit.material}}</td>
+        <td>{{exhibit.archiveNum}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <p class="text-center">{{'exhibits.description' | translate}}</p>
+    <p>{{exhibit.description}}</p>
+  </div>
+</div>
+<div class="row col-md-12">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <table class="table text-center">
+      <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">{{'tours.theme' | translate}}</th>
+        <th scope="col">{{'tours.duration' | translate}}</th>
+        <th scope="col">{{'tours.cost' | translate}}</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="table align-middle" *ngFor="let tour of tours">
+        <th><img style="height: 100px; width: 100px; display: block;" src="{{tour.imageUrl}}"
+                 alt="Card image"></th>
+        <td class="align-middle"><h5>{{tour.theme}}</h5></td>
+        <td class="align-middle">{{tour.duration}}</td>
+        <td class="align-middle">{{tour.cost}}</td>
+        <td class="align-middle">
+          <button style="float: inherit" type="button" class="btn btn-sm btn btn-outline-primary" (click)="viewTour(tour)">{{'button.view'
+            | translate}}
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

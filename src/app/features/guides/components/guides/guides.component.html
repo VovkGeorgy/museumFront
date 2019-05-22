@@ -1,0 +1,184 @@
+<div class="row col-md-12">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <ngb-tabset #t="ngbTabset" >
+      <ngb-tab id="tab-selectbyid1" title="{{'tabs.create' | translate}}">
+        <ng-template ngbTabContent>
+          <fieldset [formGroup]="guideForm">
+            <legend>{{'guide.title' | translate}}</legend>
+            <div class="form-group">
+              <label for="inputFio">{{'guide.fio' | translate}}</label>
+              <input type="text" class="form-control" id="inputFio" placeholder="Ivanov I. I."
+                     formControlName="fio">
+            </div>
+            <div class="form-group">
+              <label for="inputUsername">{{'guide.username' | translate}}</label>
+              <input type="text" class="form-control" id="inputUsername" placeholder="Username"
+                     formControlName="username">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword">{{'guide.password' | translate}}</label>
+              <input type="password" class="form-control" id="inputPassword" placeholder="Password"
+                     formControlName="password">
+            </div>
+            <div class="form-group">
+              <label for="inputAge">{{'guide.age' | translate}}</label>
+              <input type="number" class="form-control" id="inputAge" placeholder="1-31"
+                     formControlName="age">
+            </div>
+            <div class="form-group">
+              <label for="inputExperience">{{'guide.experience' | translate}}</label>
+              <input type="number" class="form-control" id="inputExperience" placeholder="1-99"
+                     formControlName="experience">
+            </div>
+            <div class="form-group">
+              <label for="inputLanguages">{{'guide.languages' | translate}}</label>
+              <input type="text" class="form-control" id="inputLanguages" placeholder="ENG,RU,CHN"
+                     formControlName="languages">
+            </div>
+            <button class="btn btn-primary btn-outline-secondary" (click)="addEntityToBase()">{{'button.add' | translate}}
+            </button>
+          </fieldset>
+        </ng-template>
+      </ngb-tab>
+
+      <ngb-tab id="tab-selectbyid2" title="{{'tabs.read' | translate}}">
+        <ng-template ngbTabContent>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Id</th>
+              <th>{{'guide.username' | translate}}</th>
+              <th>{{'guide.password' | translate}}</th>
+              <th>{{'guide.fio' | translate}}</th>
+              <th>{{'guide.age' | translate}}</th>
+              <th>{{'guide.experience' | translate}}</th>
+              <th>{{'guide.languages' | translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let guide of guides">
+              <td>{{guide.guideId}}</td>
+              <td>{{guide.username}}</td>
+              <td>{{guide.password}}</td>
+              <td>{{guide.fio}}</td>
+              <td>{{guide.age}}</td>
+              <td>{{guide.experience}}</td>
+              <td>{{guide.languages}}</td>
+            </tr>
+            </tbody>
+          </table>
+          <button class="btn btn-primary btn-outline-secondary" (click)="updateReadForm()">{{'button.update' | translate}}
+          </button>
+        </ng-template>
+      </ngb-tab>
+
+      <ngb-tab id="tab-selectbyid3" title="{{'tabs.update' | translate}}">
+        <ng-template ngbTabContent>
+          <table class="table table-striped" [hidden]="updateTableIsHidden">
+            <thead>
+            <tr>
+              <th>Id</th>
+              <th>{{'guide.username' | translate}}</th>
+              <th>{{'guide.password' | translate}}</th>
+              <th>{{'guide.fio' | translate}}</th>
+              <th>{{'guide.age' | translate}}</th>
+              <th>{{'guide.experience' | translate}}</th>
+              <th>{{'guide.languages' | translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let guide of guides">
+              <td>{{guide.guideId}}</td>
+              <td>{{guide.username}}</td>
+              <td>{{guide.password}}</td>
+              <td>{{guide.fio}}</td>
+              <td>{{guide.age}}</td>
+              <td>{{guide.experience}}</td>
+              <td>{{guide.languages}}</td>
+              <td>
+                <button class="btn btn-primary btn-outline-secondary" (click)="loadUpdatedForm(guide)">
+                  {{'button.update' | translate}}
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <fieldset [formGroup]="guideForm" [hidden]="updateFieldIsHidden">
+            <legend>Update guide entity</legend>
+            <div class="form-group">
+              <label for="updateFio">{{'guide.fio' | translate}}</label>
+              <input type="text" class="form-control" id="updateFio" placeholder="Ivanov I. I."
+                     formControlName="fio">
+            </div>
+            <div class="form-group">
+              <label for="updateUsername">{{'guide.username' | translate}}</label>
+              <input type="text" class="form-control" id="updateUsername" placeholder="Username"
+                     formControlName="username">
+            </div>
+            <div class="form-group">
+              <label for="updatePassword">{{'guide.password' | translate}}</label>
+              <input type="text" class="form-control" id="updatePassword" placeholder="Password"
+                     formControlName="password">
+            </div>
+            <div class="form-group">
+              <label for="updateAge">{{'guide.age' | translate}}</label>
+              <input type="number" class="form-control" id="updateAge" placeholder="1-31"
+                     formControlName="age">
+            </div>
+            <div class="form-group">
+              <label for="updateExperience">{{'guide.experience' | translate}}</label>
+              <input type="number" class="form-control" id="updateExperience" placeholder="1-99"
+                     formControlName="experience">
+            </div>
+            <div class="form-group">
+              <label for="updateLanguages">{{'guide.languages' | translate}}</label>
+              <input type="text" class="form-control" id="updateLanguages" placeholder="ENG,CHN"
+                     formControlName="languages">
+            </div>
+            <button class="btn btn-primary btn-outline-secondary" (click)="addUpdatedEntityToBase()">{{'button.update' |
+              translate}}
+            </button>
+          </fieldset>
+        </ng-template>
+      </ngb-tab>
+
+      <ngb-tab id="tab-selectbyid4" title="{{'tabs.delete' | translate}}">
+        <ng-template ngbTabContent>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Id</th>
+              <th>{{'guide.username' | translate}}</th>
+              <th>{{'guide.password' | translate}}</th>
+              <th>{{'guide.fio' | translate}}</th>
+              <th>{{'guide.age' | translate}}</th>
+              <th>{{'guide.experience' | translate}}</th>
+              <th>{{'guide.languages' | translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let guide of guides">
+              <td>{{guide.guideId}}</td>
+              <td>{{guide.username}}</td>
+              <td>{{guide.password}}</td>
+              <td>{{guide.fio}}</td>
+              <td>{{guide.age}}</td>
+              <td>{{guide.experience}}</td>
+              <td>{{guide.languages}}</td>
+              <td>
+                <button class="btn btn-primary btn-outline-secondary" (click)="deleteEntityInBase(guide)">{{'button.delete' |
+                  translate}}
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <button class="btn btn-primary btn-outline-secondary" (click)="updateReadForm()">{{'button.update' | translate}}
+          </button>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</div>

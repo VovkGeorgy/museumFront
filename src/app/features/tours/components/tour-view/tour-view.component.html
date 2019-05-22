@@ -1,0 +1,62 @@
+<div class="row col-md-12" *ngIf="tour">
+  <div class="col-md-2"></div>
+  <div class="col-md-2"><img id="tour-image" src="{{tour.imageUrl}}"
+                             alt="Card image"></div>
+  <div class="col-md-6">
+    <div><h3>{{tour.theme}}</h3></div>
+    <table class="table table-hover text-center">
+      <thead>
+      <tr>
+        <th scope="col">{{'tours.typeOfExhibits' | translate}}</th>
+        <th scope="col">{{'tours.duration' | translate}}</th>
+        <th scope="col">{{'tours.cost' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="table">
+        <th scope="row">{{tour.typeOfExhibits}}</th>
+        <td>{{tour.duration}}</td>
+        <td>{{tour.cost}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <div *ngIf="isFavourite; then delete else add"></div>
+    <ng-template #add>
+      <div style="float: right" [hidden]="!isVisitor()">
+        <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="addToFavorites(tour)">
+          {{'button.addToFavorites' | translate}}
+        </button>
+      </div>
+    </ng-template>
+    <ng-template #delete>
+      <div style="float: right" [hidden]="!isVisitor()">
+        <a>Tour already in favorites</a>
+        <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="deleteFromFavorites(tour)">
+          {{'button.delete'| translate}}
+        </button>
+      </div>
+    </ng-template>
+  </div>
+</div>
+<div class="row col-md-12">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <table class="table table-hover text-center">
+      <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">{{'exhibits.description' | translate}}</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="table" *ngFor="let exhibit of exhibitsById">
+        <th scope="row"><img id="exhibit-image" src="{{exhibit.imageUrl}}"
+                             alt="Card image"></th>
+        <td><h5>{{exhibit.title}}</h5>
+          <p>{{exhibit.description}}</p></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
