@@ -1,5 +1,6 @@
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Injectable} from "@angular/core";
+import {apiUrls} from "../constants/api";
 
 
 @Injectable()
@@ -21,7 +22,7 @@ export class DataService {
    * @returns {Observable<Object>}
    */
   getData(dataUrl) {
-    return this.http.get(dataUrl, this.httpOptions);
+    return this.http.get(apiUrls.backend + dataUrl, this.httpOptions);
   }
 
   /**
@@ -31,7 +32,7 @@ export class DataService {
    * @returns {Observable<Object>}
    */
   postData(dataUrl, data) {
-    return this.http.post(dataUrl, JSON.stringify(data), this.httpOptions);
+    return this.http.post(apiUrls.backend + dataUrl, JSON.stringify(data), this.httpOptions);
   }
 
   setHeaders(dataHeaders) {

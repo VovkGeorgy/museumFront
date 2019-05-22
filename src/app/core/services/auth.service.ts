@@ -4,6 +4,7 @@ import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 import {DataService} from "./data.service";
 import "rxjs/add/operator/map";
+import {apiUrls} from "../constants/api";
 
 
 @Injectable()
@@ -38,7 +39,8 @@ export class AuthService {
     body = body.set("username", username);
     body = body.set("password", password);
     body = body.set("grant_type", "password");
-    return this.http.post("/oauth/token", body, {headers: loginHeaders}).map((response: any) => {
+    console.log(loginHeaders);
+    return this.http.post(apiUrls.backend + "/oauth/token", body, {headers: loginHeaders}).map((response: any) => {
       this.accessToken = response.access_token;
       this.refreshToken = response.refresh_token;
       this.dataHeaders = this.dataHeaders.append("Content-Type", "application/json");
@@ -53,7 +55,7 @@ export class AuthService {
    * @returns {Observable<any>}
    */
   getRole() {
-    return this.http.get("/abo/whoiam", {headers: this.dataService.getHeaders()}).map((data: any) => {
+    return this.http.get(apiUrls.backend + "/abo/whoiam", {headers: this.dataService.getHeaders()}).map((data: any) => {
       data.forEach(elem => {
         this.rolesArray.push(elem.authority);
       });

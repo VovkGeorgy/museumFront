@@ -1,10 +1,12 @@
 import {Injectable} from "@angular/core";
 import {DataService} from "../data.service";
+import {catchError, map} from "rxjs/operators";
+import {Exhibit} from "../../models/entity-models";
 
 @Injectable()
 export class ExhibitsService {
 
-  exhibits: any[any];
+  // exhibits: any[any];
   private getAllExhibitsUrl = "/exhibit/exhibits";
   private updateExhibitUrl = "/exhibit/exhibits/update/";
   private getExhibitUrl = "/exhibit/exhibits/";
@@ -20,24 +22,26 @@ export class ExhibitsService {
   }
 
   getAllExhibits() {
-    return this.dataService.getData(this.getAllExhibitsUrl);
+    return this.dataService.getData("/api" + this.getAllExhibitsUrl).pipe(
+      map(exhibit  => exhibit as Exhibit)
+    )
   }
 
   getExhibit(id: number) {
-    return this.dataService.getData(this.getExhibitUrl + id);
+    return this.dataService.getData("/api" + this.getExhibitUrl + id);
   }
 
   updateExhibit(id: number, exhibit: any) {
-    return this.dataService.postData(this.updateExhibitUrl + id, exhibit);
+    return this.dataService.postData("/api" + this.updateExhibitUrl + id, exhibit);
   }
 
   getAllExhibitTours(id: number) {
-    return this.dataService.getData(this.getAllExhibitToursUrl + id);
+    return this.dataService.getData("/api" + this.getAllExhibitToursUrl + id);
   }
 
   removeTourFromExhibit(tourId: number, exhibitId: number) {
     this.tourExhibitDao.tourId = tourId;
     this.tourExhibitDao.exhibitId = exhibitId;
-    return this.dataService.postData(this.removeTourFromExhibitUrl, this.tourExhibitDao);
+    return this.dataService.postData("/api" + this.removeTourFromExhibitUrl, this.tourExhibitDao);
   }
 }
