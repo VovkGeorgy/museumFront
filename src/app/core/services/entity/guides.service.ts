@@ -7,11 +7,11 @@ export class GuidesService {
   constructor(private dataService: DataService) {
   }
 
-  private getAllGuidesUrl = "/guide/guides";
-  private addGuideUrl = "/guide/guides/add";
-  private updateGuideUrl = "/guide/guides/update/";
-  private deleteGuideUrl = "/guide/guides/delete/";
-  private getGuideUrl = "/guide/guides/getByUsername";
+  private getAllGuidesUrl = "/api/guide/guides";
+  private addGuideUrl = "/api/guide/guides/add";
+  private updateGuideUrl = "/api/guide/guides/update/";
+  private deleteGuideUrl = "/api/guide/guides/delete/";
+  private getGuideUrl = "/api/guide/guides/getByUsername";
 
 
   getGuideByUsername(username: string) {

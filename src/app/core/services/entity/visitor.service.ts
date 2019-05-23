@@ -7,14 +7,14 @@ export class VisitorService {
   constructor(private dataService: DataService) {
   }
 
-  private getAllVisitorsUrl = "/visitor/visitors";
-  private addVisitorUrl = "/visitor/visitors/add";
-  private updateVisitorUrl = "/visitor/visitors/update/";
-  private deleteVisitorUrl = "/visitor/visitors/delete/";
-  private getVisitorUrl = "/visitor/visitors/getByUsername";
-  private removeTourFromVisitorUrl = "/visitor/visitors/removeTour";
-  private addTourToVisitorUrl = "/visitor/visitors/addTour";
-  private checkTourFromVisitorUrl = "/visitor/toursCheck";
+  private getAllVisitorsUrl = "/api/visitor/visitors";
+  private addVisitorUrl = "/api/visitor/visitors/add";
+  private updateVisitorUrl = "/api/visitor/visitors/update/";
+  private deleteVisitorUrl = "/api/visitor/visitors/delete/";
+  private getVisitorUrl = "/api/visitor/visitors/getByUsername";
+  private removeTourFromVisitorUrl = "/api/visitor/visitors/removeTour";
+  private addTourToVisitorUrl = "/api/visitor/visitors/addTour";
+  private checkTourFromVisitorUrl = "/api/visitor/toursCheck";
 
   private tourVisitorDao = {
     "tourId": null,

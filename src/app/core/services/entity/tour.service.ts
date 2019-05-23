@@ -7,15 +7,15 @@ export class TourService {
   constructor(private dataService: DataService) {
   }
 
-  private getTourGuideUrl = "/tour/tours/guide/";
-  private getTourUrl = "/tour/tours/";
-  private updateTourUrl = "/tour/tours/update/";
-  private getToursUrl = "/tour/tours";
-  private getTourExhibitsUrl = "/tour/exhibits/";
-  private getTourVisitorsUrl = "/tour/tours/visitors/";
-  private removeTourFromVisitorUrl = "/visitor/visitors/removeTour";
-  private removeTourFromExhibitUrl = "/exhibit/exhibits/removeTour";
-  private removeTourFromGuideUrl = "/guide/guides/removeTour";
+  private getTourGuideUrl = "/api/tour/tours/guide/";
+  private getTourUrl = "/api/tour/tours/";
+  private updateTourUrl = "/api/tour/tours/update/";
+  private getToursUrl = "/api/tour/tours";
+  private getTourExhibitsUrl = "/api/tour/exhibits/";
+  private getTourVisitorsUrl = "/api/tour/tours/visitors/";
+  private removeTourFromVisitorUrl = "/api/visitor/visitors/removeTour";
+  private removeTourFromExhibitUrl = "/api/exhibit/exhibits/removeTour";
+  private removeTourFromGuideUrl = "/api/guide/guides/removeTour";
 
   private tourVisitorDao = {
     "tourId": null,
