@@ -4,7 +4,7 @@ import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "../../../../core/services/auth.service";
 import {DataService} from "../../../../core/services/data.service";
 import {Router} from "@angular/router";
-import {GuidesService} from "../../../../core/services/entity/guides.service";
+import {GuidesService} from "../../../guides/services/guides.service";
 
 @Component({
   selector: "app-guide-profile",

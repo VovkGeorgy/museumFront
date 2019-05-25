@@ -9,7 +9,6 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {ToursPresentationComponent} from "./features/tours/components/tours-presentation/tours-presentation.component";
 import {DataService} from "./core/services/data.service";
 import {APP_BASE_HREF} from "@angular/common";
-import {GuidesComponent} from "./features/guides/components/guides/guides.component";
 import {VisitorsComponent} from "./features/visitors/components/visitors/visitors.component";
 import {AuthService} from "./core/services/auth.service";
 import {CookieService} from "ngx-cookie-service";
@@ -20,12 +19,10 @@ import {AnonymGuard} from "./shell/guards/anonym.guard";
 import {ForbiddenComponent} from "./features/forbiden/components/forbidden/forbidden.component";
 import {TourEditComponent} from "./features/tours/components/tour-edit/tour-edit.component";
 import {TourViewComponent} from "./features/tours/components/tour-view/tour-view.component";
-import {GuideGuard} from "./shell/guards/guide.guard";
 import {GuideProfileComponent} from "./features/profile/components/guide-profile/guide-profile.component";
 import {VisitorProfileComponent} from "./features/profile/components/visitor-profile/visitor-profile.component";
 import {TourService} from "./core/services/entity/tour.service";
 import {VisitorService} from "./core/services/entity/visitor.service";
-import {GuidesService} from "./core/services/entity/guides.service";
 import {ExhibitComponent} from './features/exhibits/containers/exhibit/exhibit.component';
 import {ExhibitsModule} from './features/exhibits/exhibits.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -34,6 +31,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {AuthModule} from './features/auth/auth.module';
+import {GuidesModule} from './features/guides/guides.module';
 
 
 @NgModule({
@@ -44,7 +42,6 @@ import {AuthModule} from './features/auth/auth.module';
     HomeComponent,
     NotFoundComponent,
     ToursPresentationComponent,
-    GuidesComponent,
     VisitorsComponent,
     AboutComponent,
     ForbiddenComponent,
@@ -57,6 +54,7 @@ import {AuthModule} from './features/auth/auth.module';
   imports: [
     AuthModule,
     ExhibitsModule,
+    GuidesModule,
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
@@ -75,7 +73,6 @@ import {AuthModule} from './features/auth/auth.module';
   providers: [
     AnonymGuard,
     VisitorGuard,
-    GuideGuard,
     AdminGuard,
     TranslateService,
     AuthService,
@@ -83,7 +80,6 @@ import {AuthModule} from './features/auth/auth.module';
     DataService,
     TourService,
     VisitorService,
-    GuidesService,
     {
       provide: APP_BASE_HREF,
       useValue: "/"

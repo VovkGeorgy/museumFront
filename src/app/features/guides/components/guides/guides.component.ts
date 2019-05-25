@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
-import {GuidesService} from "../../../../core/services/entity/guides.service";
+import {GuidesService} from "../../services/guides.service";
 
 @Component({
   selector: "app-guides",

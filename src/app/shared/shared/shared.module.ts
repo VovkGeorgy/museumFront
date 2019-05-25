@@ -23,6 +23,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     TranslateModule.forChild()
   ],
   exports: [
+    NgbModule,
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
