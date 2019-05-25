@@ -7,6 +7,7 @@ import {ExhibitViewComponent} from './components/exhibit-view/exhibit-view.compo
 import {ExhibitsPresentationComponent} from './components/exhibits-presentation/exhibits-presentation.component';
 import {ExhibitsService} from './services/exhibits.service';
 import {SharedModule} from '../../shared/shared/shared.module';
+import {ExhibitComponent} from './containers/exhibit/exhibit.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import {SharedModule} from '../../shared/shared/shared.module';
     ExhibitsRoutingModule
   ],
   declarations: [
+    ExhibitComponent,
     ExhibitEditComponent,
     ExhibitViewComponent,
     ExhibitsPresentationComponent
