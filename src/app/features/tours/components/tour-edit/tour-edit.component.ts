@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
-import {TourService} from "../../../../core/services/entity/tour.service";
+import {TourService} from "../../services/tour.service";
 import {AuthService} from "../../../../core/services/auth.service";
 
 @Component({

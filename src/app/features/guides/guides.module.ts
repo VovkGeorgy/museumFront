@@ -5,6 +5,7 @@ import {GuidesRoutingModule} from './guides-routing.module';
 import {GuidesComponent} from './components/guides/guides.component';
 import {SharedModule} from '../../shared/shared/shared.module';
 import {GuidesService} from './services/guides.service';
+import {AdminGuard} from '../../shell/guards/admin.guard';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import {GuidesService} from './services/guides.service';
   ],
   providers: [
     GuidesService,
+    AdminGuard
   ]
 })
 export class GuidesModule { }

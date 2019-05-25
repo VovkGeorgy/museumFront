@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../../core/services/auth.service";
-import {TourService} from "../../../../core/services/entity/tour.service";
+import {TourService} from "../../services/tour.service";
 
 @Component({
   selector: "app-tours",

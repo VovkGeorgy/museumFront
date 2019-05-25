@@ -8,6 +8,8 @@ import {ExhibitsPresentationComponent} from './components/exhibits-presentation/
 import {ExhibitsService} from './services/exhibits.service';
 import {SharedModule} from '../../shared/shared/shared.module';
 import {ExhibitComponent} from './containers/exhibit/exhibit.component';
+import {GuideGuard} from '../../shell/guards/guide.guard';
+import {VisitorGuard} from '../../shell/guards/visitor.guard';
 
 @NgModule({
   imports: [
@@ -22,7 +24,9 @@ import {ExhibitComponent} from './containers/exhibit/exhibit.component';
     ExhibitsPresentationComponent
   ],
   providers: [
-    ExhibitsService
+    ExhibitsService,
+    GuideGuard,
+    VisitorGuard
   ]
 })
 export class ExhibitsModule {

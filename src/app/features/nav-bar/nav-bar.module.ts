@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { NavBarRoutingModule } from './nav-bar-routing.module';
+import {NavBarRoutingModule} from './nav-bar-routing.module';
 import {NavBarComponent} from './components/nav-bar/nav-bar.component';
 import {SharedModule} from '../../shared/shared/shared.module';
 
@@ -14,8 +14,12 @@ import {SharedModule} from '../../shared/shared/shared.module';
   declarations: [
     NavBarComponent
   ],
-  exports:[
+  exports: [
     NavBarComponent
+  ],
+  providers: [
+
   ]
 })
-export class NavBarModule { }
+export class NavBarModule {
+}

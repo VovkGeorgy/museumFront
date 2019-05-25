@@ -2,8 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "../../../../core/services/auth.service";
-import {TourService} from "../../../../core/services/entity/tour.service";
-import {VisitorService} from "../../../../core/services/entity/visitor.service";
+import {TourService} from "../../services/tour.service";
+import {VisitorService} from "../../../visitors/services/visitor.service";
 
 @Component({
   selector: "app-tours-view",

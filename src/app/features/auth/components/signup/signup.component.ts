@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
 import {AuthService} from "../../../../core/services/auth.service";
 import {CookieService} from "ngx-cookie-service";
-import {VisitorService} from "../../../../core/services/entity/visitor.service";
+import {VisitorService} from "../../../visitors/services/visitor.service";
 
 @Component({
   selector: "app-signup",

@@ -4,18 +4,18 @@ import {CommonModule} from '@angular/common';
 import {SharedRoutingModule} from './shared-routing.module';
 import {TranslateModule} from '@ngx-translate/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AppRoutingModule} from '../../app-routing.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule,
     SharedRoutingModule,
     NgbModule,
     FlexLayoutModule,
