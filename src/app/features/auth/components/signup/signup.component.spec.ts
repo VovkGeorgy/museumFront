@@ -29,7 +29,7 @@ import {AuthService} from "../../../../core/services/auth.service";
 import {CookieService} from "ngx-cookie-service";
 import {DataService} from "../../../../core/services/data.service";
 import {APP_BASE_HREF} from "@angular/common";
-import {LoginComponent} from "../../../login/components/login/login.component";
+import {LoginComponent} from "../login/login.component";
 import {GuidesComponent} from "../../../guides/components/guides/guides.component";
 import {SignupComponent} from './signup.component';
 import {ProfileComponent} from "../profile/profile.component";

@@ -9,7 +9,7 @@ import {ExhibitsPresentationComponent} from "../../../exhibits/components/exhibi
 import {VisitorsComponent} from "../../../visitors/components/visitors/visitors.component";
 import {AboutComponent} from "../../../about/components/about/about.component";
 import {ForbiddenComponent} from "../../../forbiden/components/forbidden/forbidden.component";
-import {SignupComponent} from "../../../sing-up/components/signup/signup.component";
+import {SignupComponent} from "../signup/signup.component";
 import {TourViewComponent} from '../../../tours/components/tour-view/tour-view.component';
 import {ProfileComponent} from '../profile/profile.component';
 import {ExhibitEditComponent} from '../../../exhibits/components/exhibit-edit/exhibit-edit.component';

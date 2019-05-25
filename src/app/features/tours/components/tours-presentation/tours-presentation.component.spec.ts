@@ -26,11 +26,11 @@ import {AuthService} from "../../../../core/services/auth.service";
 import {CookieService} from "ngx-cookie-service";
 import {DataService} from "../../../../core/services/data.service";
 import {APP_BASE_HREF} from "@angular/common";
-import {LoginComponent} from "../../../login/components/login/login.component";
+import {LoginComponent} from "../../../auth/components/login/login.component";
 import {GuidesComponent} from "../../../guides/components/guides/guides.component";
 import {ProfileComponent} from "../profile/profile.component";
 import {ToursPresentationComponent} from './tours-presentation.component';
-import {SignupComponent} from "../../../sing-up/components/signup/signup.component";
+import {SignupComponent} from "../../../auth/components/signup/signup.component";
 import {TourEditComponent} from "../tour-edit/tour-edit.component";
 import {TourViewComponent} from "../tour-view/tour-view.component";
 

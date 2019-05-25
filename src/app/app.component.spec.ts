@@ -20,12 +20,12 @@ import {GuidesComponent} from "./features/guides/components/guides/guides.compon
 import {VisitorsComponent} from "./features/visitors/components/visitors/visitors.component";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {HomeComponent} from "./features/home/components/home/home.component";
-import {LoginComponent} from "./features/login/components/login/login.component";
+import {LoginComponent} from "./features/auth/components/login/login.component";
 import {ToursPresentationComponent} from "./features/tours/components/tours-presentation/tours-presentation.component";
 import {ExhibitsPresentationComponent} from "./features/exhibits/components/exhibits-presentation/exhibits-presentation.component";
 import {AboutComponent} from "./features/about/components/about/about.component";
 import {ForbiddenComponent} from "./features/forbiden/components/forbidden/forbidden.component";
-import {SignupComponent} from "./features/sing-up/components/signup/signup.component";
+import {SignupComponent} from "./features/auth/components/signup/signup.component";
 import {TourEditComponent} from "./features/tours/components/tour-edit/tour-edit.component";
 import {TourViewComponent} from "./features/tours/components/tour-view/tour-view.component";
 import {ExhibitEditComponent} from "./features/exhibits/components/exhibit-edit/exhibit-edit.component";

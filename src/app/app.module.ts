@@ -3,7 +3,6 @@ import {AppComponent} from "./app.component";
 import {NavBarComponent} from "./features/nav-bar/components/nav-bar/nav-bar.component";
 import {HomeComponent} from "./features/home/components/home/home.component";
 import {NotFoundComponent} from "./features/not-found/components/not-found/not-found.component";
-import {LoginComponent} from "./features/login/components/login/login.component";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
@@ -19,7 +18,6 @@ import {VisitorGuard} from "./shell/guards/visitor.guard";
 import {AdminGuard} from "./shell/guards/admin.guard";
 import {AnonymGuard} from "./shell/guards/anonym.guard";
 import {ForbiddenComponent} from "./features/forbiden/components/forbidden/forbidden.component";
-import {SignupComponent} from "./features/sing-up/components/signup/signup.component";
 import {TourEditComponent} from "./features/tours/components/tour-edit/tour-edit.component";
 import {TourViewComponent} from "./features/tours/components/tour-view/tour-view.component";
 import {GuideGuard} from "./shell/guards/guide.guard";
@@ -34,8 +32,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
-import {NgxSpinnerModule} from 'ngx-spinner';
 import {BrowserModule} from '@angular/platform-browser';
+import {AuthModule} from './features/auth/auth.module';
 
 
 @NgModule({
@@ -45,13 +43,11 @@ import {BrowserModule} from '@angular/platform-browser';
     NavBarComponent,
     HomeComponent,
     NotFoundComponent,
-    LoginComponent,
     ToursPresentationComponent,
     GuidesComponent,
     VisitorsComponent,
     AboutComponent,
     ForbiddenComponent,
-    SignupComponent,
     TourEditComponent,
     TourViewComponent,
     GuideProfileComponent,
@@ -59,6 +55,7 @@ import {BrowserModule} from '@angular/platform-browser';
     ExhibitComponent,
   ],
   imports: [
+    AuthModule,
     ExhibitsModule,
     BrowserAnimationsModule,
     BrowserModule,
@@ -66,7 +63,6 @@ import {BrowserModule} from '@angular/platform-browser';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgxSpinnerModule,
     NgbModule,
     TranslateModule.forRoot({
       loader: {
