@@ -62,20 +62,6 @@ export const routes: Routes = [
     canActivate: [AdminGuard]
   },
   {
-    path: "exhibits",
-    component: ExhibitsPresentationComponent,
-  },
-  {
-    path: "exhibits/edit",
-    component: ExhibitEditComponent,
-    canActivate: [GuideGuard]
-  },
-  {
-    path: "exhibits/view",
-    component: ExhibitViewComponent,
-    canActivate: [VisitorGuard]
-  },
-  {
     path: "visitors",
     component: VisitorsComponent,
     canActivate: [GuideGuard]
@@ -98,10 +84,10 @@ export const routes: Routes = [
     path: "403",
     component: ForbiddenComponent
   },
-  {
-    path: "**",
-    redirectTo: "/404"
-  }
+  // {
+  //   path: "**",
+  //   redirectTo: "/404"
+  // }
 ];
 
 @NgModule({

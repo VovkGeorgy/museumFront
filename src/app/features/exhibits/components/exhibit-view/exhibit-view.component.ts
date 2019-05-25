@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ExhibitsService} from "../../../../core/services/entity/exhibits.service";
+import {ExhibitsService} from "../../services/exhibits.service";
 
 @Component({
   selector: "app-exhibits-view",

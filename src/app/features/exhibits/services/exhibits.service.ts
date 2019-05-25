@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {DataService} from '../data.service';
+import {DataService} from '../../../core/services/data.service';
 import {map} from 'rxjs/operators';
-import {Exhibit} from '../../models/entity-models';
+import {Exhibit} from '../../../core/models/entity-models';
 
 @Injectable()
 export class ExhibitsService {
