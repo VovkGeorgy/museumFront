@@ -1,0 +1,17 @@
+.sing-up-form-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+}
+
+.sing-up-form {
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 520px;
+  padding: 40px;
+  border-radius: 50px;
+}
+
+.singup-form-title {
+  text-align: center;
+}

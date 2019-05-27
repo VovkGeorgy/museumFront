@@ -1,36 +1,32 @@
-<div class="row col-md-12">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
-    <fieldset [formGroup]="visitorForm">
-      <legend>{{'button.signup' | translate}}</legend>
-      <div class="form-group">
-        <label for="inputUsername">{{'visitor.username' | translate}}</label>
-        <input class="form-control" id="inputUsername" placeholder="Username"
-               formControlName="username">
-      </div>
-      <div class="form-group">
-        <label for="inputPassword">{{'visitor.password' | translate}}</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password"
-               formControlName="password">
-      </div>
-      <div class="form-group">
-        <label for="inputFio">{{'visitor.fio' | translate}}</label>
-        <input class="form-control" id="inputFio" placeholder="Ivanov I. I."
-               formControlName="fio">
-      </div>
-      <div class="form-group">
-        <label for="inputAge">{{'visitor.age' | translate}}</label>
-        <input type="number" class="form-control" id="inputAge" placeholder="1-31"
-               formControlName="age">
-      </div>
-      <div class="form-group">
-        <label for="inputEmail">{{'visitor.email' | translate}}</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="1-99"
-               formControlName="email">
-      </div>
-      <button class="btn btn-primary btn-outline-secondary" placement="right" (click)="signupUser()"
-              ngbPopover="Loading">{{'button.signup' | translate}}
-      </button>
-    </fieldset>
-  </div>
+<div class="sing-up-form-wrap">
+  <form class="sing-up-form" [formGroup]="visitorForm" #singUpForm="ngForm">
+    <h5 class="singup-form-title">{{'button.signup' | translate}}</h5>
+    <div class="form-group">
+      <label for="inputUsername">{{'visitor.username' | translate}}</label>
+      <input class="form-control" id="inputUsername" placeholder="Username"
+             formControlName="username">
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">{{'visitor.password' | translate}}</label>
+      <input type="password" class="form-control" id="inputPassword" placeholder="Password"
+             formControlName="password">
+    </div>
+    <div class="form-group">
+      <label for="inputFio">{{'visitor.fio' | translate}}</label>
+      <input class="form-control" id="inputFio" placeholder="Ivanov I. I."
+             formControlName="fio">
+    </div>
+    <div class="form-group">
+      <label for="inputAge">{{'visitor.age' | translate}}</label>
+      <input type="number" class="form-control" id="inputAge" placeholder="1-31"
+             formControlName="age">
+    </div>
+    <div class="form-group">
+      <label for="inputEmail">{{'visitor.email' | translate}}</label>
+      <input type="email" class="form-control" id="inputEmail" placeholder="1-99"
+             formControlName="email">
+    </div>
+    <button class="btn btn-primary btn-outline-secondary" (click)="signupUser()" [disabled]="!singUpForm.form.valid">{{'button.signup' | translate}}
+    </button>
+  </form>
 </div>

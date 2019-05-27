@@ -1,6 +1,6 @@
 <div class="login-form-wrap">
   <form class="login-form" *ngIf="!submitted" [formGroup]="logForm" (ngSubmit)="login()" #loginForm="ngForm">
-    <legend class="login-form-legend">{{'auth.title' | translate}}</legend>
+    <h5 class="login-form-title">{{'auth.title' | translate}}</h5>
     <div class="form-group">
       <label for="username">{{'auth.login' | translate}}</label>
       <input type="text" class="form-control" id="username"

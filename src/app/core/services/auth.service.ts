@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {DataService} from "./data.service";
 import "rxjs/add/operator/map";
 import {apiUrls} from "../constants/api";
+import {map} from 'rxjs/operators';
 
 
 @Injectable()
@@ -32,22 +33,25 @@ export class AuthService {
    */
   getToken(username: string, password: string) {
     const loginHeaders = new HttpHeaders({
-      "Authorization": "Basic " + btoa("Client:Secret"),
-      "Content-Type": "application/x-www-form-urlencoded"
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Authorization": "Basic " + btoa("Client:Secret")
     });
     let body = new HttpParams();
     body = body.set("username", username);
     body = body.set("password", password);
     body = body.set("grant_type", "password");
-    console.log(loginHeaders);
-    return this.http.post(apiUrls.backend + "/oauth/token", body, {headers: loginHeaders}).map((response: any) => {
-      this.accessToken = response.access_token;
-      this.refreshToken = response.refresh_token;
-      this.dataHeaders = this.dataHeaders.append("Content-Type", "application/json");
-      this.dataHeaders = this.dataHeaders.append("Authorization", "Bearer " + this.accessToken);
-      this.dataService.setHeaders(this.dataHeaders);
-      this.cookieService.set("jwtAccess", this.accessToken, 1);
-    });
+    return this.http.post(apiUrls.backend + "/oauth/token", body, {headers: loginHeaders})
+      .pipe(
+        map((response: any) => {
+          this.accessToken = response.access_token;
+          this.refreshToken = response.refresh_token;
+          this.dataHeaders = this.dataHeaders.append("Content-Type", "application/json");
+          this.dataHeaders = this.dataHeaders.append("Authorization", "Bearer " + this.accessToken);
+          this.dataService.setHeaders(this.dataHeaders);
+          this.cookieService.set("jwtAccess", this.accessToken, 1);
+          this.cookieService.set("username", username, 1);
+        })
+      );
   }
 
   /**
@@ -55,14 +59,16 @@ export class AuthService {
    * @returns {Observable<any>}
    */
   getRole() {
-    return this.http.get(apiUrls.backend + "/abo/whoiam", {headers: this.dataService.getHeaders()}).map((data: any) => {
-      data.forEach(elem => {
-        this.rolesArray.push(elem.authority);
-      });
-      this.rolesString = this.rolesArray.join(", ");
-      this.cookieService.set("roles", this.rolesString, 1);
-      this.router.navigate(["/"]);
-    });
+    return this.http.get(apiUrls.backend + "/abo/whoiam", {headers: this.dataService.getHeaders()})
+      .pipe(
+        map((data: any) => {
+          data.forEach(elem => {
+            this.rolesArray.push(elem.authority);
+          });
+          this.rolesString = this.rolesArray.join(", ");
+          this.cookieService.set("roles", this.rolesString, 1);
+          this.router.navigate(["/"]);
+        }));
   }
 
   /**
