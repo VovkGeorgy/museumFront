@@ -8,12 +8,12 @@ export class VisitorService {
   }
 
   private getAllVisitorsUrl = "/api/visitor/visitors";
-  private addVisitorUrl = "/api/visitor/visitors/add";
-  private updateVisitorUrl = "/api/visitor/visitors/update/";
-  private deleteVisitorUrl = "/api/visitor/visitors/delete/";
-  private getVisitorUrl = "/api/visitor/visitors/getByUsername";
-  private removeTourFromVisitorUrl = "/api/visitor/visitors/removeTour";
-  private addTourToVisitorUrl = "/api/visitor/visitors/addTour";
+  private addVisitorUrl = "/api/visitor/add";
+  private updateVisitorUrl = "/api/visitor/update/";
+  private deleteVisitorUrl = "/api/visitor/delete/";
+  private getVisitorUrl = "/api/visitor/getByUsername";
+  private removeTourFromVisitorUrl = "/api/visitor/removeTour";
+  private addTourToVisitorUrl = "/api/visitor/addTour";
   private checkTourFromVisitorUrl = "/api/visitor/toursCheck";
 
   private tourVisitorDao = {

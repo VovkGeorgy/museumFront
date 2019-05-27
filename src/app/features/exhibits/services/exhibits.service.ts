@@ -6,12 +6,11 @@ import {Exhibit} from '../../../core/models/entity-models';
 @Injectable()
 export class ExhibitsService {
 
-  // exhibits: any[any];
+  private getExhibitUrl = "/api/exhibit/";
   private getAllExhibitsUrl = "/api/exhibit/exhibits";
-  private updateExhibitUrl = "/api/exhibit/exhibits/update/";
-  private getExhibitUrl = "/api/exhibit/exhibits/";
-  private getAllExhibitToursUrl = "/api/exhibit/exhibits/tours/";
-  private removeTourFromExhibitUrl = "/api/exhibit/exhibits/removeTour";
+  private updateExhibitUrl = "/api/exhibit/update/";
+  private getAllExhibitToursUrl = "/api/exhibit/tours/";
+  private removeTourFromExhibitUrl = "/api/exhibit/removeTour";
 
   private tourExhibitDao = {
     "tourId": null,
