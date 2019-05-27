@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../../core/services/auth.service";
 import {CookieService} from "ngx-cookie-service";
 import {NgxSpinnerService} from "ngx-spinner";
@@ -13,8 +13,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 export class LoginComponent implements OnInit {
 
   logForm: FormGroup = new FormGroup({
-    username: new FormControl(""),
-    password: new FormControl(""),
+    username: new FormControl("", [Validators.required]),
+    password: new FormControl("", [Validators.required]),
   });
   wrongData = false;
 
@@ -42,6 +42,6 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
         this.spinner.hide();
       },
-      3000);
+      2000);
   }
 }

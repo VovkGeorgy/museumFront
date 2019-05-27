@@ -6,9 +6,9 @@
   "home": {
     "title": "Welcome to virtual museum"
   },
-  "login": {
-    "title": "Login form",
-    "username": "Username",
+  "auth": {
+    "title": "Please login",
+    "login": "Login",
     "password": "Password",
     "profile": "Profile",
     "message": "Please log in or sing up, to see more opportunities"

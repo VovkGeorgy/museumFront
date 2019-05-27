@@ -1,3 +1,22 @@
-#wrongDataMessage {
+.alert-message {
   color: #C50007;
+  margin: 10px 0;
+}
+
+.login-form-legend{
+  text-align: center;
+}
+
+.login-form-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+}
+
+.login-form {
+  background-color: rgba(0,0,0,0.8);
+  width: 520px;
+  padding: 40px;
+  border-radius: 50px;
 }

@@ -1796,7 +1796,8 @@ pre code {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  color: #888
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .table th, .table td {
@@ -2958,7 +2959,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .btn-outline-secondary {
-  color: #555;
+  color: white;
   border-color: #555
 }
 
