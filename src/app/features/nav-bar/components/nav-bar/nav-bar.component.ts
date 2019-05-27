@@ -14,7 +14,7 @@ export class NavBarComponent implements OnInit {
   constructor(private router: Router,
               private cookieService: CookieService,
               private translate: TranslateService,
-              private authService: AuthService,) {
+              private authService: AuthService) {
   }
 
   logButtonName: any;
@@ -31,14 +31,22 @@ export class NavBarComponent implements OnInit {
     if (this.cookieService.get("username")) {
       this.logButtonName = this.cookieService.get("username");
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 
   goToProfileEditor() {
-    if (this.isGuide() && this.isVisitor()) this.router.navigate(["/guide-profile"]);
-    if (!this.isGuide() && this.isVisitor()) this.router.navigate(["/visitor-profile"]);
+    if (this.isAdmin()) {
+      this.router.navigate(["/"]);
+      return;
+    }
+    if (this.isGuide()) {
+      this.router.navigate(["/guide-profile"]);
+      return;
+    }
+    if (this.isVisitor()) {
+      this.router.navigate(["/visitor-profile"]);
+    }
   }
 
   isAdmin() {

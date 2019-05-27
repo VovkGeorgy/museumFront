@@ -27,6 +27,7 @@ import {RouterModule} from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
+    RouterModule,
     NgxSpinnerModule
   ]
 })
