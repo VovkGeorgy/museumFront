@@ -27,6 +27,9 @@ import {VisitorGuard} from '../../shell/guards/visitor.guard';
     ExhibitsService,
     GuideGuard,
     VisitorGuard
+  ],
+  exports: [
+    ExhibitsPresentationComponent
   ]
 })
 export class ExhibitsModule {

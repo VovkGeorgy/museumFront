@@ -1,16 +1,16 @@
-.home-layout{
+.home-layout {
   background-color: inherit;
 }
 
-.root-background{
+.root-background {
   position: fixed;
   width: 100%;
   height: 100%;
   z-index: -2;
 }
 
-.back-image{
+.back-image {
   width: 100%;
-
+  opacity: 0.5;
   height: 100%;
 }

@@ -1,4 +1,8 @@
-.welcome-text{
+.welcome-text {
   text-align: center;
   margin: 20px 0;
+}
+
+.slider {
+  margin-bottom: 40px;
 }
