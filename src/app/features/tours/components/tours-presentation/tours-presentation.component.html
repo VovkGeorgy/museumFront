@@ -1,25 +1,27 @@
+<h3 class="text-center">Tours</h3>
 <div class="album py-5">
-
   <div class="container">
     <div class="row">
       <div class="col-md-4" *ngFor="let tour of tours">
         <div class="card mb-4 box-shadow">
           <div class="card mb-3">
-            <h6 class="card-header">{{tour.theme}}</h6>
-            <img style="height: 200px; width: 100%; display: block;"
-                 src="{{tour.imageUrl}}"
-                 alt="Card image">
-            <div class="card-body">
+            <h6 class="card-header curs-pointer" (click)="viewTour(tour)">
+              {{tour.theme}}
+            </h6>
+            <div class="card-image-wrap">
+              <img class="card-image" data-src="{{tour.imageUrl}}" alt="Card image">
+            </div>
+            <div class="card-body card-wrap">
               <p class="card-text">{{'tours.typeOfExhibits' | translate}} - {{tour.typeOfExhibits}}</p>
               <p class="card-text">{{'tours.duration' | translate}} - {{tour.duration}} {{'tours.hour' | translate}}</p>
               <p class="card-text">{{'tours.cost' | translate}} - {{tour.cost}} $</p>
             </div>
-            <div class="card-body">
-              <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="viewTour(tour)">{{'button.view'
-                | translate}}
+            <div class="card-body card-buttons">
+              <button type="button" class="btn btn-sm btn-outline-primary" (click)="viewTour(tour)">
+                {{'button.view' | translate}}
               </button>
-              <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="editTour(tour)"
-                      *ngIf="isGuide()">{{'button.edit' | translate}}
+              <button type="button" class="btn btn-sm btn-outline-primary" (click)="editTour(tour)" *ngIf="isGuide()">
+                {{'button.edit' | translate}}
               </button>
             </div>
           </div>
