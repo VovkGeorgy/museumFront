@@ -6,6 +6,10 @@
   background: black
 }
 
+.curs-pointer {
+  cursor: pointer;
+}
+
 /*!
  * Bootswatch v4.3.1
  * Homepage: https://bootswatch.com
@@ -1840,8 +1844,8 @@ pre code {
 }
 
 .table-hover tbody tr:hover {
-  color: #888;
-  background-color: rgba(255, 255, 255, 0.075)
+  color: white;
+  background-color: rgba(0, 0, 0, 0)
 }
 
 .table-primary, .table-primary > th, .table-primary > td {
@@ -4861,6 +4865,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 
 .card-header {
+  color: white !important;
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
   background-color: rgba(0, 0, 0, 0.03);
