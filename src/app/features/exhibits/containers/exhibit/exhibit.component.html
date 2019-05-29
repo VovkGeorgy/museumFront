@@ -1,3 +1,5 @@
-<p>
-  exhibit works!
-</p>
+<app-exhibits
+  [exhibits]="exhibits"
+  (clickEdit)="editExhibit($event)"
+  (clickView)="viewExhibit($event)"
+></app-exhibits>

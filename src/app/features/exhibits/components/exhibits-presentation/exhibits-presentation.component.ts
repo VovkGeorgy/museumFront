@@ -1,7 +1,6 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {AuthService} from "../../../../core/services/auth.service";
-import {Router} from "@angular/router";
-import {ExhibitsService} from "../../services/exhibits.service";
+import {Exhibit} from '../../../../core/models/entity-models';
 
 @Component({
   selector: "app-exhibits",
@@ -9,21 +8,20 @@ import {ExhibitsService} from "../../services/exhibits.service";
   styleUrls: ["./exhibits-presentation.component.css"]
 })
 export class ExhibitsPresentationComponent implements OnInit {
-  exhibits: any[any];
 
-  constructor(private router: Router,
-              private authService: AuthService,
-              private exhibitsService: ExhibitsService) {
+  @Input()
+  exhibits: Exhibit[];
+
+  @Output()
+  clickView = new EventEmitter<any>();
+
+  @Output()
+  clickEdit = new EventEmitter<any>();
+
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
-    this.updateReadForm();
-  }
-
-  updateReadForm() {
-    this.exhibitsService.getAllExhibits().subscribe(exhibits => {
-      this.exhibits = exhibits;
-    });
   }
 
   isGuide() {
@@ -35,10 +33,10 @@ export class ExhibitsPresentationComponent implements OnInit {
   }
 
   editExhibit(exhibit) {
-    this.router.navigate(["/exhibits/edit", {exhibitId: exhibit.exhibitId}]);
+    this.clickEdit.emit({exhibit: exhibit});
   }
 
   viewExhibit(exhibit) {
-    this.router.navigate(["/exhibits/view", {exhibitId: exhibit.exhibitId}]);
+    this.clickView.emit(({exhibit: exhibit}));
   }
 }

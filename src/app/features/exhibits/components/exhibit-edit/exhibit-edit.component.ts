@@ -40,7 +40,7 @@ export class ExhibitEditComponent implements OnInit {
   }
 
   updateExhibit() {
-    let localExhibit = this.exhibitForm.getRawValue();
+    const localExhibit = this.exhibitForm.getRawValue();
     this.exhibitService.updateExhibit(localExhibit.exhibitId, this.exhibitForm.getRawValue())
       .subscribe(exhibit => {
         this.tempExhibit = exhibit;

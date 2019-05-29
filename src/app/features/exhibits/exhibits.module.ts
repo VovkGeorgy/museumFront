@@ -29,7 +29,7 @@ import {VisitorGuard} from '../../shell/guards/visitor.guard';
     VisitorGuard
   ],
   exports: [
-    ExhibitsPresentationComponent
+    ExhibitComponent
   ]
 })
 export class ExhibitsModule {

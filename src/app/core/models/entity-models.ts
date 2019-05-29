@@ -1,4 +1,4 @@
-export interface Exhibit {
+export interface Exhibit extends Array<Exhibit> {
   exhibitId: number;
   title: string;
   dated: string;
