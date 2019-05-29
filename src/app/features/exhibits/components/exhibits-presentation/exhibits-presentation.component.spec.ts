@@ -22,13 +22,12 @@ import {NavBarComponent} from "../../../nav-bar/components/nav-bar/nav-bar.compo
 import {NotFoundComponent} from "../../../not-found/components/not-found/not-found.component";
 import {LoginComponent} from "../../../auth/components/login/login.component";
 import {ToursPresentationComponent} from "../../../tours/components/tours-presentation/tours-presentation.component";
-import {GuidesComponent} from '../../../guides/components/guides/guides.component';
+import {GuidesCommonComponent} from '../../../guides/components/guides-common/guides-common.component';
 import {VisitorsComponent} from "../../../visitors/components/visitors/visitors.component";
 import {ForbiddenComponent} from '../../../forbiden/components/forbidden/forbidden.component';
 import {SignupComponent} from '../../../auth/components/signup/signup.component';
 import {AboutComponent} from '../../../about/components/about/about.component';
 import {TourViewComponent} from '../../../tours/components/tour-view/tour-view.component';
-import {ProfileComponent} from '../profile/profile.component';
 import {ExhibitEditComponent} from '../exhibit-edit/exhibit-edit.component';
 import {ExhibitViewComponent} from '../exhibit-view/exhibit-view.component';
 import {TourEditComponent} from "../../../tours/components/tour-edit/tour-edit.component";
@@ -47,7 +46,7 @@ describe('ExhibitsPresentationComponent', () => {
         NotFoundComponent,
         LoginComponent,
         ToursPresentationComponent,
-        GuidesComponent,
+        GuidesCommonComponent,
         ExhibitsPresentationComponent,
         VisitorsComponent,
         AboutComponent,
@@ -55,7 +54,6 @@ describe('ExhibitsPresentationComponent', () => {
         SignupComponent,
         TourEditComponent,
         TourViewComponent,
-        ProfileComponent,
         ExhibitEditComponent,
         ExhibitViewComponent
       ],

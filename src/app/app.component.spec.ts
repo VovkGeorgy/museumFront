@@ -16,7 +16,7 @@ import {AdminGuard} from './shell/guards/admin.guard';
 import {CookieService} from 'ngx-cookie-service';
 import {NavBarComponent} from "./features/nav-bar/components/nav-bar/nav-bar.component";
 import {NotFoundComponent} from "./features/not-found/components/not-found/not-found.component";
-import {GuidesComponent} from "./features/guides/components/guides/guides.component";
+import {GuidesCommonComponent} from "./features/guides/components/guides-common/guides-common.component";
 import {VisitorsComponent} from "./features/visitors/components/visitors/visitors.component";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {HomeComponent} from "./features/home/components/home/home.component";
@@ -42,7 +42,7 @@ describe('AppComponent', () => {
         NotFoundComponent,
         LoginComponent,
         ToursPresentationComponent,
-        GuidesComponent,
+        GuidesCommonComponent,
         ExhibitsPresentationComponent,
         VisitorsComponent,
         AboutComponent,

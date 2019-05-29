@@ -6,12 +6,11 @@ import {HomeComponent} from "../../../home/components/home/home.component";
 import {NotFoundComponent} from "../../../not-found/components/not-found/not-found.component";
 import {LoginComponent} from "../../../auth/components/login/login.component";
 import {ToursPresentationComponent} from "../tours-presentation/tours-presentation.component";
-import {GuidesComponent} from "../../../guides/components/guides/guides.component";
+import {GuidesCommonComponent} from "../../../guides/components/guides-common/guides-common.component";
 import {VisitorsComponent} from "../../../visitors/components/visitors/visitors.component";
 import {AboutComponent} from "../../../about/components/about/about.component";
 import {ForbiddenComponent} from "../../../forbiden/components/forbidden/forbidden.component";
 import {SignupComponent} from "../../../auth/components/signup/signup.component";
-import {ProfileComponent} from "../../profile/profile.component";
 import {DataService} from "../../../../core/services/data.service";
 import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "../../../../core/services/auth.service";
@@ -46,7 +45,7 @@ describe('TourViewComponent', () => {
         NotFoundComponent,
         LoginComponent,
         ToursPresentationComponent,
-        GuidesComponent,
+        GuidesCommonComponent,
         ExhibitsPresentationComponent,
         VisitorsComponent,
         AboutComponent,
@@ -54,7 +53,6 @@ describe('TourViewComponent', () => {
         SignupComponent,
         TourEditComponent,
         TourViewComponent,
-        ProfileComponent,
         ExhibitEditComponent,
         ExhibitViewComponent
       ],

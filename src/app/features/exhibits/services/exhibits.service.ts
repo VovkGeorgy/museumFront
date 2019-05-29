@@ -22,12 +22,12 @@ export class ExhibitsService {
 
   getAllExhibits() {
     return this.dataService.getData(this.getAllExhibitsUrl).pipe(
-      map(exhibit  => exhibit as Exhibit)
+      map((exhibit: []) => exhibit as Exhibit[])
     );
   }
 
   getExhibit(id: number) {
-    return this.dataService.getData( this.getExhibitUrl + id);
+    return this.dataService.getData(this.getExhibitUrl + id);
   }
 
   updateExhibit(id: number, exhibit: any) {
@@ -41,6 +41,6 @@ export class ExhibitsService {
   removeTourFromExhibit(tourId: number, exhibitId: number) {
     this.tourExhibitDao.tourId = tourId;
     this.tourExhibitDao.exhibitId = exhibitId;
-    return this.dataService.postData( this.removeTourFromExhibitUrl, this.tourExhibitDao);
+    return this.dataService.postData(this.removeTourFromExhibitUrl, this.tourExhibitDao);
   }
 }

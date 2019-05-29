@@ -30,9 +30,8 @@ import {CookieService} from "ngx-cookie-service";
 import {DataService} from "../../../../core/services/data.service";
 import {APP_BASE_HREF} from "@angular/common";
 import {LoginComponent} from "../login/login.component";
-import {GuidesComponent} from "../../../guides/components/guides/guides.component";
+import {GuidesCommonComponent} from "../../../guides/components/guides-common/guides-common.component";
 import {SignupComponent} from './signup.component';
-import {ProfileComponent} from "../profile/profile.component";
 
 describe('SignupComponent', () => {
   let component: SignupComponent;
@@ -48,7 +47,7 @@ describe('SignupComponent', () => {
         NotFoundComponent,
         LoginComponent,
         ToursPresentationComponent,
-        GuidesComponent,
+        GuidesCommonComponent,
         ExhibitsPresentationComponent,
         VisitorsComponent,
         AboutComponent,
@@ -56,7 +55,6 @@ describe('SignupComponent', () => {
         SignupComponent,
         TourEditComponent,
         TourViewComponent,
-        ProfileComponent,
         ExhibitEditComponent,
         ExhibitViewComponent
       ],

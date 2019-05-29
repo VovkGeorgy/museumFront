@@ -30,7 +30,8 @@
     "editProfile": "Profile",
     "signup": "Sign up",
     "addToFavorites": "Add to favorites",
-    "exclude": "Exclude"
+    "exclude": "Exclude",
+    "back": "Back"
   },
   "tours": {
     "theme": "Theme",
@@ -52,7 +53,8 @@
     "update": "Update tour"
   },
   "guide": {
-    "naming": "Guide",
+    "guide": "Guide",
+    "guides": "Guides",
     "title": "Create guide",
     "username": "Username",
     "password": "Password",

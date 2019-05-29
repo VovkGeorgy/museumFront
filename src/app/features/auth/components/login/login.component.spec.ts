@@ -11,7 +11,6 @@ import {AboutComponent} from "../../../about/components/about/about.component";
 import {ForbiddenComponent} from "../../../forbiden/components/forbidden/forbidden.component";
 import {SignupComponent} from "../signup/signup.component";
 import {TourViewComponent} from '../../../tours/components/tour-view/tour-view.component';
-import {ProfileComponent} from '../profile/profile.component';
 import {ExhibitEditComponent} from '../../../exhibits/components/exhibit-edit/exhibit-edit.component';
 import {ExhibitViewComponent} from '../../../exhibits/components/exhibit-view/exhibit-view.component';
 import {BrowserModule} from '@angular/platform-browser';
@@ -33,7 +32,7 @@ import {DataService} from "../../../../core/services/data.service";
 import {APP_BASE_HREF} from "@angular/common";
 
 import {LoginComponent} from './login.component';
-import {GuidesComponent} from "../../../guides/components/guides/guides.component";
+import {GuidesCommonComponent} from "../../../guides/components/guides-common/guides-common.component";
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -49,7 +48,7 @@ describe('LoginComponent', () => {
         NotFoundComponent,
         LoginComponent,
         ToursPresentationComponent,
-        GuidesComponent,
+        GuidesCommonComponent,
         ExhibitsPresentationComponent,
         VisitorsComponent,
         AboutComponent,
@@ -57,7 +56,6 @@ describe('LoginComponent', () => {
         SignupComponent,
         TourEditComponent,
         TourViewComponent,
-        ProfileComponent,
         ExhibitEditComponent,
         ExhibitViewComponent
       ],

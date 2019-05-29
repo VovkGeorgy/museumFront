@@ -1,4 +1,4 @@
-export interface Exhibit extends Array<Exhibit> {
+export interface Exhibit {
   exhibitId: number;
   title: string;
   dated: string;
@@ -8,7 +8,7 @@ export interface Exhibit extends Array<Exhibit> {
   imageUrl: string;
 }
 
-export interface Guilde {
+export interface Guide {
   guideId: number;
   username: string;
   password: string;
@@ -16,6 +16,7 @@ export interface Guilde {
   age: number;
   experience: number;
   languages: string;
+  tourEntitySet: Tour[];
 }
 
 export interface Tour {

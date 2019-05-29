@@ -21,7 +21,7 @@ export class ExhibitComponent implements OnInit {
   ngOnInit() {
     this.exhibitsService.getAllExhibits()
       .pipe(first())
-      .subscribe((exhibits: Exhibit[]) => {
+      .subscribe((exhibits: []) => {
         this.exhibits = exhibits;
       });
   }

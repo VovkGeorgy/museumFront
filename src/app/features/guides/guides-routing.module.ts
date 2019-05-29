@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {AdminGuard} from '../../shell/guards/admin.guard';
-import {GuidesComponent} from './components/guides/guides.component';
+import {GuideComponent} from './containers/guide/guide.component';
 
 const routes: Routes = [
   {
     path: "guides",
-    component: GuidesComponent,
+    component: GuideComponent,
     canActivate: [AdminGuard]
   }
 ];

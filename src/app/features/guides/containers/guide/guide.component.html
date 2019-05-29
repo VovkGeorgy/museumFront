@@ -1,0 +1,17 @@
+<app-guides *ngIf="!detailForm"
+            [guides]="guides"
+            (deleteCLick)="deleteGuide($event)"
+            (updateCLick)="openUpdateForm($event)"
+></app-guides>
+<app-guide-detail *ngIf="detailForm"
+                  [guide]="updatingGuide"
+                  [isUpdateMode]="isUpdateMode"
+                  (saveClick)="saveGuide($event)"
+                  (updateClick)="updateGuide($event)"
+                  (goBackClick)="closeDetail()"
+></app-guide-detail>
+<div class="crete-button-wrap">
+  <button class="btn btn-primary btn-outline-secondary" *ngIf="!detailForm" (click)="openCreateForm()">
+    {{'button.add' | translate}}
+  </button>
+</div>
