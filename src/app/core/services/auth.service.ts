@@ -3,7 +3,6 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 import {DataService} from "./data.service";
-import "rxjs/add/operator/map";
 import {apiUrls} from "../constants/api";
 import {map} from 'rxjs/operators';
 

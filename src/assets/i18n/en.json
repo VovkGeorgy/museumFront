@@ -70,7 +70,8 @@
     "archiveNum": "Archive Number",
     "description": "Description",
     "imageUrl": "Image URL",
-    "tours": "Exhibit tours"
+    "tours": "Exhibit tours",
+    "update": "Update exhibit"
   },
   "visitor": {
     "title": "Create visitor",
