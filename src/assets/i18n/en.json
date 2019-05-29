@@ -48,7 +48,8 @@
     "exhibits": "Tour exhibits",
     "noGuides": "There is no guides on this tour",
     "noVisitors": "There is no visitors on this tour",
-    "noExhibits": "There is no exhibits on this tour"
+    "noExhibits": "There is no exhibits on this tour",
+    "update": "Update tour"
   },
   "guide": {
     "naming": "Guide",
@@ -60,7 +61,8 @@
     "experience": "Experience",
     "languages": "Languages",
     "tourId": "TourId",
-    "tours": "Your tours"
+    "tours": "Your tours",
+    "update": "Update guide"
   },
   "exhibits": {
     "naming": "Exhibits",
@@ -81,7 +83,8 @@
     "fio": "Fio",
     "age": "Age",
     "email": "Email",
-    "favouriteTours": "Favourite Tours"
+    "favouriteTours": "Favourite Tours",
+    "update": "Update visitor"
   },
   "tabs": {
     "create": "Create",
