@@ -1,0 +1,40 @@
+<h3 class="text-center">{{'guide.guides' | translate}}</h3>
+<div class="row col-md-12">
+  <div class="col-md-6 offset-md-3">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>{{'guide.username' | translate}}</th>
+        <th>{{'guide.password' | translate}}</th>
+        <th>{{'guide.fio' | translate}}</th>
+        <th>{{'guide.age' | translate}}</th>
+        <th>{{'guide.experience' | translate}}</th>
+        <th>{{'guide.languages' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let guide of guides">
+        <td>{{guide.guideId}}</td>
+        <td>{{guide.username}}</td>
+        <td>{{guide.password}}</td>
+        <td>{{guide.fio}}</td>
+        <td>{{guide.age}}</td>
+        <td>{{guide.experience}}</td>
+        <td>{{guide.languages}}</td>
+        <td>
+          <button class="btn-sm btn-primary btn-outline-secondary" (click)="updateClick(guide)">
+            {{'button.update' | translate}}
+          </button>
+        </td>
+        <td>
+          <button class="btn-sm btn-primary btn-outline-secondary"
+                  (click)="deleteClick(guide)">{{'button.delete' |
+            translate}}
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
