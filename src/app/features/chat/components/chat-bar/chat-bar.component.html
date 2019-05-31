@@ -1,0 +1,17 @@
+<div class="chat-bar" *ngIf="isChatOpened">
+  <div class="chat-closer" (click)="closeChat()">
+    {{"button.close" | translate}}
+  </div>
+  <div class="messages-box">
+    <p class="messages" *ngFor="let message of messages">
+      {{message}}
+    </p>
+  </div>
+  <div class="input-wrap" [formGroup]="chatForm">
+    <input type="text" class="message-input" formControlName="message" (keyup.enter)="sendMessage()">
+    <button class="btn btn-sm btn-outline-primary chat-button"
+            (click)="sendMessage()"> >
+    </button>
+  </div>
+</div>
+<div class="folded-chat" *ngIf="!isChatOpened" (click)="openChat()">{{"chat.open" | translate }}</div>

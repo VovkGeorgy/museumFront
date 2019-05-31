@@ -6,6 +6,9 @@
   "home": {
     "title": "Welcome in museum of History and Art"
   },
+  "chat": {
+    "open": "Open chat"
+  },
   "auth": {
     "title": "Please login",
     "login": "Login",
@@ -31,7 +34,9 @@
     "signup": "Sign up",
     "addToFavorites": "Add to favorites",
     "exclude": "Exclude",
-    "back": "Back"
+    "back": "Back",
+    "send": "Send",
+    "close": "Close"
   },
   "tours": {
     "theme": "Theme",

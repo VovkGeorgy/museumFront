@@ -20,6 +20,7 @@ import {ProfileModule} from './features/profile/profile.module';
 import {ToursModule} from './features/tours/tours.module';
 import {VisitorsModule} from './features/visitors/visitors.module';
 import {CoreModule} from './core/core.module';
+import {ChatModule} from './features/chat/chat.module';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import {CoreModule} from './core/core.module';
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
+    ChatModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
