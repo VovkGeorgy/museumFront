@@ -35,4 +35,5 @@ export interface Visitor {
   fio: string;
   age: number;
   email: string;
+  tourEntitySet: Tour[];
 }
