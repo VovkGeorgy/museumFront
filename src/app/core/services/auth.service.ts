@@ -4,7 +4,7 @@ import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 import {DataService} from "./data.service";
 import {apiUrls} from "../constants/api";
-import {map} from 'rxjs/operators';
+import {map} from "rxjs/operators";
 
 
 @Injectable()
