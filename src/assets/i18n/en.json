@@ -84,7 +84,7 @@
   },
   "visitor": {
     "title": "Create visitor",
-    "naming": "Visitors",
+    "visitors": "Visitors",
     "username": "Username",
     "password": "Password",
     "fio": "Fio",

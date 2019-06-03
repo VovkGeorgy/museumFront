@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {first} from 'rxjs/operators';
-import {ExhibitsService} from '../../services/exhibits.service';
-import {Exhibit} from '../../../../core/models/entity-models';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Component, OnInit} from "@angular/core";
+import {first} from "rxjs/operators";
+import {ExhibitsService} from "../../services/exhibits.service";
+import {Exhibit} from "../../../../core/models/entity-models";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-exhibit',
@@ -14,8 +14,7 @@ export class ExhibitComponent implements OnInit {
   exhibits: Exhibit[];
 
   constructor(private exhibitsService: ExhibitsService,
-              private router: Router,
-              private route: ActivatedRoute) {
+              private router: Router) {
   }
 
   ngOnInit() {

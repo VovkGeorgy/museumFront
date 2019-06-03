@@ -7,7 +7,7 @@ import {NotFoundComponent} from "../../../not-found/components/not-found/not-fou
 import {LoginComponent} from "../../../auth/components/login/login.component";
 import {ToursPresentationComponent} from "../tours-presentation/tours-presentation.component";
 import {GuidesCommonComponent} from "../../../guides/components/guides-common/guides-common.component";
-import {VisitorsComponent} from "../../../visitors/components/visitors/visitors.component";
+import {VisitorsComponent} from "../../../visitors/containers/visitors/visitors.component";
 import {AboutComponent} from "../../../about/components/about/about.component";
 import {ForbiddenComponent} from "../../../forbiden/components/forbidden/forbidden.component";
 import {SignupComponent} from "../../../auth/components/signup/signup.component";

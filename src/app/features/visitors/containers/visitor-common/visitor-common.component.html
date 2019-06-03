@@ -1,0 +1,43 @@
+<h3 class="text-center">{{'visitor.visitors' | translate}}</h3>
+<div class="row col-md-12">
+  <div class="col-md-6 offset-md-3">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>{{'visitor.username' | translate}}</th>
+        <th>{{'visitor.password' | translate}}</th>
+        <th>{{'visitor.fio' | translate}}</th>
+        <th>{{'visitor.age' | translate}}</th>
+        <th>{{'visitor.email' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let visitor of visitors">
+        <td>{{visitor.visitorId}}</td>
+        <td>{{visitor.username}}</td>
+        <td>{{visitor.password}}</td>
+        <td>{{visitor.fio}}</td>
+        <td>{{visitor.age}}</td>
+        <td>{{visitor.email}}</td>
+        <td>
+          <button class="btn-sm btn-primary btn-outline-secondary" (click)="updateClick(visitor)">
+            {{'button.update' | translate}}
+          </button>
+        </td>
+        <td>
+          <button class="btn-sm btn-primary btn-outline-secondary"
+                  (click)="deleteClick(visitor)">{{'button.delete' |
+            translate}}
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="crete-button-wrap">
+  <button class="btn btn-primary btn-outline-secondary" *ngIf="!detailForm" (click)="openCreateForm()">
+    {{'button.add' | translate}}
+  </button>
+</div>

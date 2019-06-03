@@ -1,12 +1,24 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {GuideGuard} from '../../shell/guards/guide.guard';
-import {VisitorsComponent} from './components/visitors/visitors.component';
+import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
+import {GuideGuard} from "../../shell/guards/guide.guard";
+import {VisitorUpdateComponent} from "./containers/visitor-update/visitor-update.component";
+import {VisitorCreateComponent} from "./containers/visitor-create/visitor-create.component";
+import {VisitorCommonComponent} from "./containers/visitor-common/visitor-common.component";
 
 const routes: Routes = [
   {
     path: "visitors",
-    component: VisitorsComponent,
+    component: VisitorCommonComponent,
+    canActivate: [GuideGuard]
+  },
+  {
+    path: "visitor/update/:visitorId",
+    component: VisitorUpdateComponent,
+    canActivate: [GuideGuard]
+  },
+  {
+    path: "visitor/add",
+    component: VisitorCreateComponent,
     canActivate: [GuideGuard]
   }
 ];

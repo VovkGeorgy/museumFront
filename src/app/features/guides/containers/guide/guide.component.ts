@@ -19,7 +19,6 @@ export class GuideComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("get all");
     this.guideService.getAllGuides().subscribe((guides: []) => {
       this.guides = guides;
     });

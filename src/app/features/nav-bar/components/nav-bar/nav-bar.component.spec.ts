@@ -6,7 +6,7 @@ import {HomeComponent} from "../../../home/components/home/home.component";
 import {NotFoundComponent} from "../../../not-found/components/not-found/not-found.component";
 import {ToursPresentationComponent} from "../../../tours/components/tours-presentation/tours-presentation.component";
 import {ExhibitsPresentationComponent} from "../../../exhibits/components/exhibits-presentation/exhibits-presentation.component";
-import {VisitorsComponent} from "../../../visitors/components/visitors/visitors.component";
+import {VisitorsComponent} from "../../../visitors/containers/visitors/visitors.component";
 import {AboutComponent} from "../../../about/components/about/about.component";
 import {ForbiddenComponent} from "../../../forbiden/components/forbidden/forbidden.component";
 import {SignupComponent} from "../../../auth/components/signup/signup.component";

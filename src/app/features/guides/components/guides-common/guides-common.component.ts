@@ -25,27 +25,9 @@ export class GuidesCommonComponent implements OnInit {
 
   updateClick(guide) {
     this.updateCLick.emit({guide: guide});
-    // this.updateFieldIsHidden = false;
-    // this.updateTableIsHidden = true;
-    // this.guideForm.setValue(guide);
-    // this.tempGuideKey = guide.$key;
-  }
-
-  updateReadForm() {
-    // this.guideService.getAllGuides().subscribe(guides => {
-    //   this.guides = guides;
-    // });
-  }
-
-  addUpdatedEntityToBase() {
-
   }
 
   deleteClick(guide) {
     this.deleteCLick.emit({guide: guide});
-    // this.guideService.deleteGuide(guide.guideId).subscribe(data => {
-    //   this.tempGuide = data;
-    // });
-    // this.updateReadForm();
   }
 }

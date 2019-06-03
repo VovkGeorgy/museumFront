@@ -9,10 +9,6 @@ import {VisitorService} from "../../services/visitor.service";
 })
 export class VisitorsComponent implements OnInit {
 
-  ngOnInit() {
-    this.loadReadForm();
-  }
-
   updateTableIsHidden = false;
   updateFieldIsHidden = true;
   visitors: any[any];
@@ -27,6 +23,9 @@ export class VisitorsComponent implements OnInit {
   });
   tempVisitor: any;
 
+  ngOnInit() {
+    this.loadReadForm();
+  }
 
   constructor(private visitorService: VisitorService) {
   }
@@ -53,7 +52,7 @@ export class VisitorsComponent implements OnInit {
   }
 
   addUpdatedEntityToBase() {
-    let localVisitor = this.visitorForm.getRawValue();
+    const localVisitor = this.visitorForm.getRawValue();
     this.visitorService.updateVisitor(localVisitor.visitorId, this.visitorForm.getRawValue()).subscribe(visitor => {
       this.tempVisitor = visitor;
     });
