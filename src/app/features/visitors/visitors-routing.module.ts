@@ -12,12 +12,12 @@ const routes: Routes = [
     canActivate: [GuideGuard]
   },
   {
-    path: "visitor/update/:visitorId",
+    path: "visitors/visitor/update/:visitorId",
     component: VisitorUpdateComponent,
     canActivate: [GuideGuard]
   },
   {
-    path: "visitor/add",
+    path: "visitors/visitor/add",
     component: VisitorCreateComponent,
     canActivate: [GuideGuard]
   }

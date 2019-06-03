@@ -1,13 +1,13 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Guide} from '../../../../core/models/entity-models';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from "@angular/core";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Guide} from "../../../../core/models/entity-models";
 
 @Component({
-  selector: 'app-guide-detail',
-  templateUrl: './guide-detail.component.html',
-  styleUrls: ['./guide-detail.component.css']
+  selector: "app-guide-detail",
+  templateUrl: "./guide-detail.component.html",
+  styleUrls: ["./guide-detail.component.css"]
 })
-export class GuideDetailComponent implements OnInit {
+export class GuideDetailComponent implements OnInit, OnDestroy {
 
   guideForm: FormGroup = new FormGroup({
     guideId: new FormControl(""),
@@ -17,7 +17,7 @@ export class GuideDetailComponent implements OnInit {
     age: new FormControl("", [Validators.max(150), Validators.required]),
     experience: new FormControl("", [Validators.required]),
     languages: new FormControl(""),
-    tourEntitySet: new FormControl(""),
+    tourEntitySet: new FormControl([]),
   });
 
   @Input()
@@ -41,13 +41,10 @@ export class GuideDetailComponent implements OnInit {
   ngOnInit() {
     if (this.isUpdateMode) {
       this.guideForm.setValue(this.guide);
-    } else {
-      this.guideForm.reset();
     }
   }
 
   back() {
-    this.guideForm.reset();
     this.goBackClick.emit();
   }
 
@@ -57,8 +54,9 @@ export class GuideDetailComponent implements OnInit {
     } else {
       this.saveClick.emit({guide: this.guideForm.getRawValue()});
     }
-    this.guideForm.reset();
   }
 
-
+  ngOnDestroy(): void {
+    this.guideForm.reset();
+  }
 }

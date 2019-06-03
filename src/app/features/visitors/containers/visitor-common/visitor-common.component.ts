@@ -21,18 +21,17 @@ export class VisitorCommonComponent implements OnInit {
     });
   }
 
-
   deleteClick(visitor: any) {
     this.visitorService.deleteVisitor(visitor.visitorId, visitor).subscribe(() => {
+      this.ngOnInit();
     });
-    this.ngOnInit();
   }
 
   updateClick(visitor: any) {
-    this.router.navigate(["/visitor/update/" + visitor.visitorId]);
+    this.router.navigate(["/visitors/visitor/update/" + visitor.visitorId]);
   }
 
   openCreateForm() {
-    this.router.navigate(["/visitor/add"]);
+    this.router.navigate(["/visitors/visitor/add"]);
   }
 }

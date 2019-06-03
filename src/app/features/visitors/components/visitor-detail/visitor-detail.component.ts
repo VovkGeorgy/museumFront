@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Visitor} from "../../../../core/models/entity-models";
 
@@ -7,7 +7,7 @@ import {Visitor} from "../../../../core/models/entity-models";
   templateUrl: "./visitor-detail.component.html",
   styleUrls: ["./visitor-detail.component.css"]
 })
-export class VisitorDetailComponent implements OnInit {
+export class VisitorDetailComponent implements OnInit, OnDestroy {
 
   visitorForm: FormGroup = new FormGroup({
     visitorId: new FormControl(""),
@@ -16,11 +16,8 @@ export class VisitorDetailComponent implements OnInit {
     fio: new FormControl("", [Validators.required]),
     age: new FormControl("", [Validators.max(150), Validators.required]),
     email: new FormControl("", [Validators.required]),
-    tourEntitySet: new FormControl(""),
+    tourEntitySet: new FormControl([]),
   });
-
-  @Input()
-  isUpdateMode: boolean;
 
   @Input()
   updatingVisitor: Visitor;
@@ -35,7 +32,9 @@ export class VisitorDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.visitorForm.setValue(this.updatingVisitor);
+    if (this.updatingVisitor) {
+      this.visitorForm.setValue(this.updatingVisitor);
+    }
   }
 
   onBackClick() {
@@ -45,5 +44,9 @@ export class VisitorDetailComponent implements OnInit {
   onSaveClick() {
     this.saveClick.emit({visitor: this.visitorForm.getRawValue()});
     this.backClick.emit();
+  }
+
+  ngOnDestroy(): void {
+    this.visitorForm.reset();
   }
 }
