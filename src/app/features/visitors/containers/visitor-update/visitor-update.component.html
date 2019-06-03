@@ -1,0 +1,6 @@
+<app-visitor-detail
+  *ngIf="visitor"
+  [updatingVisitor]="visitor"
+  (saveClick)="saveVisitor($event)"
+  (backClick)="backToVisitors($event)"
+></app-visitor-detail>

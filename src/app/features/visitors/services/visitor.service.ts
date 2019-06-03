@@ -7,11 +7,12 @@ export class VisitorService {
   constructor(private dataService: DataService) {
   }
 
+  private getVisitorByIdUrl = "/api/visitor/";
   private getAllVisitorsUrl = "/api/visitor/visitors";
   private addVisitorUrl = "/api/visitor/add";
   private updateVisitorUrl = "/api/visitor/update/";
   private deleteVisitorUrl = "/api/visitor/delete/";
-  private getVisitorUrl = "/api/visitor/getByUsername";
+  private getVisitorByNameUrl = "/api/visitor/getByUsername";
   private removeTourFromVisitorUrl = "/api/visitor/removeTour";
   private addTourToVisitorUrl = "/api/visitor/addTour";
   private checkTourFromVisitorUrl = "/api/visitor/toursCheck";
@@ -21,12 +22,16 @@ export class VisitorService {
     "visitorId": null,
   };
 
+  getVisitor(id: number) {
+    return this.dataService.getData(this.getVisitorByIdUrl + id);
+  }
+
   getAllVisitors() {
     return this.dataService.getData(this.getAllVisitorsUrl);
   }
 
   getVisitorByUsername(username: string) {
-    return this.dataService.postData(this.getVisitorUrl, username);
+    return this.dataService.postData(this.getVisitorByNameUrl, username);
   }
 
   addVisitor(visitor: any) {
