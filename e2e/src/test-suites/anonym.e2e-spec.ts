@@ -45,3 +45,34 @@ describe("home page check", () => {
       .toEqual(["Backend carefully listens to you.", "test message to back", "Message from back - 0"]);
   });
 });
+
+
+describe("nav-bar check", () => {
+  let page: AppPage;
+
+  beforeEach(() => {
+    page = new AppPage();
+    browser.driver.manage().window().maximize();
+  });
+
+  it("should display three nav tabs", () => {
+    expect(page.getNavBarTabsCol()).toEqual(3);
+    expect(page.getNavBarTabsText()).toEqual(["Home", "Exhibits", "About us"]);
+  });
+
+  it("should display login component", () => {
+    expect(page.getElementById("navBarLoginButton").isPresent()).toBeTruthy();
+    page.getElementById("navBarLoginButton").click();
+    expect(page.getElement(".login-form").isPresent()).toBeTruthy();
+  });
+
+  it("should display sign-up component", () => {
+    expect(page.getElementById("navBarSignupButton").isPresent()).toBeTruthy();
+    page.getElementById("navBarSignupButton").click();
+    expect(page.getElement(".sing-up-form").isPresent()).toBeTruthy();
+  });
+
+  it("should display language changer", () => {
+    expect(page.getElement(".language-changer").isPresent()).toBeTruthy();
+  });
+});

@@ -14,6 +14,14 @@ export class AppPage {
     return $$(".nav-link").map(elem => elem.getText());
   }
 
+  getNavBarTabsCol() {
+    return $$(".nav-link").count();
+  }
+
+  getElementById(id: string) {
+    return element(by.id(id));
+  }
+
   getElement(template: string) {
     return $(template);
   }
