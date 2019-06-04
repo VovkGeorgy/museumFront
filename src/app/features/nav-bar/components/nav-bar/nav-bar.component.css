@@ -7,3 +7,15 @@
   height: 25px;
   margin: 0 5px;
 }
+
+.language-changer{
+  margin-left: 10px;
+}
+
+#navBarLoginButton{
+  margin-left: 20px;
+}
+
+#navBarSignupButton{
+  margin-left: 10px;
+}
