@@ -14,7 +14,6 @@ export class ChatPage {
 
   getBackendWelcomeMessage() {
     const chatMessages = $$(".messages");
-    expect(chatMessages.count()).toEqual(1);
     return chatMessages.first().getText();
   }
 
@@ -30,7 +29,7 @@ export class ChatPage {
     return $$(".messages").count();
   }
 
-  getMessagesText() {
-    return $$(".messages").getText();
+  getLastMessageText() {
+    return $$(".messages").last().getText();
   }
 }
