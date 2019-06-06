@@ -5,7 +5,7 @@ import {StompState} from "@stomp/ng2-stompjs";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 const WEBSOCKET_URL = "ws://localhost:8090/socket";
-const LISTEN_URL = "/topic/front-receiver";
+const LISTEN_URL = "/user/topic/front-receiver";
 
 @Component({
   selector: "app-chat-bar",
