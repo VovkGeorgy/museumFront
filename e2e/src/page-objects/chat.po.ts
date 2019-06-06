@@ -1,35 +1,42 @@
 import {$, $$} from "protractor";
 
 export class ChatPage {
-  clickOnFoldedChat() {
-    const foldedChat = $(".folded-chat");
-    expect(foldedChat.isPresent()).toBeTruthy();
-    foldedChat.click();
+  private foldedChat = $(".folded-chat");
+  private chatMessages = $$(".messages");
+  private chatBar = $(".chat-bar");
+  private chatMessageInput = $(".message-input");
+  private chatSendButton = $(".chat-send-button");
+
+
+  isFoldedChatPresent() {
+    return this.foldedChat.isPresent();
   }
 
-  isChatHasUnFolded() {
-    expect($(".chat-bar").isPresent()).toBeTruthy();
-    return $(".messages-box").isPresent();
+  clickOnFoldedChat() {
+    this.foldedChat.click();
+  }
+
+  isUnFoldedChatPresent() {
+    return this.chatBar.isPresent();
   }
 
   getBackendWelcomeMessage() {
-    const chatMessages = $$(".messages");
-    return chatMessages.first().getText();
+    return this.chatMessages.first().getText();
   }
 
   writeMessageinChatInput(message: string) {
-    $(".message-input").sendKeys(message);
+    this.chatMessageInput.sendKeys(message);
   }
 
   sendChatMessage() {
-    $(".chat-send-button").click();
+    this.chatSendButton.click();
   }
 
   getMessagesCount() {
-    return $$(".messages").count();
+    return this.chatMessages.count();
   }
 
   getLastMessageText() {
-    return $$(".messages").last().getText();
+    return this.chatMessages.last().getText();
   }
 }

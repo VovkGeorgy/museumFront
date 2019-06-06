@@ -1,24 +1,27 @@
-import {$, $$, browser} from "protractor";
+import {$, $$} from "protractor";
 
 export class HomePage {
+  private notLoginNotification = $("#notLoginNotification");
+  private welcomeMessage = $(".welcome-text");
+  private exhibitCards = $$(".exhibit-card");
 
   isVelcomeMessagePresent() {
-    return $(".welcome-text").isPresent();
+    return this.welcomeMessage.isPresent();
   }
 
   getVelcomeMessageText() {
-    return $("app-home h2").getText();
+    return this.welcomeMessage.getText();
   }
 
   isNotLoginNotificationIsPresent() {
-    return $("#notLoginNotification").isPresent;
+    return this.notLoginNotification.isPresent;
   }
 
   getNotLoginNotificationText() {
-    return $("#notLoginNotification").getText();
+    return this.notLoginNotification.getText();
   }
 
   getExhibitsCount() {
-    return $$(".exhibit-card").count();
+    return this.exhibitCards.count();
   }
 }

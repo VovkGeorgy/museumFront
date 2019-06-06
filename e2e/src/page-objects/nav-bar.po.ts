@@ -1,39 +1,46 @@
 import {$, $$} from "protractor";
 
 export class NavBarPage {
+  private navLink = $$(".nav-link");
+  private navBarLoginButton = $("#navBarLoginButton");
+  private navBarSingupButton = $("#navBarSignupButton");
+  private loginForm = $(".login-form");
+  private signupForm = $(".sing-up-form");
+  private languageChanger = $(".language-changer");
+
   getNavBarTabsText() {
-    return $$(".nav-link").getText();
+    return this.navLink.getText();
   }
 
   getNavBarTabsCol() {
-    return $$(".nav-link").count();
+    return this.navLink.count();
   }
 
   isLoginButtonPresent() {
-    return $("#navBarLoginButton").isPresent();
+    return this.navBarLoginButton.isPresent();
   }
 
   clickOnLoginButton() {
-    $("#navBarLoginButton").click();
+    this.navBarLoginButton.click();
   }
 
   isLoginFormPresent() {
-    return $(".login-form").isPresent();
+    return this.loginForm.isPresent();
   }
 
   isSignupButtonPresent() {
-    return $("#navBarSignupButton").isPresent();
+    return this.navBarSingupButton.isPresent();
   }
 
   clickOnSignupButton() {
-    $("#navBarSignupButton").click();
+    this.navBarSingupButton.click();
   }
 
   isSignupFormPresent() {
-    return $(".sing-up-form").isPresent();
+    return this.signupForm.isPresent();
   }
 
   isLanguageChangerPresent() {
-    return $(".language-changer").isPresent();
+    return this.languageChanger.isPresent();
   }
 }

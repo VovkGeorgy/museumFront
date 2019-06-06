@@ -35,8 +35,9 @@ describe("root page check", () => {
     });
 
     it("should display chat", () => {
+      expect(chat.isFoldedChatPresent()).toBeTruthy();
       chat.clickOnFoldedChat();
-      expect(chat.isChatHasUnFolded()).toBeTruthy();
+      expect(chat.isUnFoldedChatPresent()).toBeTruthy();
     });
 
     it("chat should work", () => {
@@ -49,7 +50,6 @@ describe("root page check", () => {
       expect(chat.getLastMessageText()).toEqual("Message from back - 0");
     });
   });
-
 
   describe("nav-bar check", () => {
     let navBar: NavBarPage;
