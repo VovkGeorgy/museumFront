@@ -5,14 +5,17 @@ import {NavigationUtil} from "../utils/navigation.util";
 import {LoginPage} from "../page-objects/login.po";
 
 describe("anonymous user functionality check", () => {
-  let homePage: HomePage;
-
   beforeAll(() => {
-    homePage = new HomePage();
     NavigationUtil.navigateHomePage();
   });
 
   describe("home page check", () => {
+    let homePage: HomePage;
+
+    beforeAll(() => {
+      homePage = new HomePage();
+    });
+
     it("should display welcome message", () => {
       expect(homePage.isVelcomeMessagePresent()).toBeTruthy();
       expect(homePage.getVelcomeMessageText()).toEqual("Welcome in museum of History and Art");
@@ -73,7 +76,6 @@ describe("anonymous user functionality check", () => {
     });
 
     it("should display sign-up component", () => {
-
       expect(navBar.isSignupButtonPresent()).toBeTruthy();
       navBar.clickOnSignupButton();
       expect(navBar.isSignupFormPresent()).toBeTruthy();
@@ -83,5 +85,4 @@ describe("anonymous user functionality check", () => {
       expect(navBar.isLanguageChangerPresent()).toBeTruthy();
     });
   });
-
 });
