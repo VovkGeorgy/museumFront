@@ -1,4 +1,7 @@
 {
+  "common": {
+    "operations": "Operations"
+  },
   "navbar": {
     "home": "Home",
     "aboutUs": "About us"
@@ -69,7 +72,8 @@
     "languages": "Languages",
     "tourId": "TourId",
     "tours": "Your tours",
-    "update": "Update guide"
+    "update": "Update guide",
+    "toursNumber": "Tours number"
   },
   "exhibits": {
     "naming": "Exhibits",

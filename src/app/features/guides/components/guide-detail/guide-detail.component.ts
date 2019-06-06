@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Guide} from "../../../../core/models/entity-models";
+import {Guide, Tour} from "../../../../core/models/entity-models";
 
 @Component({
   selector: "app-guide-detail",
@@ -35,6 +35,12 @@ export class GuideDetailComponent implements OnInit, OnDestroy {
   @Output()
   goBackClick = new EventEmitter();
 
+  @Output()
+  viewTourClick = new EventEmitter();
+
+  @Output()
+  deleteTourClick = new EventEmitter();
+
   constructor() {
   }
 
@@ -58,5 +64,13 @@ export class GuideDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.guideForm.reset();
+  }
+
+  viewTour(tour: Tour) {
+    this.viewTourClick.emit({tourId: tour.tourId});
+  }
+
+  removeTourFromExhibit(tour: Tour) {
+    this.deleteTourClick.emit({tourId: tour.tourId});
   }
 }

@@ -12,6 +12,7 @@ export class GuidesService {
   private addGuideUrl = "/api/guide/add";
   private updateGuideUrl = "/api/guide/update/";
   private deleteGuideUrl = "/api/guide/delete/";
+  private removeTourFromGuideUrl = "/api/guide/removeTour";
 
 
   getGuideByUsername(username: string) {
@@ -34,4 +35,7 @@ export class GuidesService {
     return this.dataService.getData(this.deleteGuideUrl + id);
   }
 
+  removeTourFromGuide(tourId: number, guideId: number) {
+    return this.dataService.postData(this.removeTourFromGuideUrl, {tourId: tourId, guideId: guideId});
+  }
 }

@@ -1,4 +1,7 @@
 {
+  "common": {
+    "operations": "Операции"
+  },
   "navbar": {
     "home": "Главная",
     "aboutUs": "Об музее"
@@ -69,7 +72,8 @@
     "languages": "Языки",
     "tourId": "Id тура",
     "tours": "Ваши туры",
-    "update": "Обновить экскурсовода"
+    "update": "Обновить экскурсовода",
+    "toursNumber": "Количество туров"
   },
   "exhibits": {
     "naming": "Экспонаты",

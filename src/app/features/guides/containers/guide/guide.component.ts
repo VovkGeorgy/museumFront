@@ -1,12 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {Guide} from '../../../../core/models/entity-models';
-import {GuidesService} from '../../services/guides.service';
-import {first} from 'rxjs/operators';
+import {Component, OnInit} from "@angular/core";
+import {Guide} from "../../../../core/models/entity-models";
+import {GuidesService} from "../../services/guides.service";
+import {first} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-guide',
-  templateUrl: './guide.component.html',
-  styleUrls: ['./guide.component.css']
+  selector: "app-guide",
+  templateUrl: "./guide.component.html",
+  styleUrls: ["./guide.component.css"]
 })
 export class GuideComponent implements OnInit {
 
@@ -15,7 +16,8 @@ export class GuideComponent implements OnInit {
   guides: Guide[];
   detailForm = false;
 
-  constructor(private guideService: GuidesService) {
+  constructor(private guideService: GuidesService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -58,5 +60,16 @@ export class GuideComponent implements OnInit {
 
   closeDetail() {
     this.detailForm = false;
+  }
+
+  deleteTourFromGuide($event: any) {
+    console.log(this.updatingGuide.tourEntitySet);
+    this.guideService.removeTourFromGuide($event.tourId, this.updatingGuide.guideId).subscribe(value => {
+      this.updatingGuide.tourEntitySet = this.updatingGuide.tourEntitySet.filter(tour => tour.tourId !== $event.tourId);
+    });
+  }
+
+  viewTour($event) {
+    this.router.navigate(["/tours/view", {tourId: $event.tourId}]);
   }
 }

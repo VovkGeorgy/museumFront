@@ -41,3 +41,32 @@
     </button>
   </div>
 </div>
+<div class="row col-md-12">
+  <div class="col-md-8 offset-md-2">
+    <div><h5 style="text-align: center">{{'exhibits.tours' | translate}}</h5></div>
+    <table class="table text-center" *ngIf="guide.tourEntitySet.length > 0; else noTours">
+      <tbody>
+      <tr class="table" *ngFor="let tour of guide.tourEntitySet">
+        <td><img id="tour-image" src="{{tour.imageUrl}}"
+                 alt="Card image"></td>
+        <td class="align-middle"><h5 class="curs-pointer" (click)="viewTour(tour)">{{tour.theme}}</h5></td>
+        <td><p class="card-text">{{'tours.typeOfExhibits' | translate}} - {{tour.typeOfExhibits}}</p>
+          <p class="card-text">{{'tours.duration' | translate}} - {{tour.duration}} {{'tours.hour' | translate}}</p>
+          <p class="card-text">{{'tours.cost' | translate}} - {{tour.cost}} $</p>
+          <button style="float: inherit" type="button" class="btn btn-sm btn btn-outline-primary"
+                  (click)="viewTour(tour)">
+            {{'button.view' | translate}}
+          </button>
+          <button style="float: inherit" type="button" class="btn btn-sm btn btn-outline-primary"
+                  (click)="removeTourFromExhibit(tour)">
+            {{'button.delete' | translate}}
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <ng-template #noTours>
+      <div><h6 style="text-align: center; margin: 30px">No tours</h6></div>
+    </ng-template>
+  </div>
+</div>

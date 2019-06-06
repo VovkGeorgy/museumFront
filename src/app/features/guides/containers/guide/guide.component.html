@@ -9,6 +9,8 @@
                   (saveClick)="saveGuide($event)"
                   (updateClick)="updateGuide($event)"
                   (goBackClick)="closeDetail()"
+                  (deleteTourClick)="deleteTourFromGuide($event)"
+                  (viewTourClick)="viewTour($event)"
 ></app-guide-detail>
 <div class="crete-button-wrap">
   <button class="btn btn-primary btn-outline-secondary" *ngIf="!detailForm" (click)="openCreateForm()">
