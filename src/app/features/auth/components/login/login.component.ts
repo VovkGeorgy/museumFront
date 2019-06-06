@@ -28,18 +28,12 @@ export class LoginComponent implements OnInit {
   login() {
     this.spinner.show();
     const userDetail = this.logForm.value;
-    this.authService.getToken(userDetail.username, userDetail.password).subscribe(
-      () => {
-        this.authService.getRole().subscribe(() => {
-        });
+    this.authService.getToken(userDetail.username, userDetail.password).subscribe(() => {
       },
-      () => {
+      (error) => {
         this.wrongData = true;
+        this.spinner.hide();
       }
     );
-    setTimeout(() => {
-        this.spinner.hide();
-      },
-      2000);
   }
 }

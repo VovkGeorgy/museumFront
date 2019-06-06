@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {DataService} from "./data.service";
 import {apiUrls} from "../constants/api";
 import {map} from "rxjs/operators";
+import * as jwt_decode from "jwt-decode";
 
 
 @Injectable()
@@ -49,6 +50,10 @@ export class AuthService {
           this.dataService.setHeaders(this.dataHeaders);
           this.cookieService.set("jwtAccess", this.accessToken, 1);
           this.cookieService.set("username", username, 1);
+          this.rolesString = jwt_decode(response.access_token).authorities.join(", ");
+          this.cookieService.set("roles", this.rolesString, 1);
+          this.router.navigate(["/"]);
+          return response;
         })
       );
   }
