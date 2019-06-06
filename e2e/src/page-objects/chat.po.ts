@@ -24,7 +24,7 @@ export class ChatPage {
     return this.chatMessages.first().getText();
   }
 
-  writeMessageinChatInput(message: string) {
+  writeMessageInChatInput(message: string) {
     this.chatMessageInput.sendKeys(message);
   }
 

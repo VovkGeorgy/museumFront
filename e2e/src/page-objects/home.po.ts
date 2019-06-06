@@ -14,14 +14,14 @@ export class HomePage {
   }
 
   isNotLoginNotificationIsPresent() {
-    return this.notLoginNotification.isPresent;
+    return this.notLoginNotification.isPresent();
   }
 
   getNotLoginNotificationText() {
     return this.notLoginNotification.getText();
   }
 
-  getExhibitsCount() {
-    return this.exhibitCards.count();
+  async getExhibitsCount() {
+    return await this.exhibitCards.count();
   }
 }

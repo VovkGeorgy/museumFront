@@ -12,7 +12,7 @@
              formControlName="password">
     </div>
     <div *ngIf="wrongData" class="alert-message">Wrong login or password</div>
-    <button type="submit" [disabled]="!loginForm.form.valid" class="btn btn-primary btn-outline-secondary">
+    <button id="loginSubmitButton" type="submit" [disabled]="!loginForm.form.valid" class="btn btn-primary btn-outline-secondary">
       {{'button.log-in' | translate}}
     </button>
   </form>

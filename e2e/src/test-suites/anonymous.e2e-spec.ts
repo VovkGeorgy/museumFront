@@ -2,8 +2,9 @@ import {HomePage} from "../page-objects/home.po";
 import {NavBarPage} from "../page-objects/nav-bar.po";
 import {ChatPage} from "../page-objects/chat.po";
 import {NavigationUtil} from "../utils/navigation.util";
+import {LoginPage} from "../page-objects/login.po";
 
-describe("root page check", () => {
+describe("anonymous user functionality check", () => {
   let homePage: HomePage;
 
   beforeAll(() => {
@@ -43,7 +44,7 @@ describe("root page check", () => {
     it("chat should work", () => {
       expect(chat.getBackendWelcomeMessage()).toEqual("Backend carefully listens to you.");
 
-      chat.writeMessageinChatInput("test");
+      chat.writeMessageInChatInput("test");
       chat.sendChatMessage();
 
       expect(chat.getMessagesCount()).toBeGreaterThanOrEqual(3);
@@ -53,9 +54,11 @@ describe("root page check", () => {
 
   describe("nav-bar check", () => {
     let navBar: NavBarPage;
+    let loginPage: LoginPage;
 
     beforeAll(() => {
       navBar = new NavBarPage();
+      loginPage = new LoginPage();
     });
 
     it("should display three nav tabs", () => {
@@ -66,7 +69,7 @@ describe("root page check", () => {
     it("should display login component", () => {
       expect(navBar.isLoginButtonPresent()).toBeTruthy();
       navBar.clickOnLoginButton();
-      expect(navBar.isLoginFormPresent()).toBeTruthy();
+      expect(loginPage.isLoginFormPresent()).toBeTruthy();
     });
 
     it("should display sign-up component", () => {
@@ -80,4 +83,5 @@ describe("root page check", () => {
       expect(navBar.isLanguageChangerPresent()).toBeTruthy();
     });
   });
+
 });

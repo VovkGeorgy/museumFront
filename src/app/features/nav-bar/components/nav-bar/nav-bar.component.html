@@ -43,7 +43,8 @@
              style=" ">
           <span class="dropdown-item curs-pointer" *ngIf="!isAdmin()"
                 (click)="goToProfileEditor()">{{'button.editProfile' | translate}}</span>
-          <span class="dropdown-item curs-pointer" (click)="logout()">{{'button.logout' | translate}}</span>
+          <span id="logoutButton" class="dropdown-item curs-pointer"
+                (click)="logout()">{{'button.logout' | translate}}</span>
         </div>
       </div>
       <button type="button" class="btn btn-outline-primary btn-sm" *ngIf="hasSignedIn()"

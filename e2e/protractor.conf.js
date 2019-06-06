@@ -6,13 +6,15 @@ const {SpecReporter} = require('jasmine-spec-reporter');
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-    './src/**/*.e2e-spec.ts'
+    // './src/**/*.e2e-spec.ts',
+    './src/test-suites/admin.e2e-spec.ts',
+    './src/test-suites/anonymous.e2e-spec.ts'
   ],
   capabilities: {
     'browserName': 'chrome',
     'chromeOptions': {
       args: [
-        "--window-size=1920,1080",
+        '--window-size=1920,1080',
         '--disable-web-security',
       ]
     }
@@ -34,6 +36,7 @@ exports.config = {
     print: function () {
     }
   },
+
   onPrepare() {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.e2e.json')

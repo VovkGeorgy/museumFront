@@ -4,9 +4,10 @@ export class NavBarPage {
   private navLink = $$(".nav-link");
   private navBarLoginButton = $("#navBarLoginButton");
   private navBarSingupButton = $("#navBarSignupButton");
-  private loginForm = $(".login-form");
   private signupForm = $(".sing-up-form");
   private languageChanger = $(".language-changer");
+  private profileDropdownToggle = $("#btnGroupDrop1");
+  private logoutButton = $("#logoutButton");
 
   getNavBarTabsText() {
     return this.navLink.getText();
@@ -24,10 +25,6 @@ export class NavBarPage {
     this.navBarLoginButton.click();
   }
 
-  isLoginFormPresent() {
-    return this.loginForm.isPresent();
-  }
-
   isSignupButtonPresent() {
     return this.navBarSingupButton.isPresent();
   }
@@ -43,4 +40,13 @@ export class NavBarPage {
   isLanguageChangerPresent() {
     return this.languageChanger.isPresent();
   }
+
+  clickOnProfileDropdownToggle() {
+    this.profileDropdownToggle.click();
+  }
+
+  clickOnLogout() {
+    this.logoutButton.click();
+  }
 }
+
