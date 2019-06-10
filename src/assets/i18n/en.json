@@ -43,7 +43,7 @@
   },
   "tours": {
     "theme": "Theme",
-    "naming": "Tours",
+    "tours": "Tours",
     "createTitle": "Create tour",
     "typeOfExhibits": "Type of exhibits",
     "duration": "Duration",

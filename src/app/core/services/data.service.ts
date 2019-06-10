@@ -2,16 +2,17 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {apiUrls} from "../constants/api";
 
-
 @Injectable()
 export class DataService {
 
-  httpOptions = {
+  defaultHeaders = {
     headers: new HttpHeaders({
       "Content-Type": "application/json",
       "Authorization": "my-auth-token"
-    }),
+    })
   };
+
+  httpOptions = this.defaultHeaders;
 
   constructor(private http: HttpClient) {
   }
@@ -47,11 +48,6 @@ export class DataService {
    * Set default Headers when user is logout
    */
   setDefaultHeaders() {
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json",
-        "Authorization": "my-auth-token"
-      }),
-    };
+    this.httpOptions = this.defaultHeaders;
   }
 }

@@ -13,7 +13,7 @@
         <a class="nav-link" routerLink="/">{{'navbar.home' | translate}}</a>
       </li>
       <li class="nav-item" [routerLinkActive]="'active'">
-        <a class="nav-link" routerLink="/tours" *ngIf="isVisitor()">{{'tours.naming' | translate}}</a>
+        <a class="nav-link" routerLink="/tours" *ngIf="isVisitor()">{{'tours.tours' | translate}}</a>
       </li>
       <li class="nav-item" [routerLinkActive]="'active'">
         <a class="nav-link" routerLink="/guides" *ngIf="isAdmin()">{{'guide.guides' | translate}}</a>

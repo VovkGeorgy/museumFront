@@ -43,7 +43,7 @@
   },
   "tours": {
     "theme": "Тематика",
-    "naming": "Туры",
+    "tours": "Туры",
     "createTitle": "Создать тур",
     "typeOfExhibits": "Тип экспонатов",
     "duration": "Длительность",
