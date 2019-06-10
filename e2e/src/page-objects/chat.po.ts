@@ -6,6 +6,7 @@ export class ChatPage {
   private chatBar = $(".chat-bar");
   private chatMessageInput = $(".message-input");
   private chatSendButton = $(".chat-send-button");
+  private chatCloseButton = $(".chat-closer");
 
 
   isFoldedChatPresent() {
@@ -38,5 +39,13 @@ export class ChatPage {
 
   getLastMessageText() {
     return this.chatMessages.last().getText();
+  }
+
+  isCloseButtonPresent() {
+    return this.chatCloseButton.isPresent();
+  }
+
+  clickOnCloseButton(){
+    this.chatCloseButton.click();
   }
 }

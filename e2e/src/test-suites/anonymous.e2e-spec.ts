@@ -53,6 +53,12 @@ describe("anonymous user functionality check", () => {
       expect(chat.getMessagesCount()).toBeGreaterThanOrEqual(3);
       expect(chat.getLastMessageText()).toEqual("Message from back - 0");
     });
+
+    it("chat should be closed", () => {
+      expect(chat.isCloseButtonPresent()).toBeTruthy();
+      chat.clickOnCloseButton();
+      expect(chat.isFoldedChatPresent()).toBeTruthy();
+    });
   });
 
   describe("nav-bar check", () => {
