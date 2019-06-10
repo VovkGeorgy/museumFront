@@ -1,5 +1,5 @@
-<h6 class="text-center" id="notLoginNotification" *ngIf="!isVisitor()">{{'auth.message' | translate}}</h6>
-<h3 class="text-center">{{'exhibits.naming' | translate}}</h3>
+<h6 class="text-center" id="notLoginNotification" *ngIf="!isVisitor()">{{'auth_message' | translate}}</h6>
+<h3 class="text-center">{{'exhibits_naming' | translate}}</h3>
 <div class="album py-5">
   <div class="container">
     <div class="row">
@@ -17,11 +17,11 @@
           <div class="card-body card-buttons">
             <button type="button" *ngIf="isVisitor()" class="btn btn-sm btn-outline-primary"
                     (click)="viewExhibit(exhibit)">
-              {{'button.view' | translate}}
+              {{'button_view' | translate}}
             </button>
             <button type="button" class="btn btn-sm btn-outline-primary" *ngIf="isGuide()"
                     (click)="editExhibit(exhibit)">
-              {{'button.edit' | translate}}
+              {{'button_edit' | translate}}
             </button>
           </div>
         </div>

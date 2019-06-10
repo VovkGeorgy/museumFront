@@ -1,19 +1,19 @@
 <div class="login-form-wrap">
   <form class="login-form" *ngIf="!submitted" [formGroup]="logForm" (ngSubmit)="login()" #loginForm="ngForm">
-    <h5 class="login-form-title">{{'auth.title' | translate}}</h5>
+    <h5 class="login-form-title">{{'auth_title' | translate}}</h5>
     <div class="form-group">
-      <label for="username">{{'auth.login' | translate}}</label>
+      <label for="username">{{'auth_login' | translate}}</label>
       <input type="text" class="form-control" id="username"
              formControlName="username">
     </div>
     <div class="form-group">
-      <label for="password">{{'auth.password' | translate}}</label>
+      <label for="password">{{'auth_password' | translate}}</label>
       <input type="password" class="form-control" id="password"
              formControlName="password">
     </div>
     <div *ngIf="wrongData" class="alert-message">Wrong login or password</div>
     <button id="loginSubmitButton" type="submit" [disabled]="!loginForm.form.valid" class="btn btn-primary btn-outline-secondary">
-      {{'button.log-in' | translate}}
+      {{'button_log-in' | translate}}
     </button>
   </form>
 </div>

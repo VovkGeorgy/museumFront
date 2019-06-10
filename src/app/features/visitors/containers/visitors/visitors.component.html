@@ -1,52 +1,52 @@
 <div class="row col-md-12">
   <div class="col-md-6 offset-md-3">
     <ngb-tabset #t="ngbTabset">
-      <ngb-tab id="tab-selectbyid1" title="{{'tabs.create' | translate}}">
+      <ngb-tab id="tab-selectbyid1" title="{{'tabs_create' | translate}}">
         <ng-template ngbTabContent>
           <fieldset [formGroup]="visitorForm">
-            <legend>{{'visitor.title' | translate}}</legend>
+            <legend>{{'visitor_title' | translate}}</legend>
             <div class="form-group">
-              <label for="inputUsername">{{'visitor.username' | translate}}</label>
+              <label for="inputUsername">{{'visitor_username' | translate}}</label>
               <input type="text" class="form-control" id="inputUsername" placeholder="Username"
                      formControlName="username">
             </div>
             <div class="form-group">
-              <label for="inputPassword">{{'visitor.password' | translate}}</label>
+              <label for="inputPassword">{{'visitor_password' | translate}}</label>
               <input type="password" class="form-control" id="inputPassword" placeholder="Password"
                      formControlName="password">
             </div>
             <div class="form-group">
-              <label for="inputFio">{{'visitor.fio' | translate}}</label>
+              <label for="inputFio">{{'visitor_fio' | translate}}</label>
               <input type="text" class="form-control" id="inputFio" placeholder="Ivanov I. I."
                      formControlName="fio">
             </div>
             <div class="form-group">
-              <label for="inputAge">{{'visitor.age' | translate}}</label>
+              <label for="inputAge">{{'visitor_age' | translate}}</label>
               <input type="number" class="form-control" id="inputAge" placeholder="1-31"
                      formControlName="age">
             </div>
             <div class="form-group">
-              <label for="inputEmail">{{'visitor.email' | translate}}</label>
+              <label for="inputEmail">{{'visitor_email' | translate}}</label>
               <input type="email" class="form-control" id="inputEmail" placeholder="temp@mail.net"
                      formControlName="email">
             </div>
-            <button class="btn btn-primary btn-outline-secondary" (click)="addEntityToBase()" >{{'button.add' | translate}}
+            <button class="btn btn-primary btn-outline-secondary" (click)="addEntityToBase()" >{{'button_add' | translate}}
             </button>
           </fieldset>
         </ng-template>
       </ngb-tab>
 
-      <ngb-tab id="tab-selectbyid2" title="{{'tabs.read' | translate}}">
+      <ngb-tab id="tab-selectbyid2" title="{{'tabs_read' | translate}}">
         <ng-template ngbTabContent>
           <table class="table table-striped">
             <thead>
             <tr>
               <th>Id</th>
-              <th>{{'visitor.username' | translate}}</th>
-              <th>{{'visitor.password' | translate}}</th>
-              <th>{{'visitor.fio' | translate}}</th>
-              <th>{{'visitor.age' | translate}}</th>
-              <th>{{'visitor.email' | translate}}</th>
+              <th>{{'visitor_username' | translate}}</th>
+              <th>{{'visitor_password' | translate}}</th>
+              <th>{{'visitor_fio' | translate}}</th>
+              <th>{{'visitor_age' | translate}}</th>
+              <th>{{'visitor_email' | translate}}</th>
             </tr>
             </thead>
             <tbody>
@@ -60,22 +60,22 @@
             </tr>
             </tbody>
           </table>
-          <button class="btn btn-primary btn-outline-secondary" (click)="loadReadForm()">{{'button.update' | translate}}
+          <button class="btn btn-primary btn-outline-secondary" (click)="loadReadForm()">{{'button_update' | translate}}
           </button>
         </ng-template>
       </ngb-tab>
 
-      <ngb-tab id="tab-selectbyid3" title="{{'tabs.update' | translate}}">
+      <ngb-tab id="tab-selectbyid3" title="{{'tabs_update' | translate}}">
         <ng-template ngbTabContent>
           <table class="table table-striped" [hidden]="updateTableIsHidden">
             <thead>
             <tr>
               <th>Id</th>
-              <th>{{'visitor.username' | translate}}</th>
-              <th>{{'visitor.password' | translate}}</th>
-              <th>{{'visitor.fio' | translate}}</th>
-              <th>{{'visitor.age' | translate}}</th>
-              <th>{{'visitor.email' | translate}}</th>
+              <th>{{'visitor_username' | translate}}</th>
+              <th>{{'visitor_password' | translate}}</th>
+              <th>{{'visitor_fio' | translate}}</th>
+              <th>{{'visitor_age' | translate}}</th>
+              <th>{{'visitor_email' | translate}}</th>
             </tr>
             </thead>
             <tbody>
@@ -88,7 +88,7 @@
               <td>{{visitor.email}}</td>
               <td>
                 <button class="btn btn-primary btn-outline-secondary" (click)="loadUpdateForm(visitor)">
-                  {{'button.update' | translate}}
+                  {{'button_update' | translate}}
                 </button>
               </td>
             </tr>
@@ -96,49 +96,49 @@
           </table>
 
           <fieldset [formGroup]="visitorForm" [hidden]="updateFieldIsHidden">
-            <legend>{{'visitor.update' | translate}}</legend>
+            <legend>{{'visitor_update' | translate}}</legend>
             <div class="form-group">
-              <label for="updateUsername">{{'visitor.username' | translate}}</label>
+              <label for="updateUsername">{{'visitor_username' | translate}}</label>
               <input type="text" class="form-control" id="updateUsername" placeholder="Username"
                      formControlName="username">
             </div>
             <div class="form-group">
-              <label for="updatePassword">{{'visitor.password' | translate}}</label>
+              <label for="updatePassword">{{'visitor_password' | translate}}</label>
               <input type="text" class="form-control" id="updatePassword" placeholder="Password"
                      formControlName="password">
             </div>
             <div class="form-group">
-              <label for="updateFio">{{'visitor.fio' | translate}}</label>
+              <label for="updateFio">{{'visitor_fio' | translate}}</label>
               <input type="text" class="form-control" id="updateFio" placeholder="Ivanov I. I."
                      formControlName="fio">
             </div>
             <div class="form-group">
-              <label for="updateAge">{{'visitor.age' | translate}}</label>
+              <label for="updateAge">{{'visitor_age' | translate}}</label>
               <input type="number" class="form-control" id="updateAge" placeholder="1-31"
                      formControlName="age">
             </div>
             <div class="form-group">
-              <label for="updateEmail">{{'visitor.email' | translate}}</label>
+              <label for="updateEmail">{{'visitor_email' | translate}}</label>
               <input type="email" class="form-control" id="updateEmail" placeholder="test@tmail.com"
                      formControlName="email">
             </div>
-            <button class="btn btn-primary btn-outline-secondary" (click)="addUpdatedEntityToBase()">{{'button.update' | translate}}
+            <button class="btn btn-primary btn-outline-secondary" (click)="addUpdatedEntityToBase()">{{'button_update' | translate}}
             </button>
           </fieldset>
         </ng-template>
       </ngb-tab>
 
-      <ngb-tab id="tab-selectbyid4" title="{{'tabs.delete' | translate}}">
+      <ngb-tab id="tab-selectbyid4" title="{{'tabs_delete' | translate}}">
         <ng-template ngbTabContent>
           <table class="table table-striped">
             <thead>
             <tr>
               <th>Id</th>
-              <th>{{'visitor.username' | translate}}</th>
-              <th>{{'visitor.password' | translate}}</th>
-              <th>{{'visitor.fio' | translate}}</th>
-              <th>{{'visitor.age' | translate}}</th>
-              <th>{{'visitor.email' | translate}}</th>
+              <th>{{'visitor_username' | translate}}</th>
+              <th>{{'visitor_password' | translate}}</th>
+              <th>{{'visitor_fio' | translate}}</th>
+              <th>{{'visitor_age' | translate}}</th>
+              <th>{{'visitor_email' | translate}}</th>
             </tr>
             </thead>
             <tbody>
@@ -150,13 +150,13 @@
               <td>{{visitor.age}}</td>
               <td>{{visitor.email}}</td>
               <td>
-                <button class="btn btn-primary btn-outline-secondary" (click)="deleteEntityInBase(visitor)">{{'button.delete' | translate}}
+                <button class="btn btn-primary btn-outline-secondary" (click)="deleteEntityInBase(visitor)">{{'button_delete' | translate}}
                 </button>
               </td>
             </tr>
             </tbody>
           </table>
-          <button class="btn btn-primary btn-outline-secondary" (click)="loadReadForm()">{{'button.update' | translate}}
+          <button class="btn btn-primary btn-outline-secondary" (click)="loadReadForm()">{{'button_update' | translate}}
           </button>
         </ng-template>
       </ngb-tab>

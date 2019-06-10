@@ -1,18 +1,18 @@
-<h3 class="text-center">{{'guide.guides' | translate}}</h3>
+<h3 class="text-center">{{'guide_guides' | translate}}</h3>
 <div class="row col-md-12">
   <div class="col-md-8 offset-md-2">
     <table *ngIf="guides$ | async as guides" class="table table-striped">
       <thead>
       <tr>
         <th>Id</th>
-        <th>{{'guide.username' | translate}}</th>
-        <th>{{'guide.password' | translate}}</th>
-        <th>{{'guide.fio' | translate}}</th>
-        <th>{{'guide.age' | translate}}</th>
-        <th>{{'guide.experience' | translate}}</th>
-        <th>{{'guide.languages' | translate}}</th>
-        <th>{{'guide.toursNumber' | translate}}</th>
-        <th>{{'common.operations' | translate}}</th>
+        <th>{{'guide_username' | translate}}</th>
+        <th>{{'guide_password' | translate}}</th>
+        <th>{{'guide_fio' | translate}}</th>
+        <th>{{'guide_age' | translate}}</th>
+        <th>{{'guide_experience' | translate}}</th>
+        <th>{{'guide_languages' | translate}}</th>
+        <th>{{'guide_toursNumber' | translate}}</th>
+        <th>{{'common_operations' | translate}}</th>
         <th></th>
       </tr>
       </thead>
@@ -28,12 +28,12 @@
         <td>{{guide.tourEntitySet.length}}</td>
         <td>
           <button class="btn-sm btn-primary btn-outline-secondary" (click)="updateClick(guide)">
-            {{'button.update' | translate}}
+            {{'button_update' | translate}}
           </button>
         </td>
         <td>
           <button class="btn-sm btn-primary btn-outline-secondary"
-                  (click)="deleteClick(guide)">{{'button.delete' |
+                  (click)="deleteClick(guide)">{{'button_delete' |
             translate}}
           </button>
         </td>

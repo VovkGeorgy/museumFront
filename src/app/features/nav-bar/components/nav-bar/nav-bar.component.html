@@ -10,29 +10,29 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" routerLink="/">{{'navbar.home' | translate}}</a>
+        <a class="nav-link" routerLink="/">{{'navbar_home' | translate}}</a>
       </li>
       <li class="nav-item" [routerLinkActive]="'active'">
-        <a class="nav-link" routerLink="/tours" *ngIf="isVisitor()">{{'tours.tours' | translate}}</a>
+        <a class="nav-link" routerLink="/tours" *ngIf="isVisitor()">{{'tours_tours' | translate}}</a>
       </li>
       <li class="nav-item" [routerLinkActive]="'active'">
-        <a class="nav-link" routerLink="/guides" *ngIf="isAdmin()">{{'guide.guides' | translate}}</a>
+        <a class="nav-link" routerLink="/guides" *ngIf="isAdmin()">{{'guide_guides' | translate}}</a>
       </li>
       <li class="nav-item" [routerLinkActive]="'active'">
-        <a class="nav-link" routerLink="/exhibits">{{'exhibits.naming' | translate}}</a>
+        <a class="nav-link" routerLink="/exhibits">{{'exhibits_naming' | translate}}</a>
       </li>
       <li class="nav-item" [routerLinkActive]="'active'">
-        <a class="nav-link" routerLink="/visitors" *ngIf="isGuide()">{{'visitor.visitors' | translate}}</a>
+        <a class="nav-link" routerLink="/visitors" *ngIf="isGuide()">{{'visitor_visitors' | translate}}</a>
       </li>
       <li class="nav-item" [routerLinkActive]="'active'">
-        <a class="nav-link" routerLink="/about">{{'navbar.aboutUs' | translate}}</a>
+        <a class="nav-link" routerLink="/about">{{'navbar_aboutUs' | translate}}</a>
       </li>
     </ul>
     <button id="navBarLoginButton" *ngIf="!hasSignedIn()" class="btn btn-outline-primary btn-sm"
-            routerLink="/login">{{'button.login' | translate}}
+            routerLink="/login">{{'button_login' | translate}}
     </button>
     <button id="navBarSignupButton" *ngIf="!hasSignedIn()" class="btn btn-outline-primary btn-sm"
-            routerLink="/signup">{{'button.signup' | translate}}
+            routerLink="/signup">{{'button_signup' | translate}}
     </button>
     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
       <div class="btn-group" role="group" *ngIf="hasSignedIn()">
@@ -42,9 +42,9 @@
         <div class="dropdown-menu dropdown-menu-wrap" aria-labelledby="btnGroupDrop1" x-placement="bottom-start"
              style=" ">
           <span class="dropdown-item curs-pointer" *ngIf="!isAdmin()"
-                (click)="goToProfileEditor()">{{'button.editProfile' | translate}}</span>
+                (click)="goToProfileEditor()">{{'button_editProfile' | translate}}</span>
           <span id="logoutButton" class="dropdown-item curs-pointer"
-                (click)="logout()">{{'button.logout' | translate}}</span>
+                (click)="logout()">{{'button_logout' | translate}}</span>
         </div>
       </div>
       <button type="button" class="btn btn-outline-primary btn-sm" *ngIf="hasSignedIn()"

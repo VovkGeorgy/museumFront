@@ -1,39 +1,39 @@
 <div class="row col-md-12 {{disabled}}">
   <div class="col-md-6 offset-md-3" style="background: black">
     <fieldset [formGroup]="visitorForm">
-      <legend>{{'auth.profile' | translate}}</legend>
+      <legend>{{'auth_profile' | translate}}</legend>
       <div class="form-group">
-        <label for="updateVUsername">{{'visitor.username' | translate}}</label>
+        <label for="updateVUsername">{{'visitor_username' | translate}}</label>
         <input type="text" class="form-control" id="updateVUsername" placeholder="Username"
                formControlName="username">
       </div>
       <div class="form-group">
-        <label for="updateVPassword">{{'visitor.password' | translate}}</label>
+        <label for="updateVPassword">{{'visitor_password' | translate}}</label>
         <input type="text" class="form-control" id="updateVPassword" placeholder="Password"
                formControlName="password">
       </div>
       <div class="form-group">
-        <label for="updateVFio">{{'visitor.fio' | translate}}</label>
+        <label for="updateVFio">{{'visitor_fio' | translate}}</label>
         <input type="text" class="form-control" id="updateVFio" placeholder="Ivanov I. I."
                formControlName="fio">
       </div>
       <div class="form-group">
-        <label for="updateVAge">{{'visitor.age' | translate}}</label>
+        <label for="updateVAge">{{'visitor_age' | translate}}</label>
         <input type="number" class="form-control" id="updateVAge" placeholder="1-31"
                formControlName="age">
       </div>
       <div class="form-group">
-        <label for="updateEmail">{{'visitor.email' | translate}}</label>
+        <label for="updateEmail">{{'visitor_email' | translate}}</label>
         <input type="email" class="form-control" id="updateEmail" placeholder="test@tmail.com"
                formControlName="email">
       </div>
-      <button type="button" class="btn btn-outline-primary" (click)="updateVisitorInBase()">{{'button.update' |
+      <button type="button" class="btn btn-outline-primary" (click)="updateVisitorInBase()">{{'button_update' |
         translate}}
       </button>
     </fieldset>
   </div>
 </div>
-<div _ngcontent-c6="" style="text-align: center"><h5>{{'visitor.favouriteTours' |
+<div _ngcontent-c6="" style="text-align: center"><h5>{{'visitor_favouriteTours' |
   translate}}</h5></div>
 <div class="album py-5">
   <div class="container">
@@ -46,18 +46,18 @@
                  src="{{tour.imageUrl}}"
                  alt="Card image">
             <div class="card-body">
-              <p class="card-text">{{'tours.typeOfExhibits' | translate}} - {{tour.typeOfExhibits}}</p>
-              <p class="card-text">{{'tours.duration' | translate}} - {{tour.duration}} {{'tours.hour' | translate}}</p>
-              <p class="card-text">{{'tours.cost' | translate}} - {{tour.cost}} $</p>
+              <p class="card-text">{{'tours_typeOfExhibits' | translate}} - {{tour.typeOfExhibits}}</p>
+              <p class="card-text">{{'tours_duration' | translate}} - {{tour.duration}} {{'tours_hour' | translate}}</p>
+              <p class="card-text">{{'tours_cost' | translate}} - {{tour.cost}} $</p>
             </div>
             <div class="card-body">
-              <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="viewTour(tour)">{{'button.view'
+              <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="viewTour(tour)">{{'button_view'
                 | translate}}
               </button>
               <div style="float: right">
                 <a>Delete from favour</a>
                 <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="deleteFromFavorites(tour)">
-                  {{'button.delete'| translate}}
+                  {{'button_delete'| translate}}
                 </button>
               </div>
             </div>
@@ -74,7 +74,7 @@
         <h5 class="modal-title">Ok</h5>
       </div>
       <div class="modal-body">
-        <p>{{'modal.changesSaved' | translate}}</p>
+        <p>{{'modal_changesSaved' | translate}}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Ok</button>
