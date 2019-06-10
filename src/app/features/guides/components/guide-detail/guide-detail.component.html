@@ -36,15 +36,15 @@
     <button class="btn btn-primary btn-outline-secondary add-button" (click)="back()">
       {{'button.back' | translate}}
     </button>
-    <button class="btn btn-primary btn-outline-secondary add-button" (click)="save()">
+    <button class="btn btn-primary btn-outline-secondary add-button" [disabled]="!guideForm.valid" (click)="save()">
       {{'button.save' | translate}}
     </button>
   </div>
 </div>
 <div class="row col-md-12">
   <div class="col-md-8 offset-md-2">
-    <div><h5 style="text-align: center">{{'exhibits.tours' | translate}}</h5></div>
-    <table class="table text-center" *ngIf="guide.tourEntitySet.length > 0; else noTours">
+    <div><h5 style="text-align: center">{{'tours.tours' | translate}}</h5></div>
+    <table class="table text-center" *ngIf="guide?.tourEntitySet?.length > 0; else noTours">
       <tbody>
       <tr class="table" *ngFor="let tour of guide.tourEntitySet">
         <td><img id="tour-image" src="{{tour.imageUrl}}"

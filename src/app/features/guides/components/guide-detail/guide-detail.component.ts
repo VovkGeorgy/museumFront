@@ -15,7 +15,7 @@ export class GuideDetailComponent implements OnInit, OnDestroy {
     password: new FormControl("", [Validators.required]),
     fio: new FormControl("", [Validators.required]),
     age: new FormControl("", [Validators.max(150), Validators.required]),
-    experience: new FormControl("", [Validators.required]),
+    experience: new FormControl("", [Validators.max(100), Validators.required]),
     languages: new FormControl(""),
     tourEntitySet: new FormControl([]),
   });
@@ -71,6 +71,6 @@ export class GuideDetailComponent implements OnInit, OnDestroy {
   }
 
   removeTourFromExhibit(tour: Tour) {
-    this.deleteTourClick.emit({tourId: tour.tourId});
+    this.deleteTourClick.emit({tour: tour});
   }
 }

@@ -1,8 +1,13 @@
 import {Component, OnInit} from "@angular/core";
 import {Guide} from "../../../../core/models/entity-models";
 import {GuidesService} from "../../services/guides.service";
-import {first} from "rxjs/operators";
 import {Router} from "@angular/router";
+import {Observable} from "rxjs/internal/Observable";
+import {select, Store} from "@ngrx/store";
+import * as fromReducer from "../../../../core/store/reducers";
+import * as fromSelectors from "../../../../core/store/selectors";
+import {AddGuide, DeleteGuide, DeleteTourFromGuide, GetGuides, UpdateGuide} from "../../../../core/store/actions/guide.actions";
+
 
 @Component({
   selector: "app-guide",
@@ -15,15 +20,16 @@ export class GuideComponent implements OnInit {
   isUpdateMode: boolean;
   guides: Guide[];
   detailForm = false;
+  guides$: Observable<Guide[]>;
 
   constructor(private guideService: GuidesService,
-              private router: Router) {
+              private router: Router,
+              private store: Store<fromReducer.guide.State>) {
   }
 
   ngOnInit() {
-    this.guideService.getAllGuides().subscribe((guides: []) => {
-      this.guides = guides;
-    });
+    this.store.dispatch(new GetGuides());
+    this.guides$ = this.store.pipe(select(fromSelectors.getGuides));
   }
 
   openCreateForm() {
@@ -39,23 +45,17 @@ export class GuideComponent implements OnInit {
   }
 
   deleteGuide($event: any) {
-    this.guideService.deleteGuide($event.guide.guideId).pipe(first()).subscribe(data => {
-      this.ngOnInit();
-    });
+    this.store.dispatch(new DeleteGuide($event.guide));
   }
 
   saveGuide($event: any) {
     this.detailForm = false;
-    this.guideService.addGuide($event.guide).pipe(first()).subscribe(guide => {
-      this.ngOnInit();
-    });
+    this.store.dispatch(new AddGuide($event.guide));
   }
 
   updateGuide($event: any) {
     this.detailForm = false;
-    this.guideService.updateGuide($event.guide.guideId, $event.guide).pipe(first()).subscribe(guide => {
-      this.ngOnInit();
-    });
+    this.store.dispatch(new UpdateGuide($event.guide));
   }
 
   closeDetail() {
@@ -63,10 +63,7 @@ export class GuideComponent implements OnInit {
   }
 
   deleteTourFromGuide($event: any) {
-    console.log(this.updatingGuide.tourEntitySet);
-    this.guideService.removeTourFromGuide($event.tourId, this.updatingGuide.guideId).subscribe(value => {
-      this.updatingGuide.tourEntitySet = this.updatingGuide.tourEntitySet.filter(tour => tour.tourId !== $event.tourId);
-    });
+    this.store.dispatch(new DeleteTourFromGuide({tour: $event.tour, guide: this.updatingGuide}));
   }
 
   viewTour($event) {

@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
-import {Guide} from '../../../../core/models/entity-models';
+import {Guide} from "../../../../core/models/entity-models";
+import {Observable} from "rxjs/internal/Observable";
 
 @Component({
   selector: "app-guides",
@@ -9,7 +10,7 @@ import {Guide} from '../../../../core/models/entity-models';
 export class GuidesCommonComponent implements OnInit {
 
   @Input()
-  guides: Guide[];
+  guides$: Observable<Guide[]>;
 
   @Output()
   updateCLick = new EventEmitter();

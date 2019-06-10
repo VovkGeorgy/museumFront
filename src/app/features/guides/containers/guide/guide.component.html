@@ -1,5 +1,5 @@
 <app-guides *ngIf="!detailForm"
-            [guides]="guides"
+            [guides$]="guides$"
             (deleteCLick)="deleteGuide($event)"
             (updateCLick)="openUpdateForm($event)"
 ></app-guides>
