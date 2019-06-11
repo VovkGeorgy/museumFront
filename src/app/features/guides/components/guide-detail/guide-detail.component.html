@@ -1,7 +1,7 @@
 <div class="row col-md-12">
-  <div class="col-md-4 offset-md-4 ">
+  <div class="col-md-3 offset-md-3">
     <fieldset [formGroup]="guideForm">
-      <legend>{{'guide_title' | translate}}</legend>
+      <legend>{{'guide_detail' | translate}}</legend>
       <div class="form-group">
         <label for="inputFio">{{'guide_fio' | translate}}</label>
         <input type="text" class="form-control" id="inputFio" placeholder="Ivanov I. I."
@@ -33,32 +33,26 @@
                formControlName="languages">
       </div>
     </fieldset>
-    <button class="btn btn-primary btn-outline-secondary add-button" (click)="back()">
+    <button class="btn btn-primary add-button" (click)="back()">
       {{'button_back' | translate}}
     </button>
-    <button class="btn btn-primary btn-outline-secondary add-button" [disabled]="!guideForm.valid" (click)="save()">
+    <button class="btn btn-primary add-button" [disabled]="!guideForm.valid" (click)="save()">
       {{'button_save' | translate}}
     </button>
   </div>
-</div>
-<div class="row col-md-12">
-  <div class="col-md-8 offset-md-2">
+  <div class="col-md-3">
     <div><h5 style="text-align: center">{{'tours_tours' | translate}}</h5></div>
     <table class="table text-center" *ngIf="guide?.tourEntitySet?.length > 0; else noTours">
       <tbody>
       <tr class="table" *ngFor="let tour of guide.tourEntitySet">
-        <td><img id="tour-image" src="{{tour.imageUrl}}"
-                 alt="Card image"></td>
-        <td class="align-middle"><h5 class="curs-pointer" (click)="viewTour(tour)">{{tour.theme}}</h5></td>
-        <td><p class="card-text">{{'tours_typeOfExhibits' | translate}} - {{tour.typeOfExhibits}}</p>
-          <p class="card-text">{{'tours_duration' | translate}} - {{tour.duration}} {{'tours_hour' | translate}}</p>
-          <p class="card-text">{{'tours_cost' | translate}} - {{tour.cost}} $</p>
-          <button style="float: inherit" type="button" class="btn btn-sm btn btn-outline-primary"
-                  (click)="viewTour(tour)">
-            {{'button_view' | translate}}
-          </button>
-          <button style="float: inherit" type="button" class="btn btn-sm btn btn-outline-primary"
-                  (click)="removeTourFromExhibit(tour)">
+        <td>
+          <img class="image-sm" src="{{tour.imageUrl}}" alt="Card image">
+        </td>
+        <td>
+          <span class="curs-pointer" (click)="viewTour(tour)">{{tour.theme}}</span>
+        </td>
+        <td>
+          <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="removeTourFromGuide(tour)">
             {{'button_delete' | translate}}
           </button>
         </td>
@@ -66,11 +60,14 @@
       </tbody>
     </table>
     <ng-template #noTours>
-      <div><h6 style="text-align: center; margin: 30px">No tours</h6></div>
-      <button style="float: inherit" type="button" class="btn btn-sm btn btn-outline-primary"
-              (click)="removeTourFromExhibit(tour)">
-        {{'button_delete' | translate}}
-      </button>
+      <div class="no-tours col-md-8 offset-md-2">
+        <h6 style="text-align: center; margin: 30px">No tours</h6>
+      </div>
     </ng-template>
+    <div class="add-button-wrap">
+      <button class="btn btn-lg btn-primary " (click)="addTours()">
+        {{'button_add' | translate}}
+      </button>
+    </div>
   </div>
 </div>

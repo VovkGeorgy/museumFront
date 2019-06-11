@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {DataService} from "../../../core/services/data.service";
 import {Guide} from "../../../core/models/entity-models";
 import {map} from "rxjs/operators";
+import {ToursGuideModel} from "../model/tours-guide-model";
 
 @Injectable()
 export class GuidesService {
@@ -13,9 +14,10 @@ export class GuidesService {
   private getGuideByUsernameUrl = "/api/guide/getByUsername";
   private getAllGuidesUrl = "/api/guide/guides";
   private addGuideUrl = "/api/guide/add";
-  private updateGuideUrl = "/api/guide/update/";
+  private updateGuideUrl = "/api/guide/update";
   private deleteGuideUrl = "/api/guide/delete/";
-  private removeTourFromGuideUrl = "/api/guide/removeTour";
+  private removeToursFromGuideUrl = "/api/guide/removeTours";
+  private addToursToGuideUrl = "/api/guide/addTours";
 
   getGuide(id: number) {
     return this.dataService.getData(this.getGuideByIdUrl + id).pipe(
@@ -50,7 +52,7 @@ export class GuidesService {
   }
 
   updateGuide(updatedGuide: Guide) {
-    return this.dataService.postData(this.updateGuideUrl + updatedGuide.guideId, updatedGuide).pipe(
+    return this.dataService.postData(this.updateGuideUrl, updatedGuide).pipe(
       map(guide => {
         return guide as Guide;
       })
@@ -61,7 +63,19 @@ export class GuidesService {
     return this.dataService.getData(this.deleteGuideUrl + id);
   }
 
-  deleteTourFromGuide(tourId: number, guideId: number) {
-    return this.dataService.postData(this.removeTourFromGuideUrl, {tourId: tourId, guideId: guideId});
+  removeToursFromGuide(tgm: ToursGuideModel) {
+    return this.dataService.postData(this.removeToursFromGuideUrl, tgm).pipe(
+      map(guide => {
+        return guide as Guide;
+      })
+    );
+  }
+
+  addToursToGuide(tgm: ToursGuideModel) {
+    return this.dataService.postData(this.addToursToGuideUrl, tgm).pipe(
+      map(guide => {
+        return guide as Guide;
+      })
+    );
   }
 }

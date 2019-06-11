@@ -79,8 +79,22 @@ export function reducer(state = initialState, action: GuideActions): State {
     case GuideActionTypes.guideDeleteTourFromGuideSuccess: {
       return adapter.updateOne(
         {
-          id: action.payload.guide.guideId,
-          changes: action.payload.guide
+          id: action.payload.guideId,
+          changes: action.payload
+        },
+        {
+          ...state,
+          loading: false,
+          loaded: true
+        }
+      );
+    }
+
+    case GuideActionTypes.guideAddToursToGuideSuccess: {
+      return adapter.updateOne(
+        {
+          id: action.payload.guideId,
+          changes: action.payload
         },
         {
           ...state,

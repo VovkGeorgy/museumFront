@@ -21,7 +21,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     BrowserAnimationsModule,
     StoreModule.forRoot(fromStore.reducers),
     EffectsModule.forRoot(fromStore.effects),
-
   ],
   declarations: [],
   providers: [

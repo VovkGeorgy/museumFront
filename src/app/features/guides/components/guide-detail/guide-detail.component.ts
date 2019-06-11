@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Guide, Tour} from "../../../../core/models/entity-models";
+import {Observable} from "rxjs/internal/Observable";
 
 @Component({
   selector: "app-guide-detail",
@@ -19,6 +20,9 @@ export class GuideDetailComponent implements OnInit, OnDestroy {
     languages: new FormControl(""),
     tourEntitySet: new FormControl([]),
   });
+
+  @Input()
+  tours$: Observable<Tour[]>;
 
   @Input()
   guide: Guide;
@@ -70,7 +74,11 @@ export class GuideDetailComponent implements OnInit, OnDestroy {
     this.viewTourClick.emit({tourId: tour.tourId});
   }
 
-  removeTourFromExhibit(tour: Tour) {
-    this.deleteTourClick.emit({tour: tour});
+  removeTourFromGuide(tour: Tour) {
+    this.deleteTourClick.emit([tour]);
+  }
+
+  addTours() {
+    // TODO add adding functionality
   }
 }

@@ -4,12 +4,13 @@
             (updateCLick)="openUpdateForm($event)"
 ></app-guides>
 <app-guide-detail *ngIf="detailForm"
+                  [tours$]="tours$"
                   [guide]="updatingGuide"
                   [isUpdateMode]="isUpdateMode"
                   (saveClick)="saveGuide($event)"
                   (updateClick)="updateGuide($event)"
                   (goBackClick)="closeDetail()"
-                  (deleteTourClick)="deleteTourFromGuide($event)"
+                  (deleteTourClick)="removeToursFromGuide($event)"
                   (viewTourClick)="viewTour($event)"
 ></app-guide-detail>
 <div class="crete-button-wrap">

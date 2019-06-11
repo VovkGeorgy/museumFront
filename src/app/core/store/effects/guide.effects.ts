@@ -8,7 +8,7 @@ import * as fromRouterActions from "../actions/router.actions";
 import {GuidesService} from "../../../features/guides/services/guides.service";
 import {
   AddGuide,
-  AddGuideSuccess,
+  AddGuideSuccess, AddToursToGuide, AddToursToGuideSuccess,
   DeleteGuide,
   DeleteGuideSuccess, DeleteTourFromGuide, DeleteTourFromGuideSuccess,
   GetGuideById,
@@ -94,9 +94,22 @@ export class GuideEffects {
     ofType(GuideActionTypes.guideDeleteTourFromGuide),
     switchMap((action: DeleteTourFromGuide) =>
       this.guideService
-        .deleteTourFromGuide(action.payload.guide.guideId, action.payload.tour.tourId)
+        .removeToursFromGuide(action.payload)
         .pipe(
-          map(() => new DeleteTourFromGuideSuccess(action.payload)),
+          map((updatedGuide) => new DeleteTourFromGuideSuccess(updatedGuide)),
+          catchError(error => of(new GuideError(error)))
+        )
+    )
+  );
+
+  @Effect()
+  addToursToGuide$ = this.actions$.pipe(
+    ofType(GuideActionTypes.guideAddToursToGuide),
+    switchMap((action: AddToursToGuide) =>
+      this.guideService
+        .addToursToGuide(action.payload)
+        .pipe(
+          map((updatedGuide) => new AddToursToGuideSuccess(updatedGuide)),
           catchError(error => of(new GuideError(error)))
         )
     )

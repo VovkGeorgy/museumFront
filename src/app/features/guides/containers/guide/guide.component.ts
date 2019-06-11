@@ -1,12 +1,12 @@
 import {Component, OnInit} from "@angular/core";
-import {Guide} from "../../../../core/models/entity-models";
-import {GuidesService} from "../../services/guides.service";
+import {Guide, Tour} from "../../../../core/models/entity-models";
 import {Router} from "@angular/router";
-import {Observable} from "rxjs/internal/Observable";
 import {select, Store} from "@ngrx/store";
 import * as fromReducer from "../../../../core/store/reducers";
 import * as fromSelectors from "../../../../core/store/selectors";
 import {AddGuide, DeleteGuide, DeleteTourFromGuide, GetGuides, UpdateGuide} from "../../../../core/store/actions/guide.actions";
+import {TourService} from "../../../tours/services/tour.service";
+import {first} from "rxjs/operators";
 
 
 @Component({
@@ -16,26 +16,29 @@ import {AddGuide, DeleteGuide, DeleteTourFromGuide, GetGuides, UpdateGuide} from
 })
 export class GuideComponent implements OnInit {
 
+  guides$ = this.store.pipe(select(fromSelectors.getGuides));
   updatingGuide: Guide;
   isUpdateMode: boolean;
   guides: Guide[];
   detailForm = false;
-  guides$: Observable<Guide[]>;
+  tours: Tour[];
 
-  constructor(private guideService: GuidesService,
+  constructor(private tourService: TourService,
               private router: Router,
               private store: Store<fromReducer.guide.State>) {
   }
 
   ngOnInit() {
     this.store.dispatch(new GetGuides());
-    this.guides$ = this.store.pipe(select(fromSelectors.getGuides));
   }
 
   openCreateForm() {
     this.detailForm = true;
     this.isUpdateMode = false;
     this.updatingGuide = null;
+    this.tourService.getToursWithoutGuide().pipe(first()).subscribe(value => {
+      this.tours = value;
+    });
   }
 
   openUpdateForm($event: any) {
@@ -62,8 +65,18 @@ export class GuideComponent implements OnInit {
     this.detailForm = false;
   }
 
-  deleteTourFromGuide($event: any) {
-    this.store.dispatch(new DeleteTourFromGuide({tour: $event.tour, guide: this.updatingGuide}));
+  removeToursFromGuide($event: any) {
+    const toursIdArray = $event.tour.map((tour: Tour) => {
+      return tour.tourId;
+    });
+    this.store.dispatch(new DeleteTourFromGuide({toursId: toursIdArray, guide: this.updatingGuide}));
+  }
+
+  addToursToGuide($event: any) {
+    const toursIdArray = $event.tour.map((tour: Tour) => {
+      return tour.tourId;
+    });
+    this.store.dispatch(new DeleteTourFromGuide({toursId: toursIdArray, guide: this.updatingGuide}));
   }
 
   viewTour($event) {
