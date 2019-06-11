@@ -6,7 +6,6 @@ import {APP_BASE_HREF} from "@angular/common";
 import {ExhibitsModule} from "./features/exhibits/exhibits.module";
 import {AppRoutingModule} from "./app-routing.module";
 import {AuthModule} from "./features/auth/auth.module";
-import {GuidesModule} from "./features/guides/guides.module";
 import {AboutModule} from "./features/about/about.module";
 import {ForbidenModule} from "./features/forbiden/forbiden.module";
 import {HomeModule} from "./features/home/home.module";
@@ -18,6 +17,7 @@ import {VisitorsModule} from "./features/visitors/visitors.module";
 import {CoreModule} from "./core/core.module";
 import {ChatModule} from "./features/chat/chat.module";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {GuideForRootModule} from "./features/guides/guide-for-root.module";
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -30,7 +30,7 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
     NotFoundModule,
     AuthModule,
     ExhibitsModule,
-    GuidesModule,
+    GuideForRootModule,
     ToursModule,
     VisitorsModule,
     ProfileModule,

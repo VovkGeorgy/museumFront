@@ -5,7 +5,7 @@ import {GuideComponent} from './containers/guide/guide.component';
 
 const routes: Routes = [
   {
-    path: "guides",
+    path: "",
     component: GuideComponent,
     canActivate: [AdminGuard]
   }
