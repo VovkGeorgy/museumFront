@@ -7,6 +7,7 @@ import {SharedModule} from "../../shared/shared/shared.module";
 import {AdminGuard} from "../../shell/guards/admin.guard";
 import {GuideComponent} from "./containers/guide/guide.component";
 import {GuideDetailComponent} from "./components/guide-detail/guide-detail.component";
+import {GuidesGuard} from "./guards/guides.guard";
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import {GuideDetailComponent} from "./components/guide-detail/guide-detail.compo
     GuideDetailComponent
   ],
   providers: [
-    AdminGuard
+    AdminGuard,
+    GuidesGuard
   ]
 })
 export class GuidesModule {

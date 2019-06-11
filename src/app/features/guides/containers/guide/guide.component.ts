@@ -1,17 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {Guide, Tour} from "../../../../core/models/entity-models";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {select, Store} from "@ngrx/store";
 import * as fromReducer from "../../../../core/store/reducers";
 import * as fromSelectors from "../../../../core/store/selectors";
-import {
-  AddGuide,
-  AddToursToGuide,
-  DeleteGuide,
-  DeleteTourFromGuide,
-  GetGuides,
-  UpdateGuide
-} from "../../../../core/store/actions/guide.actions";
+import {AddGuide, AddToursToGuide, DeleteGuide, DeleteTourFromGuide, UpdateGuide} from "../../../../core/store/actions/guide.actions";
 import {TourService} from "../../../tours/services/tour.service";
 import {first} from "rxjs/operators";
 
@@ -35,7 +28,7 @@ export class GuideComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new GetGuides());
+    // this.store.dispatch(new GetGuides());
     this.tourService.getToursWithoutGuide().pipe(first()).subscribe(value => {
       this.toursWithoutGuide = value;
     });
