@@ -40,8 +40,9 @@
       {{'button_save' | translate}}
     </button>
   </div>
+
   <div class="col-md-3">
-    <div><h5 style="text-align: center">{{'tours_tours' | translate}}</h5></div>
+    <legend>{{'guide_tours' | translate}}</legend>
     <table class="table text-center" *ngIf="guide?.tourEntitySet?.length > 0; else noTours">
       <tbody>
       <tr class="table" *ngFor="let tour of guide.tourEntitySet">
@@ -59,15 +60,30 @@
       </tr>
       </tbody>
     </table>
+
+    <legend>{{'tours_withoutGuide' | translate}}</legend>
+    <table class="table text-center" *ngIf="toursWithoutGuide; else noTours">
+      <tbody>
+      <tr class="table" *ngFor="let tour of toursWithoutGuide">
+        <td>
+          <img class="image-sm" src="{{tour.imageUrl}}" alt="Card image">
+        </td>
+        <td>
+          <span class="curs-pointer" (click)="viewTour(tour)">{{tour.theme}}</span>
+        </td>
+        <td>
+          <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="addTours(tour)">
+            {{'button_add' | translate}}
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
     <ng-template #noTours>
       <div class="no-tours col-md-8 offset-md-2">
         <h6 style="text-align: center; margin: 30px">No tours</h6>
       </div>
     </ng-template>
-    <div class="add-button-wrap">
-      <button class="btn btn-lg btn-primary " (click)="addTours()">
-        {{'button_add' | translate}}
-      </button>
-    </div>
   </div>
 </div>

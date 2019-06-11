@@ -12,7 +12,7 @@ import {
   DeleteGuide,
   DeleteGuideSuccess, DeleteTourFromGuide, DeleteTourFromGuideSuccess,
   GetGuideById,
-  GetGuideByIdSuccess,
+  GetGuideByIdSuccess, GetGuides,
   GetGuidesSuccess,
   GuideActionTypes,
   GuideError,
@@ -97,6 +97,7 @@ export class GuideEffects {
         .removeToursFromGuide(action.payload)
         .pipe(
           map((updatedGuide) => new DeleteTourFromGuideSuccess(updatedGuide)),
+          map(() => new GetGuides()),
           catchError(error => of(new GuideError(error)))
         )
     )
@@ -110,6 +111,7 @@ export class GuideEffects {
         .addToursToGuide(action.payload)
         .pipe(
           map((updatedGuide) => new AddToursToGuideSuccess(updatedGuide)),
+          map(() => new GetGuides()),
           catchError(error => of(new GuideError(error)))
         )
     )
