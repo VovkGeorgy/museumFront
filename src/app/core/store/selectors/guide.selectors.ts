@@ -1,11 +1,11 @@
 import {createFeatureSelector, createSelector} from "@ngrx/store";
-import * as fromReducers from "../reducers";
+import * as guide from "../reducers/guide.reducer";
 
 export const getGuideStore = createFeatureSelector("guide");
 
 export const getGuideEntities = createSelector(
   getGuideStore,
-  fromReducers.guide.guideEntitySelectors.selectAll
+  guide.guideEntitySelectors.selectAll
 );
 
 export const getGuides = createSelector(getGuideEntities, entities => {
@@ -18,17 +18,17 @@ export const getTopGuides = createSelector(getGuideEntities, entities => {
 
 export const getGuidesLoaded = createSelector(
   getGuideStore,
-  (guideStore: fromReducers.guide.State) => guideStore.loaded
+  (guideStore: guide.State) => guideStore.loaded
 );
 
 export const getGuidesLoading = createSelector(
   getGuideStore,
-  (guideStore: fromReducers.guide.State) => guideStore.loading
+  (guideStore: guide.State) => guideStore.loading
 );
 
 export const getSelectedGuideId = createSelector(
   getGuideStore,
-  (guideStore: fromReducers.guide.State) => guideStore.selectedGuideId
+  (guideStore: guide.State) => guideStore.selectedGuideId
 );
 
 // export const getSearchGuides = createSelector(
@@ -44,5 +44,5 @@ export const getGuideById = createSelector(
 
 export const getGuidesError = createSelector(
   getGuideStore,
-  (guideStore: fromReducers.guide.State) => guideStore.error
+  (guideStore: guide.State) => guideStore.error
 );

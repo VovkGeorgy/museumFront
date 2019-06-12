@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {Guide, Tour} from "../../../../core/models/entity-models";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {select, Store} from "@ngrx/store";
-import * as fromReducer from "../../../../core/store/reducers";
-import * as fromSelectors from "../../../../core/store/selectors";
+import * as guideReducer from "../../../../core/store/reducers/guide.reducer";
+import * as guideSelectors from "../../../../core/store/selectors/guide.selectors";
 import {AddGuide, AddToursToGuide, DeleteGuide, DeleteTourFromGuide, UpdateGuide} from "../../../../core/store/actions/guide.actions";
 import {TourService} from "../../../tours/services/tour.service";
 import {first} from "rxjs/operators";
@@ -16,7 +16,7 @@ import {first} from "rxjs/operators";
 })
 export class GuideComponent implements OnInit {
 
-  guides$ = this.store.pipe(select(fromSelectors.getGuides));
+  guides$ = this.store.pipe(select(guideSelectors.getGuides));
   updatingGuide: Guide;
   isUpdateMode: boolean;
   detailForm = false;
@@ -24,7 +24,7 @@ export class GuideComponent implements OnInit {
 
   constructor(private tourService: TourService,
               private router: Router,
-              private store: Store<fromReducer.guide.State>) {
+              private store: Store<guideReducer.State>) {
   }
 
   ngOnInit() {
