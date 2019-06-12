@@ -17,11 +17,17 @@ export const initialState: State = adapter.getInitialState({
   loaded: false,
   loading: false,
   error: null,
-  searchTerm: "",
 });
 
 export function reducer(state = initialState, action: AuthActions): State {
   switch (action.type) {
+    case AuthActionTypes.authLogin:
+    case AuthActionTypes.authLogout:
+      return {
+        ...state,
+        loading: true
+      };
+
     case AuthActionTypes.authLoginSuccess:
       return adapter.addOne(action.payload, {
         ...state,

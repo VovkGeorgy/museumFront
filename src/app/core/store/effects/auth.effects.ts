@@ -5,6 +5,7 @@ import {catchError, map, switchMap} from "rxjs/operators";
 import {of} from "rxjs";
 import {AuthService} from "../../services/auth.service";
 import {AuthActionTypes, AuthError, AuthLogin, AuthLoginSuccess, AuthLogoutSuccess} from "../actions/auth.actions";
+import {AuthToken} from "../../models/auth-token-model";
 
 @Injectable()
 export class AuthEffects {
@@ -18,7 +19,7 @@ export class AuthEffects {
       this.authService
         .getToken(action.payload.username, action.payload.password)
         .pipe(
-          map(token => new AuthLoginSuccess(token)),
+          map((token: AuthToken) => new AuthLoginSuccess(token)),
           catchError(error => of(new AuthError(error)))
         )
     )

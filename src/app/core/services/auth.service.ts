@@ -1,12 +1,12 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
-import {Router} from "@angular/router";
 import {DataService} from "./data.service";
 import {apiUrls, clientCredentials} from "../constants/api";
-import {map} from "rxjs/operators";
+import {first, map} from "rxjs/operators";
 import * as jwt_decode from "jwt-decode";
 import {AuthToken} from "../models/auth-token-model";
+import {Observable} from "rxjs/internal/Observable";
 
 
 @Injectable()
@@ -20,8 +20,7 @@ export class AuthService {
 
   constructor(private http: HttpClient,
               private cookieService: CookieService,
-              private dataService: DataService,
-              private router: Router) {
+              private dataService: DataService) {
   }
 
   /**
@@ -31,13 +30,14 @@ export class AuthService {
    * @param {string} password
    * @returns {Observable<any>}
    */
-  getToken(username: string, password: string) {
+  getToken(username: string, password: string): Observable<AuthToken> {
     let body = new HttpParams();
     body = body.set("username", username);
     body = body.set("password", password);
     body = body.set("grant_type", "password");
     return this.http.post(apiUrls.backend + "/oauth/token", body, {headers: this.loginHeaders})
       .pipe(
+        first(),
         map((response: any) => {
           const authToken = {
             jti: response.jti,
@@ -47,7 +47,6 @@ export class AuthService {
           };
           this.setHeaders(authToken);
           this.saveUserDataInLocalStorage(authToken, username);
-          this.router.navigate(["/"]);
           return authToken as AuthToken;
         })
       );

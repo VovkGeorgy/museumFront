@@ -7,6 +7,7 @@ import * as auth from "./reducers/auth.reducer";
 import {RouterStateUrl} from "./router";
 import {RouterEffects} from "./effects/router.effects";
 import {GuideEffects} from "./effects/guide.effects";
+import {AuthEffects} from "./effects/auth.effects";
 
 export interface State {
   guide: guide.State;
@@ -20,6 +21,6 @@ export const reducers: ActionReducerMap<State> = {
   router: routerReducer
 };
 
-export const effects = [RouterEffects, GuideEffects];
+export const effects = [RouterEffects, GuideEffects, AuthEffects];
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [storeFreeze] : [];
