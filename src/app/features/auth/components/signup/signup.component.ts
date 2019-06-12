@@ -35,8 +35,6 @@ export class SignupComponent implements OnInit {
     this.visitorService.addVisitor(this.visitorForm.getRawValue()).subscribe(visitor => {
       this.tempVisitor = visitor;
       this.authService.getToken(this.tempVisitor.username, this.tempVisitor.password).subscribe(() => {
-        this.authService.getRole().subscribe(() => {
-        });
       });
     });
   }

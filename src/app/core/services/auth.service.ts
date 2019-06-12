@@ -3,20 +3,20 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 import {DataService} from "./data.service";
-import {apiUrls} from "../constants/api";
+import {apiUrls, clientCredentials} from "../constants/api";
 import {map} from "rxjs/operators";
 import * as jwt_decode from "jwt-decode";
+import {AuthToken} from "../models/auth-token-model";
 
 
 @Injectable()
 export class AuthService {
-
-  accessToken: string;
-  refreshToken: string;
-  rolesObject: any;
-  rolesArray: string[] = [];
-  rolesString: string;
-  dataHeaders = new HttpHeaders();
+  private rolesString: string;
+  private dataHeaders = new HttpHeaders();
+  private loginHeaders = new HttpHeaders({
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Authorization": "Basic " + btoa(clientCredentials.client + ":" + clientCredentials.secret)
+  });
 
   constructor(private http: HttpClient,
               private cookieService: CookieService,
@@ -32,47 +32,38 @@ export class AuthService {
    * @returns {Observable<any>}
    */
   getToken(username: string, password: string) {
-    const loginHeaders = new HttpHeaders({
-      "Content-Type": "application/x-www-form-urlencoded",
-      "Authorization": "Basic " + btoa("Client:Secret")
-    });
     let body = new HttpParams();
     body = body.set("username", username);
     body = body.set("password", password);
     body = body.set("grant_type", "password");
-    return this.http.post(apiUrls.backend + "/oauth/token", body, {headers: loginHeaders})
+    return this.http.post(apiUrls.backend + "/oauth/token", body, {headers: this.loginHeaders})
       .pipe(
         map((response: any) => {
-          this.accessToken = response.access_token;
-          this.refreshToken = response.refresh_token;
-          this.dataHeaders = this.dataHeaders.append("Content-Type", "application/json");
-          this.dataHeaders = this.dataHeaders.append("Authorization", "Bearer " + this.accessToken);
-          this.dataService.setHeaders(this.dataHeaders);
-          this.cookieService.set("jwtAccess", this.accessToken, 1);
-          this.cookieService.set("username", username, 1);
-          this.rolesString = jwt_decode(response.access_token).authorities.join(", ");
-          this.cookieService.set("roles", this.rolesString, 1);
+          const authToken = {
+            jti: response.jti,
+            accessToken: response.access_token,
+            refreshToken: response.refresh_token,
+            accessTokenExpiresIn: response.expires_in
+          };
+          this.setHeaders(authToken);
+          this.saveUserDataInLocalStorage(authToken, username);
           this.router.navigate(["/"]);
-          return response;
+          return authToken as AuthToken;
         })
       );
   }
 
-  /**
-   * Get roles of current user from the server
-   * @returns {Observable<any>}
-   */
-  getRole() {
-    return this.http.get(apiUrls.backend + "/abo/whoiam", {headers: this.dataService.getHeaders()})
-      .pipe(
-        map((data: any) => {
-          data.forEach(elem => {
-            this.rolesArray.push(elem.authority);
-          });
-          this.rolesString = this.rolesArray.join(", ");
-          this.cookieService.set("roles", this.rolesString, 1);
-          this.router.navigate(["/"]);
-        }));
+  setHeaders(authToken: AuthToken) {
+    this.dataHeaders = this.dataHeaders.append("Content-Type", "application/json");
+    this.dataHeaders = this.dataHeaders.append("Authorization", "Bearer " + authToken.accessToken);
+    this.dataService.setHeaders(this.dataHeaders);
+  }
+
+  saveUserDataInLocalStorage(authToken: AuthToken, username: string) {
+    this.cookieService.set("jwtAccess", authToken.accessToken, 1);
+    this.cookieService.set("username", username, 1);
+    this.rolesString = jwt_decode(authToken.accessToken).authorities.join(", ");
+    this.cookieService.set("roles", this.rolesString, 1);
   }
 
   /**
@@ -86,8 +77,7 @@ export class AuthService {
     this.dataHeaders = new HttpHeaders();
     this.dataService.setDefaultHeaders();
     this.rolesString = null;
-    this.rolesArray = [];
-    this.rolesObject = null;
+    return this.dataService.getData(apiUrls.backend + "/oauth/revoke-token");
   }
 
   /**
