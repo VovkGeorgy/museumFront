@@ -1,23 +1,22 @@
-import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
+import {createEntityAdapter, EntityAdapter} from "@ngrx/entity";
 import {AuthToken} from "../../models/auth-token-model";
 import {AuthActions, AuthActionTypes} from "../actions/auth.actions";
 
-
-export interface State extends EntityState<AuthToken> {
+export interface State {
   loaded: boolean;
   loading: boolean;
   error: any;
+  authToken: AuthToken;
 }
 
-export const adapter: EntityAdapter<AuthToken> = createEntityAdapter<AuthToken>({
-  selectId: (authToken: AuthToken) => authToken.jti,
-});
+export const adapter: EntityAdapter<AuthToken> = createEntityAdapter<AuthToken>({});
 
-export const initialState: State = adapter.getInitialState({
+export const initialState: State = {
   loaded: false,
   loading: false,
   error: null,
-});
+  authToken: JSON.parse(localStorage.getItem("authToken"))
+};
 
 export function reducer(state = initialState, action: AuthActions): State {
   switch (action.type) {
@@ -29,18 +28,20 @@ export function reducer(state = initialState, action: AuthActions): State {
       };
 
     case AuthActionTypes.authLoginSuccess:
-      return adapter.addOne(action.payload, {
+      return {
         ...state,
         loading: false,
-        loaded: true
-      });
+        loaded: true,
+        authToken: action.payload
+      };
 
     case AuthActionTypes.authLogoutSuccess:
-      return adapter.removeAll({
+      return {
         ...state,
         loading: false,
-        loaded: true
-      });
+        loaded: true,
+        authToken: null
+      };
 
     case AuthActionTypes.authError:
       return {

@@ -1,9 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../../core/services/auth.service";
-import {CookieService} from "ngx-cookie-service";
 import {VisitorService} from "../../../visitors/services/visitor.service";
-import {ValidatorsService} from '../../../../core/services/validators.service';
+import {ValidatorsService} from "../../../../core/services/validators.service";
 
 @Component({
   selector: "app-signup",
@@ -24,7 +23,6 @@ export class SignupComponent implements OnInit {
 
   constructor(private visitorService: VisitorService,
               private authService: AuthService,
-              private cookieService: CookieService,
               private validatorService: ValidatorsService) {
   }
 

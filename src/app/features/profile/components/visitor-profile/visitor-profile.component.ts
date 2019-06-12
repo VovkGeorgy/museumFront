@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
-import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 import {VisitorService} from "../../../visitors/services/visitor.service";
 
@@ -26,7 +25,6 @@ export class VisitorProfileComponent implements OnInit {
   favouriteVisitorTours: any[any] = [];
 
   constructor(private visitorService: VisitorService,
-              private cookieService: CookieService,
               private router: Router) {
   }
 
@@ -35,7 +33,7 @@ export class VisitorProfileComponent implements OnInit {
   }
 
   getVisitorData() {
-    this.visitorService.getVisitorByUsername(this.cookieService.get("username")).subscribe(data => {
+    this.visitorService.getVisitorByUsername(localStorage.getItem("username")).subscribe(data => {
       this.visitor = data;
       this.visitorForm.setValue(this.visitor);
       this.favouriteVisitorTours = this.visitor.tourEntitySet;
@@ -43,7 +41,7 @@ export class VisitorProfileComponent implements OnInit {
   }
 
   updateVisitorInBase() {
-    let localVisitor = this.visitorForm.getRawValue();
+    const localVisitor = this.visitorForm.getRawValue();
     this.visitorService.updateVisitor(localVisitor.visitorId, localVisitor).subscribe(visitor => {
       this.visitor = visitor;
       this.disabled = "disabled";
@@ -62,7 +60,7 @@ export class VisitorProfileComponent implements OnInit {
   }
 
   deleteFromFavorites(tour) {
-    this.visitorService.removeTourFromVisitor(tour.tourId, this.visitor.visitorId).subscribe(data => {
+    this.visitorService.removeTourFromVisitor(tour.tourId, this.visitor.visitorId).subscribe(() => {
       this.ngOnInit();
     });
   }

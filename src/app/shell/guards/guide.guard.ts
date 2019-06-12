@@ -1,22 +1,19 @@
 import {Injectable} from "@angular/core";
-import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
-import {CookieService} from "ngx-cookie-service";
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
 
 @Injectable()
 export class GuideGuard implements CanActivate {
-  constructor(private router: Router,
-              private cookieService: CookieService) {
+  constructor(private router: Router) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (this.cookieService.get("jwtAccess")) {
-      if (JSON.stringify(this.cookieService.get("roles")).search("ROLE_GUIDE") !== -1) {
+    if (localStorage.getItem("authToken")) {
+      if (JSON.stringify(localStorage.getItem("roles")).search("ROLE_GUIDE") !== -1) {
         return true;
       } else {
         this.router.navigate(["/403"]);
         return false;
       }
-
     } else {
       this.router.navigate(["/login"]);
       return false;

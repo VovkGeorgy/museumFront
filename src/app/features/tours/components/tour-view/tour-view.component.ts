@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "../../../../core/services/auth.service";
 import {TourService} from "../../services/tour.service";
 import {VisitorService} from "../../../visitors/services/visitor.service";
@@ -16,8 +15,7 @@ export class TourViewComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private visitorService: VisitorService,
               private authService: AuthService,
-              private tourService: TourService,
-              private cookieService: CookieService) {
+              private tourService: TourService) {
   }
 
   tour: any;
@@ -33,7 +31,7 @@ export class TourViewComponent implements OnInit {
           this.exhibitsById = exhibits;
         });
         if (this.isVisitor()) {
-          this.visitorService.getVisitorByUsername(this.cookieService.get("username")).subscribe(data => {
+          this.visitorService.getVisitorByUsername(localStorage.getItem("username")).subscribe(data => {
             this.visitor = data;
             this.isTourInFavorites();
           });

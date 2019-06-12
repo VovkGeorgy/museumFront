@@ -1,8 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
-import {CookieService} from "ngx-cookie-service";
 import {TranslateService} from "@ngx-translate/core";
 import {AuthService} from "../../../../core/services/auth.service";
+import {AuthLogout} from "../../../../core/store/actions/auth.actions";
+import {Store} from "@ngrx/store";
+import * as authReducer from "../../../../core/store/reducers/auth.reducer";
 
 @Component({
   selector: "app-nav-bar",
@@ -12,8 +14,8 @@ import {AuthService} from "../../../../core/services/auth.service";
 export class NavBarComponent implements OnInit {
 
   constructor(private router: Router,
-              private cookieService: CookieService,
               private translate: TranslateService,
+              private store: Store<authReducer.State>,
               private authService: AuthService) {
   }
 
@@ -24,13 +26,13 @@ export class NavBarComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
+    this.store.dispatch(new AuthLogout());
     this.router.navigate(["/"]);
   }
 
   hasSignedIn() {
-    if (this.cookieService.get("username")) {
-      this.logButtonName = this.cookieService.get("username");
+    if (localStorage.getItem("username")) {
+      this.logButtonName = localStorage.getItem("username");
       return true;
     }
     return false;

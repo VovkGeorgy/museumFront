@@ -1,12 +1,12 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {CookieService} from "ngx-cookie-service";
 import {DataService} from "./data.service";
 import {apiUrls, clientCredentials} from "../constants/api";
 import {first, map} from "rxjs/operators";
 import * as jwt_decode from "jwt-decode";
 import {AuthToken} from "../models/auth-token-model";
 import {Observable} from "rxjs/internal/Observable";
+import {of} from "rxjs/internal/observable/of";
 
 
 @Injectable()
@@ -19,7 +19,6 @@ export class AuthService {
   });
 
   constructor(private http: HttpClient,
-              private cookieService: CookieService,
               private dataService: DataService) {
   }
 
@@ -59,10 +58,10 @@ export class AuthService {
   }
 
   saveUserDataInLocalStorage(authToken: AuthToken, username: string) {
-    this.cookieService.set("jwtAccess", authToken.accessToken, 1);
-    this.cookieService.set("username", username, 1);
     this.rolesString = jwt_decode(authToken.accessToken).authorities.join(", ");
-    this.cookieService.set("roles", this.rolesString, 1);
+    localStorage.setItem("authToken", JSON.stringify(authToken));
+    localStorage.setItem("username", username);
+    localStorage.setItem("roles", this.rolesString);
   }
 
   /**
@@ -70,13 +69,13 @@ export class AuthService {
    * Clean cookies, headers, and variables
    */
   logout() {
-    this.cookieService.delete("jwtAccess");
-    this.cookieService.delete("roles");
-    this.cookieService.delete("username");
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("username");
+    localStorage.removeItem("roles");
     this.dataHeaders = new HttpHeaders();
     this.dataService.setDefaultHeaders();
     this.rolesString = null;
-    return this.dataService.getData(apiUrls.backend + "/oauth/revoke-token");
+    return of(true);
   }
 
   /**
@@ -84,7 +83,10 @@ export class AuthService {
    * @returns {boolean}
    */
   isAdmin() {
-    return JSON.stringify(this.cookieService.get("roles")).search("ROLE_ADMIN") !== -1;
+    if (localStorage.getItem("roles")) {
+      return localStorage.getItem("roles").search("ROLE_ADMIN") !== -1;
+    }
+
   }
 
   /**
@@ -92,7 +94,9 @@ export class AuthService {
    * @returns {boolean}
    */
   isGuide() {
-    return JSON.stringify(this.cookieService.get("roles")).search("ROLE_GUIDE") !== -1;
+    if (localStorage.getItem("roles")) {
+      return localStorage.getItem("roles").search("ROLE_GUIDE") !== -1;
+    }
   }
 
   /**
@@ -100,7 +104,8 @@ export class AuthService {
    * @returns {boolean}
    */
   isVisitor() {
-    return JSON.stringify(this.cookieService.get("roles")).search("ROLE_VISITOR") !== -1;
+    if (localStorage.getItem("roles")) {
+      return localStorage.getItem("roles").search("ROLE_VISITOR") !== -1;
+    }
   }
-
 }

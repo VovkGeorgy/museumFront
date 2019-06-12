@@ -1,7 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../../core/services/auth.service";
-import {CookieService} from "ngx-cookie-service";
 import {NgxSpinnerService} from "ngx-spinner";
 import {Store} from "@ngrx/store";
 import {AuthActionTypes, AuthLogin} from "../../../../core/store/actions/auth.actions";
@@ -25,7 +24,6 @@ export class LoginComponent implements OnInit {
   wrongData = false;
 
   constructor(private authService: AuthService,
-              private cookieService: CookieService,
               private store: Store<authReducer.State>,
               private storeActions: Actions,
               private router: Router,

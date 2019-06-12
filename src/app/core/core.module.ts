@@ -2,7 +2,6 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {DataService} from "./services/data.service";
 import {AuthService} from "./services/auth.service";
-import {CookieService} from "ngx-cookie-service";
 import {ValidatorsService} from "./services/validators.service";
 import {StoreModule} from "@ngrx/store";
 import * as fromStore from "./store";
@@ -30,7 +29,6 @@ import {environment} from "../../environments/environment";
   ],
   declarations: [],
   providers: [
-    CookieService,
     DataService,
     AuthService,
     ValidatorsService
