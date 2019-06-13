@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {AppComponent} from "../../../../app.component";
-import {NavBarComponent} from "../../../nav-bar/components/nav-bar/nav-bar.component";
+import {NavBarComponent} from "../../../nav-bar/containers/nav-bar/nav-bar.component";
 import {HomeComponent} from "./home.component";
 import {NotFoundComponent} from "../../../not-found/components/not-found/not-found.component";
 import {LoginComponent} from "../../../auth/components/login/login.component";
