@@ -1,7 +1,7 @@
 import {createFeatureSelector, createSelector} from "@ngrx/store";
-import * as guide from "../reducers/guide.reducer";
+import * as guide from "./guide.reducer";
 
-export const getGuideStore = createFeatureSelector("guide");
+export const getGuideStore = createFeatureSelector("guideFeature");
 
 export const getGuideEntities = createSelector(
   getGuideStore,
@@ -29,17 +29,6 @@ export const getGuidesLoading = createSelector(
 export const getSelectedGuideId = createSelector(
   getGuideStore,
   (guideStore: guide.State) => guideStore.selectedGuideId
-);
-
-// export const getSearchGuides = createSelector(
-//   getGuideStore,
-//   (guideStore: fromReducers.guide.State) => guideStore.searchGuides
-// );
-
-export const getGuideById = createSelector(
-  getGuideEntities,
-  getSelectedGuideId,
-  (entities, id) => entities.find(i => i.guideId === id)
 );
 
 export const getGuidesError = createSelector(

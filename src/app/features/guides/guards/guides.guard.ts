@@ -2,11 +2,11 @@ import {Injectable} from "@angular/core";
 import {CanActivate, Router} from "@angular/router";
 import {Observable} from "rxjs/internal/Observable";
 import {select, Store} from "@ngrx/store";
-import * as guideReducer from "../../../core/store/reducers/guide.reducer";
-import * as guideSelector from "../../../core/store/selectors/guide.selectors";
+import * as guideReducer from "../state-management//guide.reducer";
+import * as guideSelector from "../state-management/guide.selectors";
 import {first, map, switchMap} from "rxjs/operators";
 import {of} from "rxjs/internal/observable/of";
-import {GetGuides, GuideActionTypes} from "../../../core/store/actions/guide.actions";
+import {GetGuides, GuideActionTypes} from "../state-management/guide.actions";
 import {Actions, ofType} from "@ngrx/effects";
 
 @Injectable()

@@ -1,9 +1,9 @@
 import {Action} from "@ngrx/store";
-import {Guide} from "../../models/entity-models";
-import {ToursGuideModel} from "../../../features/guides/model/tours-guide-model";
+import {Guide} from "../../../core/models/entity-models";
+import {ToursGuideModel} from "../model/tours-guide-model";
 
 export enum GuideActionTypes {
-  guideGetGuides = "[Guide] get",
+  guideGetGuides = "[Guide] get Guides",
   guideGetGuidesSuccess = "[Guide] get Guides success",
   guideAddGuide = "[Guide] add Guide",
   guideAddGuideSuccess = "[Guide] add Guide success",
@@ -17,9 +17,6 @@ export enum GuideActionTypes {
   guideDeleteTourFromGuideSuccess = "[Guide] delete Tour from Guide success",
   guideAddToursToGuide = "[Guide] add Tour to Guide",
   guideAddToursToGuideSuccess = "[Guide] add Tour to Guide success",
-  // GuideSearchGuides = "[Guide] search Guides",
-  // GuideSearchGuidesSuccess = "[Guide] search Guides success",
-  // GuideSearchGuidesReset = "[Guide] search Guides reset",
   guideError = "[Guide] error"
 }
 
@@ -118,24 +115,6 @@ export class AddToursToGuideSuccess implements Action {
   }
 }
 
-// export class SearchGuides implements Action {
-//   readonly type = GuideActionTypes.GuideSearchGuides;
-//
-//   constructor(public payload: string) {
-//   }
-// }
-//
-// export class SearchGuidesSuccess implements Action {
-//   readonly type = GuideActionTypes.GuideSearchGuidesSuccess;
-//
-//   constructor(public payload: Guide[]) {
-//   }
-// }
-//
-// export class SearchGuidesReset implements Action {
-//   readonly type = GuideActionTypes.GuideSearchGuidesReset;
-// }
-
 export class GuideError implements Action {
   readonly type = GuideActionTypes.guideError;
 
@@ -158,7 +137,4 @@ export type GuideActions =
   | DeleteTourFromGuideSuccess
   | AddToursToGuide
   | AddToursToGuideSuccess
-  // | SearchGuides
-  // | SearchGuidesSuccess
-  // | SearchGuidesReset
   | GuideError;

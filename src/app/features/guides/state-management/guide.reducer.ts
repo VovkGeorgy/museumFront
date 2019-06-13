@@ -1,6 +1,6 @@
 import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
-import {GuideActions, GuideActionTypes} from "../actions/guide.actions";
-import {Guide} from "../../models/entity-models";
+import {GuideActions, GuideActionTypes} from "./guide.actions";
+import {Guide} from "../../../core/models/entity-models";
 
 
 export interface State extends EntityState<Guide> {
@@ -8,7 +8,6 @@ export interface State extends EntityState<Guide> {
   loading: boolean;
   error: any;
   selectedGuideId: number;
-  // searchGuides: Guide[];
 }
 
 export const adapter: EntityAdapter<Guide> = createEntityAdapter<Guide>({
@@ -20,8 +19,6 @@ export const initialState: State = adapter.getInitialState({
   loading: false,
   selectedGuideId: null,
   error: null,
-  searchTerm: "",
-  // searchGuides: null
 });
 
 export function reducer(state = initialState, action: GuideActions): State {
@@ -30,7 +27,6 @@ export function reducer(state = initialState, action: GuideActions): State {
     case GuideActionTypes.guideAddGuide:
     case GuideActionTypes.guideDeleteGuide:
     case GuideActionTypes.guideUpdateGuide:
-    // case GuideActionTypes.guideSearchGuides:
     case GuideActionTypes.guideGetGuideById:
       return {
         ...state,
@@ -103,19 +99,6 @@ export function reducer(state = initialState, action: GuideActions): State {
         }
       );
     }
-
-    // case GuideActionTypes.guideSearchGuidesSuccess:
-    //   return {
-    //     ...state,
-    //     searchGuides: action.payload,
-    //     loading: false
-    //   };
-    //
-    // case GuideActionTypes.guideSearchGuidesReset:
-    //   return {
-    //     ...state,
-    //     searchGuides: null
-    //   };
 
     case GuideActionTypes.guideError:
       return {

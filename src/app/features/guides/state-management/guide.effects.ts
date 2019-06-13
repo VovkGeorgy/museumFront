@@ -4,8 +4,8 @@ import {Actions, Effect, ofType} from "@ngrx/effects";
 import {catchError, map, switchMap} from "rxjs/operators";
 import {of} from "rxjs";
 
-import * as fromRouterActions from "../actions/router.actions";
-import {GuidesService} from "../../../features/guides/services/guides.service";
+import * as fromRouterActions from "../../../core/store/actions/router.actions";
+import {GuidesService} from "../services/guides.service";
 import {
   AddGuide,
   AddGuideSuccess, AddToursToGuide, AddToursToGuideSuccess,
@@ -17,7 +17,7 @@ import {
   GuideActionTypes,
   GuideError,
   UpdateGuideSuccess
-} from "../actions/guide.actions";
+} from "./guide.actions";
 
 @Injectable()
 export class GuideEffects {
@@ -116,19 +116,6 @@ export class GuideEffects {
         )
     )
   );
-
-  // @Effect()
-  // searchGuides$ = this.actions$.pipe(
-  //   ofType(GuideActionTypes.GuideSearchGuides),
-  //   switchMap((action: SearchGuides) =>
-  //     this.guideService
-  //       .searchGuides(action.payload)
-  //       .pipe(
-  //         map(guides => new SearchGuidesSuccess(guides)),
-  //         catchError(error => of(new GuideError(error)))
-  //       )
-  //   )
-  // );
 
   @Effect()
   updateGuideSuccess$ = this.actions$.pipe(
