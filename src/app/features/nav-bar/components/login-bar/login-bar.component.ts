@@ -11,10 +11,7 @@ export class LoginBarComponent implements OnInit {
   isSignedIn: boolean;
 
   @Input()
-  logButtonName: string;
-
-  @Input()
-  isAdmin: boolean;
+  profileButtonName: string;
 
   @Input()
   profileLink: string;
@@ -29,10 +26,6 @@ export class LoginBarComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  goToProfileEditor() {
-    this.goToProfileEditorEvent.emit();
   }
 
   logout() {

@@ -1,0 +1,16 @@
+<app-tab-set [tabs]="tabs">
+  <app-login-bar
+    [profileLink]="profileLink$ | async"
+    [profileButtonName]="username$ | async"
+    [isSignedIn]="isSignedIn$ | async"
+    (logoutEvent)="logout()"
+  ></app-login-bar>
+  <div class="language-changer btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-outline-primary btn-sm curs-pointer active" (click)="changeLanguage('en')">
+      <input type="radio"> EN
+    </label>
+    <label class="btn btn-outline-primary btn-sm curs-pointer" (click)="changeLanguage('ru')">
+      <input type="radio"> RU
+    </label>
+  </div>
+</app-tab-set>
