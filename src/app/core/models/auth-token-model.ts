@@ -1,3 +1,5 @@
+import {HttpHeaders} from "@angular/common/http";
+
 export interface AuthToken {
   jti: string;
   accessToken: string;
@@ -8,4 +10,12 @@ export interface AuthToken {
 export interface UserAuthData {
   username: string;
   password: string;
+}
+
+export interface UserDetails {
+  username: string;
+  profileLink: string;
+  roles: string;
+  authToken: AuthToken;
+  dataHeaders?: HttpHeaders;
 }

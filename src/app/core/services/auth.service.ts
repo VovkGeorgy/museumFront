@@ -1,10 +1,9 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {DataService} from "./data.service";
 import {apiUrls, clientCredentials} from "../constants/api";
 import {first, map} from "rxjs/operators";
 import * as jwt_decode from "jwt-decode";
-import {AuthToken} from "../models/auth-token-model";
+import {UserDetails} from "../models/auth-token-model";
 import {Observable} from "rxjs/internal/Observable";
 import {of} from "rxjs/internal/observable/of";
 
@@ -12,14 +11,12 @@ import {of} from "rxjs/internal/observable/of";
 @Injectable()
 export class AuthService {
   private rolesString: string;
-  private dataHeaders = new HttpHeaders();
   private loginHeaders = new HttpHeaders({
     "Content-Type": "application/x-www-form-urlencoded",
     "Authorization": "Basic " + btoa(clientCredentials.client + ":" + clientCredentials.secret)
   });
 
-  constructor(private http: HttpClient,
-              private dataService: DataService) {
+  constructor(private http: HttpClient) {
   }
 
   /**
@@ -29,7 +26,7 @@ export class AuthService {
    * @param {string} password
    * @returns {Observable<any>}
    */
-  getToken(username: string, password: string): Observable<AuthToken> {
+  getToken(username: string, password: string): Observable<UserDetails> {
     let body = new HttpParams();
     body = body.set("username", username);
     body = body.set("password", password);
@@ -44,24 +41,41 @@ export class AuthService {
             refreshToken: response.refresh_token,
             accessTokenExpiresIn: response.expires_in
           };
-          this.setHeaders(authToken);
-          this.saveUserDataInLocalStorage(authToken, username);
-          return authToken as AuthToken;
+          let localDataHeaders = new HttpHeaders();
+          localDataHeaders = localDataHeaders.append("Content-Type", "application/json");
+          localDataHeaders = localDataHeaders.append("Authorization", "Bearer " + authToken.accessToken);
+          return {
+            username: username,
+            profileLink: this.getProfileEditorLink(),
+            roles: jwt_decode(authToken.accessToken).authorities.join(", "),
+            authToken: authToken,
+            dataHeaders: localDataHeaders,
+          };
         })
       );
   }
 
-  setHeaders(authToken: AuthToken) {
-    this.dataHeaders = this.dataHeaders.append("Content-Type", "application/json");
-    this.dataHeaders = this.dataHeaders.append("Authorization", "Bearer " + authToken.accessToken);
-    this.dataService.setHeaders(this.dataHeaders);
+  saveUserDataInLocalStorage(userDetail: UserDetails) {
+    this.rolesString = jwt_decode(userDetail.authToken.accessToken).authorities.join(", ");
+    localStorage.setItem("authToken", JSON.stringify(userDetail.authToken));
+    localStorage.setItem("dataHeaders", JSON.stringify(userDetail.dataHeaders));
+    localStorage.setItem("username", userDetail.username);
+    localStorage.setItem("roles", userDetail.roles);
+    localStorage.setItem("profileLink", this.getProfileEditorLink());
+    localStorage.setItem("isSignedIn", "true");
+    return of(true);
   }
 
-  saveUserDataInLocalStorage(authToken: AuthToken, username: string) {
-    this.rolesString = jwt_decode(authToken.accessToken).authorities.join(", ");
-    localStorage.setItem("authToken", JSON.stringify(authToken));
-    localStorage.setItem("username", username);
-    localStorage.setItem("roles", this.rolesString);
+  getProfileEditorLink() {
+    if (this.isAdmin()) {
+      return "#";
+    }
+    if (this.isGuide()) {
+      return "/guide-profile";
+    }
+    if (this.isVisitor()) {
+      return "/visitor-profile";
+    }
   }
 
   /**
@@ -70,11 +84,11 @@ export class AuthService {
    */
   logout() {
     localStorage.removeItem("authToken");
+    localStorage.removeItem("dataHeaders");
     localStorage.removeItem("username");
     localStorage.removeItem("roles");
-    this.dataHeaders = new HttpHeaders();
-    this.dataService.setDefaultHeaders();
-    this.rolesString = null;
+    localStorage.removeItem("profileLink");
+    localStorage.removeItem("isSignedIn");
     return of(true);
   }
 
@@ -84,9 +98,9 @@ export class AuthService {
    */
   isAdmin() {
     if (localStorage.getItem("roles")) {
-      return localStorage.getItem("roles").search("ROLE_ADMIN") !== -1;
+      return localStorage.getItem("roles").includes("ROLE_ADMIN");
     }
-
+    return false;
   }
 
   /**
@@ -95,8 +109,9 @@ export class AuthService {
    */
   isGuide() {
     if (localStorage.getItem("roles")) {
-      return localStorage.getItem("roles").search("ROLE_GUIDE") !== -1;
+      return localStorage.getItem("roles").includes("ROLE_GUIDE");
     }
+    return false;
   }
 
   /**
@@ -105,7 +120,8 @@ export class AuthService {
    */
   isVisitor() {
     if (localStorage.getItem("roles")) {
-      return localStorage.getItem("roles").search("ROLE_VISITOR") !== -1;
+      return localStorage.getItem("roles").includes("ROLE_VISITOR");
     }
+    return false;
   }
 }
