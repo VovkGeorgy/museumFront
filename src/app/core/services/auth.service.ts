@@ -44,10 +44,12 @@ export class AuthService {
           let localDataHeaders = new HttpHeaders();
           localDataHeaders = localDataHeaders.append("Content-Type", "application/json");
           localDataHeaders = localDataHeaders.append("Authorization", "Bearer " + authToken.accessToken);
+          const userRoles = jwt_decode(authToken.accessToken).authorities.join(", ");
           return {
             username: username,
-            profileLink: this.getProfileEditorLink(),
-            roles: jwt_decode(authToken.accessToken).authorities.join(", "),
+            isSignedIn: true,
+            profileLink: this.getProfileEditorLink(userRoles),
+            roles: userRoles,
             authToken: authToken,
             dataHeaders: localDataHeaders,
           };
@@ -61,21 +63,22 @@ export class AuthService {
     localStorage.setItem("dataHeaders", JSON.stringify(userDetail.dataHeaders));
     localStorage.setItem("username", userDetail.username);
     localStorage.setItem("roles", userDetail.roles);
-    localStorage.setItem("profileLink", this.getProfileEditorLink());
-    localStorage.setItem("isSignedIn", "true");
+    localStorage.setItem("profileLink", userDetail.profileLink);
+    localStorage.setItem("isSignedIn$", "true");
     return of(true);
   }
 
-  getProfileEditorLink() {
-    if (this.isAdmin()) {
-      return "#";
+  private getProfileEditorLink(userRoles: string) {
+    if (userRoles.includes("ROLE_ADMIN")) {
+      return "";
     }
-    if (this.isGuide()) {
+    if (userRoles.includes("ROLE_GUIDE")) {
       return "/guide-profile";
     }
-    if (this.isVisitor()) {
+    if (userRoles.includes("ROLE_VISITOR")) {
       return "/visitor-profile";
     }
+    return "";
   }
 
   /**
@@ -88,7 +91,7 @@ export class AuthService {
     localStorage.removeItem("username");
     localStorage.removeItem("roles");
     localStorage.removeItem("profileLink");
-    localStorage.removeItem("isSignedIn");
+    localStorage.removeItem("isSignedIn$");
     return of(true);
   }
 

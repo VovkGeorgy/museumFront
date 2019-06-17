@@ -15,13 +15,11 @@ export interface State {
   authToken: AuthToken;
 }
 
-export const adapter: EntityAdapter<AuthToken> = createEntityAdapter<AuthToken>({});
-
 export const initialState: State = {
   loaded: false,
   loading: false,
   error: null,
-  isSignedIn: !!localStorage.getItem("isSignedIn"),
+  isSignedIn: !!localStorage.getItem("isSignedIn$"),
   userRoles: localStorage.getItem("roles"),
   username: localStorage.getItem("username"),
   profileLink: localStorage.getItem("profileLink"),
@@ -37,6 +35,7 @@ export function reducer(state = initialState, action: AuthActions): State {
       return {
         ...state,
         loading: true,
+        error: null,
       };
 
     case AuthActionTypes.authLoginSuccess:
@@ -78,5 +77,3 @@ export function reducer(state = initialState, action: AuthActions): State {
       return state;
   }
 }
-
-export const authEntitySelectors = adapter.getSelectors();

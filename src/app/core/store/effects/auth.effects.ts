@@ -25,7 +25,7 @@ export class AuthEffects {
       this.authService
         .getToken(action.payload.username, action.payload.password)
         .pipe(
-          map((userDetails: UserDetails) => new AuthLoginSuccess(userDetails)),
+          map((userDetails: UserDetails) => new AuthSetLocalStorage(userDetails)),
           catchError(error => of(new AuthError(error)))
         )
     )
@@ -33,11 +33,12 @@ export class AuthEffects {
 
   @Effect()
   authSetLocalStorage$ = this.actions$.pipe(
-    ofType(AuthActionTypes.authLoginSuccess),
+    ofType(AuthActionTypes.authSetLocalStorage),
     switchMap((action: AuthSetLocalStorage) =>
       this.authService
         .saveUserDataInLocalStorage(action.payload)
         .pipe(
+          map(() => new AuthLoginSuccess(action.payload)),
           catchError(error => of(new AuthError(error)))
         )
     )
