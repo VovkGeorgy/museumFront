@@ -2,23 +2,23 @@ import {Injectable} from "@angular/core";
 import {CanActivate, Router} from "@angular/router";
 import {Observable} from "rxjs/internal/Observable";
 import {select, Store} from "@ngrx/store";
-import * as guideReducer from "../state-management//guide.reducer";
-import * as guideSelector from "../state-management/guide.selectors";
+import * as toursReducer from "../state-management/tour.reducer";
+import * as tourSelector from "../state-management/tour.selectors";
 import {filter, first, switchMap, tap} from "rxjs/operators";
 import {of} from "rxjs/internal/observable/of";
-import {GetGuides} from "../state-management/guide.actions";
+import {GetTours} from "../state-management/tour.actions";
 
 @Injectable()
-export class GuidesGuard implements CanActivate {
+export class ToursResourceGuard implements CanActivate {
   constructor(private router: Router,
-              private store: Store<guideReducer.State>) {
+              private store: Store<toursReducer.State>) {
   }
 
   canActivate(): Observable<boolean> {
-    return this.store.pipe(select(guideSelector.getGuides)).pipe(
+    return this.store.pipe(select(tourSelector.getTours)).pipe(
       tap(data => {
         if (data.length === 0) {
-          this.store.dispatch(new GetGuides());
+          this.store.dispatch(new GetTours());
         }
       }),
       filter((data) => {

@@ -5,20 +5,21 @@ import {VisitorGuard} from '../../shell/guards/visitor.guard';
 import {TourEditComponent} from './components/tour-edit/tour-edit.component';
 import {GuideGuard} from '../../shell/guards/guide.guard';
 import {TourViewComponent} from './components/tour-view/tour-view.component';
+import {ToursResourceGuard} from "./guards/tours-resource-guard.service";
 
 const routes: Routes = [
   {
     path: "",
     component: ToursPresentationComponent,
-    canActivate: [VisitorGuard]
+    canActivate: [VisitorGuard, ToursResourceGuard]
   },
   {
-    path: "tours/edit",
+    path: "edit",
     component: TourEditComponent,
     canActivate: [GuideGuard]
   },
   {
-    path: "tours/view",
+    path: "view",
     component: TourViewComponent,
     canActivate: [VisitorGuard]
   }

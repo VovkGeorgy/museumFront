@@ -13,6 +13,7 @@ import {StoreModule} from "@ngrx/store";
 import * as tour from "./state-management/tour.reducer";
 import {EffectsModule} from "@ngrx/effects";
 import {TourEffects} from "./state-management/tour.effects";
+import {ToursResourceGuard} from "./guards/tours-resource-guard.service";
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import {TourEffects} from "./state-management/tour.effects";
     GuideGuard,
     VisitorGuard,
     TourService,
+    ToursResourceGuard
   ]
 })
 export class ToursModule { }
