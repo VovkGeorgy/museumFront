@@ -9,12 +9,18 @@ import {SharedModule} from '../../shared/shared/shared.module';
 import {GuideGuard} from '../../shell/guards/guide.guard';
 import {VisitorGuard} from '../../shell/guards/visitor.guard';
 import {TourService} from './services/tour.service';
+import {StoreModule} from "@ngrx/store";
+import * as tour from "./state-management/tour.reducer";
+import {EffectsModule} from "@ngrx/effects";
+import {TourEffects} from "./state-management/tour.effects";
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
-    ToursRoutingModule
+    ToursRoutingModule,
+    StoreModule.forFeature("tourFeature", tour.reducer),
+    EffectsModule.forFeature([TourEffects]),
   ],
   declarations: [
     TourEditComponent,
