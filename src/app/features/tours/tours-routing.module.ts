@@ -8,7 +8,7 @@ import {TourViewComponent} from './components/tour-view/tour-view.component';
 
 const routes: Routes = [
   {
-    path: "tours",
+    path: "",
     component: ToursPresentationComponent,
     canActivate: [VisitorGuard]
   },

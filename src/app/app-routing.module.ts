@@ -14,6 +14,10 @@ export const routes: Routes = [
     loadChildren: "./features/guides/guides.module#GuidesModule"
   },
   {
+    path: "tours",
+    loadChildren: "./features/tours/tours.module#ToursModule"
+  },
+  {
     path: "**",
     redirectTo: "/404"
   }

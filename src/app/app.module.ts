@@ -12,12 +12,12 @@ import {HomeModule} from "./features/home/home.module";
 import {NavBarModule} from "./features/nav-bar/nav-bar.module";
 import {NotFoundModule} from "./features/not-found/not-found.module";
 import {ProfileModule} from "./features/profile/profile.module";
-import {ToursModule} from "./features/tours/tours.module";
 import {VisitorsModule} from "./features/visitors/visitors.module";
 import {CoreModule} from "./core/core.module";
 import {ChatModule} from "./features/chat/chat.module";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {GuideForRootModule} from "./features/guides/guide-for-root.module";
+import {ToursForRootModule} from "./features/tours/tours-for-root.module";
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -31,7 +31,7 @@ import {GuideForRootModule} from "./features/guides/guide-for-root.module";
     AuthModule,
     ExhibitsModule,
     GuideForRootModule,
-    ToursModule,
+    ToursForRootModule,
     VisitorsModule,
     ProfileModule,
     AboutModule,
