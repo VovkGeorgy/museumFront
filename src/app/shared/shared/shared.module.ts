@@ -5,7 +5,6 @@ import {SharedRoutingModule} from './shared-routing.module';
 import {TranslateModule} from '@ngx-translate/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {FlexLayoutModule} from '@angular/flex-layout';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {RouterModule} from '@angular/router';
 
@@ -18,7 +17,6 @@ import {RouterModule} from '@angular/router';
     ReactiveFormsModule,
     SharedRoutingModule,
     NgbModule,
-    FlexLayoutModule,
     NgxSpinnerModule,
     TranslateModule.forChild()
   ],
