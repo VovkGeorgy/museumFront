@@ -62,7 +62,7 @@ describe('TourViewComponent', () => {
         ReactiveFormsModule,
         HttpClientModule,
         AppRoutingModule,
-        NgbModule.forRoot(),
+        NgbModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,

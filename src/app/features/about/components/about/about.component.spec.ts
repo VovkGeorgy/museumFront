@@ -19,7 +19,7 @@ describe('AboutComponent', () => {
       declarations: [ AboutComponent ],
       imports: [
         BrowserModule,
-        NgbModule.forRoot(),
+        NgbModule,
         ReactiveFormsModule,
         HttpClientModule,
         TranslateModule.forRoot({

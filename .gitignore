@@ -10,6 +10,6 @@
 *.launch
 .settings/
 *.sublime-workspace
-
+/out-tsc
 Thumbs.db
 /dist

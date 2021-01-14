@@ -9,9 +9,9 @@ describe("museum-front App", () => {
     browser.driver.manage().window().maximize();
   });
 
-  it("should display welcome message", () => {
+  it("should display welcome message", async () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual("Welcome in museum of History and Art");
+    expect(await page.getParagraphText()).toEqual("Welcome in museum of History and Art");
   });
 
   it("should display nav bar", () => {
