@@ -18,7 +18,7 @@ import {CookieService} from "ngx-cookie-service";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {AppComponent} from "../../../../app.component";
 import {HomeComponent} from "../../../home/components/home/home.component";
-import {NavBarComponent} from "../../../nav-bar/components/nav-bar/nav-bar.component";
+import {NavBarComponent} from "../../../nav-bar/containers/nav-bar/nav-bar.component";
 import {NotFoundComponent} from "../../../not-found/components/not-found/not-found.component";
 import {LoginComponent} from "../../../auth/components/login/login.component";
 import {ToursPresentationComponent} from "../../../tours/components/tours-presentation/tours-presentation.component";

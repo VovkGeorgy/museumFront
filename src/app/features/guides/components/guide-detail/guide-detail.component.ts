@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Guide} from "../../../../core/models/entity-models";
+import {Guide, Tour} from "../../../../core/models/entity-models";
 
 @Component({
   selector: "app-guide-detail",
@@ -15,10 +15,13 @@ export class GuideDetailComponent implements OnInit, OnDestroy {
     password: new FormControl("", [Validators.required]),
     fio: new FormControl("", [Validators.required]),
     age: new FormControl("", [Validators.max(150), Validators.required]),
-    experience: new FormControl("", [Validators.required]),
+    experience: new FormControl("", [Validators.max(100), Validators.required]),
     languages: new FormControl(""),
     tourEntitySet: new FormControl([]),
   });
+
+  @Input()
+  toursWithoutGuide: Tour[];
 
   @Input()
   guide: Guide;
@@ -34,6 +37,15 @@ export class GuideDetailComponent implements OnInit, OnDestroy {
 
   @Output()
   goBackClick = new EventEmitter();
+
+  @Output()
+  viewTourClick = new EventEmitter();
+
+  @Output()
+  deleteTourClick = new EventEmitter();
+
+  @Output()
+  addTourClick = new EventEmitter();
 
   constructor() {
   }
@@ -58,5 +70,17 @@ export class GuideDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.guideForm.reset();
+  }
+
+  viewTour(tour: Tour) {
+    this.viewTourClick.emit({tourId: tour.tourId});
+  }
+
+  removeTourFromGuide(tour: Tour) {
+    this.deleteTourClick.emit({tours: [tour]});
+  }
+
+  addTours(tour: Tour) {
+    this.addTourClick.emit({tours: [tour]});
   }
 }

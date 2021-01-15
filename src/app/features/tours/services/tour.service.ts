@@ -1,5 +1,8 @@
 import {Injectable} from "@angular/core";
-import {DataService} from '../../../core/services/data.service';
+import {DataService} from "../../../core/services/data.service";
+import {map} from "rxjs/operators";
+import {Tour} from "../../../core/models/entity-models";
+import {Observable} from "rxjs/internal/Observable";
 
 @Injectable()
 export class TourService {
@@ -13,6 +16,7 @@ export class TourService {
   private getTourGuideUrl = "/api/tour/guide/";
   private getTourExhibitsUrl = "/api/tour/exhibits/";
   private getTourVisitorsUrl = "/api/tour/visitors/";
+  private getTourWithoutGuideUrl = "/api/tour/tours/withoutGuide/";
   private removeTourFromVisitorUrl = "/api/visitor/removeTour";
   private removeTourFromExhibitUrl = "/api/exhibit/removeTour";
   private removeTourFromGuideUrl = "/api/guide/removeTour";
@@ -33,7 +37,9 @@ export class TourService {
   };
 
   getTour(id: number) {
-    return this.dataService.getData(this.getTourUrl + id);
+    return this.dataService.getData(this.getTourUrl + id).pipe(
+      map(tour => tour as Tour)
+    );
   }
 
   getTourGuide(id: number) {
@@ -44,8 +50,10 @@ export class TourService {
     return this.dataService.postData(this.updateTourUrl + id, tour);
   }
 
-  getTours() {
-    return this.dataService.getData(this.getToursUrl);
+  getTours(): Observable<Tour[]> {
+    return this.dataService.getData(this.getToursUrl).pipe(
+      map(value => value as Tour[])
+    );
   }
 
   getTourExhibits(id: number) {
@@ -54,6 +62,12 @@ export class TourService {
 
   getTourVisitors(id: number) {
     return this.dataService.getData(this.getTourVisitorsUrl + id);
+  }
+
+  getToursWithoutGuide() {
+    return this.dataService.getData(this.getTourWithoutGuideUrl).pipe(
+      map(value => value as Tour[])
+    );
   }
 
   removeVisitorFromTour(tourId: number, visitorId: number) {

@@ -1,26 +1,22 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {CookieService} from "ngx-cookie-service";
-import {Router} from "@angular/router";
-import {DataService} from "./data.service";
-import {apiUrls} from "../constants/api";
-import {map} from "rxjs/operators";
+import {apiUrls, clientCredentials} from "../constants/api";
+import {first, map} from "rxjs/operators";
+import * as jwt_decode from "jwt-decode";
+import {UserDetails} from "../models/auth-token-model";
+import {Observable} from "rxjs/internal/Observable";
+import {of} from "rxjs/internal/observable/of";
 
 
 @Injectable()
 export class AuthService {
+  private rolesString: string;
+  private loginHeaders = new HttpHeaders({
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Authorization": "Basic " + btoa(clientCredentials.client + ":" + clientCredentials.secret)
+  });
 
-  accessToken: string;
-  refreshToken: string;
-  rolesObject: any;
-  rolesArray: string[] = [];
-  rolesString: string;
-  dataHeaders = new HttpHeaders();
-
-  constructor(private http: HttpClient,
-              private cookieService: CookieService,
-              private dataService: DataService,
-              private router: Router) {
+  constructor(private http: HttpClient) {
   }
 
   /**
@@ -30,44 +26,59 @@ export class AuthService {
    * @param {string} password
    * @returns {Observable<any>}
    */
-  getToken(username: string, password: string) {
-    const loginHeaders = new HttpHeaders({
-      "Content-Type": "application/x-www-form-urlencoded",
-      "Authorization": "Basic " + btoa("Client:Secret")
-    });
+  getToken(username: string, password: string): Observable<UserDetails> {
     let body = new HttpParams();
     body = body.set("username", username);
     body = body.set("password", password);
     body = body.set("grant_type", "password");
-    return this.http.post(apiUrls.backend + "/oauth/token", body, {headers: loginHeaders})
+    return this.http.post(apiUrls.backend + "/oauth/token", body, {headers: this.loginHeaders})
       .pipe(
+        first(),
         map((response: any) => {
-          this.accessToken = response.access_token;
-          this.refreshToken = response.refresh_token;
-          this.dataHeaders = this.dataHeaders.append("Content-Type", "application/json");
-          this.dataHeaders = this.dataHeaders.append("Authorization", "Bearer " + this.accessToken);
-          this.dataService.setHeaders(this.dataHeaders);
-          this.cookieService.set("jwtAccess", this.accessToken, 1);
-          this.cookieService.set("username", username, 1);
+          const authToken = {
+            jti: response.jti,
+            accessToken: response.access_token,
+            refreshToken: response.refresh_token,
+            accessTokenExpiresIn: response.expires_in
+          };
+          let localDataHeaders = new HttpHeaders();
+          localDataHeaders = localDataHeaders.append("Content-Type", "application/json");
+          localDataHeaders = localDataHeaders.append("Authorization", "Bearer " + authToken.accessToken);
+          const userRoles = jwt_decode(authToken.accessToken).authorities.join(", ");
+          return {
+            username: username,
+            isSignedIn: true,
+            profileLink: this.getProfileEditorLink(userRoles),
+            roles: userRoles,
+            authToken: authToken,
+            dataHeaders: localDataHeaders,
+          };
         })
       );
   }
 
-  /**
-   * Get roles of current user from the server
-   * @returns {Observable<any>}
-   */
-  getRole() {
-    return this.http.get(apiUrls.backend + "/abo/whoiam", {headers: this.dataService.getHeaders()})
-      .pipe(
-        map((data: any) => {
-          data.forEach(elem => {
-            this.rolesArray.push(elem.authority);
-          });
-          this.rolesString = this.rolesArray.join(", ");
-          this.cookieService.set("roles", this.rolesString, 1);
-          this.router.navigate(["/"]);
-        }));
+  saveUserDataInLocalStorage(userDetail: UserDetails) {
+    this.rolesString = jwt_decode(userDetail.authToken.accessToken).authorities.join(", ");
+    localStorage.setItem("authToken", JSON.stringify(userDetail.authToken));
+    localStorage.setItem("dataHeaders", JSON.stringify(userDetail.dataHeaders));
+    localStorage.setItem("username", userDetail.username);
+    localStorage.setItem("roles", userDetail.roles);
+    localStorage.setItem("profileLink", userDetail.profileLink);
+    localStorage.setItem("isSignedIn$", "true");
+    return of(true);
+  }
+
+  private getProfileEditorLink(userRoles: string) {
+    if (userRoles.includes("ROLE_ADMIN")) {
+      return "";
+    }
+    if (userRoles.includes("ROLE_GUIDE")) {
+      return "/guide-profile";
+    }
+    if (userRoles.includes("ROLE_VISITOR")) {
+      return "/visitor-profile";
+    }
+    return "";
   }
 
   /**
@@ -75,14 +86,13 @@ export class AuthService {
    * Clean cookies, headers, and variables
    */
   logout() {
-    this.cookieService.delete("jwtAccess");
-    this.cookieService.delete("roles");
-    this.cookieService.delete("username");
-    this.dataHeaders = new HttpHeaders();
-    this.dataService.setDefaultHeaders();
-    this.rolesString = null;
-    this.rolesArray = [];
-    this.rolesObject = null;
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("dataHeaders");
+    localStorage.removeItem("username");
+    localStorage.removeItem("roles");
+    localStorage.removeItem("profileLink");
+    localStorage.removeItem("isSignedIn$");
+    return of(true);
   }
 
   /**
@@ -90,7 +100,10 @@ export class AuthService {
    * @returns {boolean}
    */
   isAdmin() {
-    return JSON.stringify(this.cookieService.get("roles")).search("ROLE_ADMIN") !== -1;
+    if (localStorage.getItem("roles")) {
+      return localStorage.getItem("roles").includes("ROLE_ADMIN");
+    }
+    return false;
   }
 
   /**
@@ -98,7 +111,10 @@ export class AuthService {
    * @returns {boolean}
    */
   isGuide() {
-    return JSON.stringify(this.cookieService.get("roles")).search("ROLE_GUIDE") !== -1;
+    if (localStorage.getItem("roles")) {
+      return localStorage.getItem("roles").includes("ROLE_GUIDE");
+    }
+    return false;
   }
 
   /**
@@ -106,7 +122,9 @@ export class AuthService {
    * @returns {boolean}
    */
   isVisitor() {
-    return JSON.stringify(this.cookieService.get("roles")).search("ROLE_VISITOR") !== -1;
+    if (localStorage.getItem("roles")) {
+      return localStorage.getItem("roles").includes("ROLE_VISITOR");
+    }
+    return false;
   }
-
 }

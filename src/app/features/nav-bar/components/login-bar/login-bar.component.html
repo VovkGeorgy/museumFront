@@ -1,0 +1,24 @@
+<button id="navBarLoginButton" *ngIf="!isSignedIn" class="btn btn-outline-primary btn-sm" routerLink="/login">
+  {{'button_login' | translate}}
+</button>
+<button id="navBarSignupButton" *ngIf="!isSignedIn" class="btn btn-outline-primary btn-sm" routerLink="/signup">
+  {{'button_signup' | translate}}
+</button>
+<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+  <div class="btn-group" role="group" *ngIf="isSignedIn">
+    <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle btn-sm"
+            data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"></button>
+    <div class="dropdown-menu dropdown-menu-wrap" aria-labelledby="btnGroupDrop1" x-placement="bottom-start">
+      <span class="dropdown-item curs-pointer" routerLink="{{profileLink}}">
+        {{'button_editProfile' | translate}}
+      </span>
+      <span id="logoutButton" class="dropdown-item curs-pointer" (click)="logout()">
+        {{'button_logout' | translate}}
+      </span>
+    </div>
+  </div>
+  <button type="button" class="btn btn-outline-primary btn-sm" *ngIf="isSignedIn" routerLink="{{profileLink}}">
+    {{profileButtonName}}
+  </button>
+</div>

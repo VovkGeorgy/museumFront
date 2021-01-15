@@ -1,15 +1,15 @@
-<h3 class="text-center">{{'visitor.visitors' | translate}}</h3>
+<h3 class="text-center">{{'visitor_visitors' | translate}}</h3>
 <div class="row col-md-12">
-  <div class="col-md-6 offset-md-3">
+  <div class="col-md-8 offset-md-2">
     <table class="table table-striped">
       <thead>
       <tr>
         <th>Id</th>
-        <th>{{'visitor.username' | translate}}</th>
-        <th>{{'visitor.password' | translate}}</th>
-        <th>{{'visitor.fio' | translate}}</th>
-        <th>{{'visitor.age' | translate}}</th>
-        <th>{{'visitor.email' | translate}}</th>
+        <th>{{'visitor_username' | translate}}</th>
+        <th>{{'visitor_password' | translate}}</th>
+        <th>{{'visitor_fio' | translate}}</th>
+        <th>{{'visitor_age' | translate}}</th>
+        <th>{{'visitor_email' | translate}}</th>
       </tr>
       </thead>
       <tbody>
@@ -22,12 +22,12 @@
         <td>{{visitor.email}}</td>
         <td>
           <button class="btn-sm btn-primary btn-outline-secondary" (click)="updateClick(visitor)">
-            {{'button.update' | translate}}
+            {{'button_update' | translate}}
           </button>
         </td>
         <td>
           <button class="btn-sm btn-primary btn-outline-secondary"
-                  (click)="deleteClick(visitor)">{{'button.delete' |
+                  (click)="deleteClick(visitor)">{{'button_delete' |
             translate}}
           </button>
         </td>
@@ -37,7 +37,7 @@
   </div>
 </div>
 <div class="crete-button-wrap">
-  <button class="btn btn-primary btn-outline-secondary" (click)="openCreateForm()">
-    {{'button.add' | translate}}
+  <button class="btn btn-primary btn-outline-secondary" *ngIf="!detailForm" (click)="openCreateForm()">
+    {{'button_add' | translate}}
   </button>
 </div>

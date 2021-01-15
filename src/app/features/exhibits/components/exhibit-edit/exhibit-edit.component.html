@@ -1,61 +1,61 @@
 <div class="row col-md-12">
   <div class="col-md-6 offset-md-3">
     <fieldset [formGroup]="exhibitForm">
-      <legend>{{'exhibits.update' | translate}}</legend>
+      <legend>{{'exhibits_update' | translate}}</legend>
       <div class="form-group">
-        <label for="updateTitle">{{'exhibits.title' | translate}}</label>
+        <label for="updateTitle">{{'exhibits_title' | translate}}</label>
         <input class="form-control" id="updateTitle" placeholder="title"
                formControlName="title">
       </div>
       <div class="form-group">
-        <label for="updateDated">{{'exhibits.dated' | translate}}</label>
+        <label for="updateDated">{{'exhibits_dated' | translate}}</label>
         <input class="form-control" id="updateDated" placeholder="dated"
                formControlName="dated">
       </div>
       <div class="form-group">
-        <label for="updateMaterial">{{'exhibits.material' | translate}}</label>
+        <label for="updateMaterial">{{'exhibits_material' | translate}}</label>
         <input class="form-control" id="updateMaterial" placeholder="material"
                formControlName="material">
       </div>
       <div class="form-group">
-        <label for="updateArchiveNum">{{'exhibits.archiveNum' | translate}}</label>
+        <label for="updateArchiveNum">{{'exhibits_archiveNum' | translate}}</label>
         <input class="form-control" id="updateArchiveNum" placeholder="archiveNum"
                formControlName="archiveNum">
       </div>
       <div class="form-group">
-        <label for="exampleTextarea">{{'exhibits.description' | translate}}</label>
+        <label for="exampleTextarea">{{'exhibits_description' | translate}}</label>
         <textarea class="form-control" id="exampleTextarea" rows="4" placeholder="description"
                   formControlName="description"></textarea>
       </div>
       <div class="form-group">
-        <label for="updateImageUrl">{{'exhibits.imageUrl' | translate}}</label>
+        <label for="updateImageUrl">{{'exhibits_imageUrl' | translate}}</label>
         <input class="form-control" id="updateImageUrl" placeholder="imageUrl"
                formControlName="imageUrl">
       </div>
-      <button class="btn btn-primary" (click)="updateExhibit()">{{'button.update' | translate}}
+      <button class="btn btn-primary" (click)="updateExhibit()">{{'button_update' | translate}}
       </button>
     </fieldset>
   </div>
 </div>
 <div class="row col-md-12">
   <div class="col-md-8 offset-md-2">
-    <div><h5 style="text-align: center">{{'exhibits.tours' | translate}}</h5></div>
+    <div><h5 style="text-align: center">{{'exhibits_tours' | translate}}</h5></div>
     <table class="table text-center">
       <tbody>
       <tr class="table" *ngFor="let tour of exhibitTours">
         <td><img id="tour-image" src="{{tour.imageUrl}}"
                  alt="Card image"></td>
         <td class="align-middle"><h5 class="curs-pointer" (click)="viewTour(tour)">{{tour.theme}}</h5></td>
-        <td><p class="card-text">{{'tours.typeOfExhibits' | translate}} - {{tour.typeOfExhibits}}</p>
-          <p class="card-text">{{'tours.duration' | translate}} - {{tour.duration}} {{'tours.hour' | translate}}</p>
-          <p class="card-text">{{'tours.cost' | translate}} - {{tour.cost}} $</p>
+        <td><p class="card-text">{{'tours_typeOfExhibits' | translate}} - {{tour.typeOfExhibits}}</p>
+          <p class="card-text">{{'tours_duration' | translate}} - {{tour.duration}} {{'tours_hour' | translate}}</p>
+          <p class="card-text">{{'tours_cost' | translate}} - {{tour.cost}} $</p>
           <button style="float: inherit" type="button" class="btn btn-sm btn btn-outline-primary"
                   (click)="viewTour(tour)">
-            {{'button.view' | translate}}
+            {{'button_view' | translate}}
           </button>
           <button style="float: inherit" type="button" class="btn btn-sm btn btn-outline-primary"
                   (click)="removeTourFromExhibit(tour)">
-            {{'button.delete' | translate}}
+            {{'button_delete' | translate}}
           </button>
         </td>
       </tr>

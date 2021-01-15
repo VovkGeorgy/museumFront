@@ -1,43 +1,89 @@
 <div class="row col-md-12">
-  <div class="col-md-4 offset-md-4 ">
+  <div class="col-md-3 offset-md-3">
     <fieldset [formGroup]="guideForm">
-      <legend>{{'guide.title' | translate}}</legend>
+      <legend>{{'guide_detail' | translate}}</legend>
       <div class="form-group">
-        <label for="inputFio">{{'guide.fio' | translate}}</label>
+        <label for="inputFio">{{'guide_fio' | translate}}</label>
         <input type="text" class="form-control" id="inputFio" placeholder="Ivanov I. I."
                formControlName="fio">
       </div>
       <div class="form-group">
-        <label for="inputUsername">{{'guide.username' | translate}}</label>
+        <label for="inputUsername">{{'guide_username' | translate}}</label>
         <input type="text" class="form-control" id="inputUsername" placeholder="Username"
                formControlName="username">
       </div>
       <div class="form-group">
-        <label for="inputPassword">{{'guide.password' | translate}}</label>
+        <label for="inputPassword">{{'guide_password' | translate}}</label>
         <input type="password" class="form-control" id="inputPassword" placeholder="Password"
                formControlName="password">
       </div>
       <div class="form-group">
-        <label for="inputAge">{{'guide.age' | translate}}</label>
+        <label for="inputAge">{{'guide_age' | translate}}</label>
         <input type="number" class="form-control" id="inputAge" placeholder="1-31"
                formControlName="age">
       </div>
       <div class="form-group">
-        <label for="inputExperience">{{'guide.experience' | translate}}</label>
+        <label for="inputExperience">{{'guide_experience' | translate}}</label>
         <input type="number" class="form-control" id="inputExperience" placeholder="1-99"
                formControlName="experience">
       </div>
       <div class="form-group">
-        <label for="inputLanguages">{{'guide.languages' | translate}}</label>
+        <label for="inputLanguages">{{'guide_languages' | translate}}</label>
         <input type="text" class="form-control" id="inputLanguages" placeholder="ENG,RU,CHN"
                formControlName="languages">
       </div>
     </fieldset>
-    <button class="btn btn-primary btn-outline-secondary add-button" (click)="back()">
-      {{'button.back' | translate}}
+    <button class="btn btn-primary add-button" (click)="back()">
+      {{'button_back' | translate}}
     </button>
-    <button class="btn btn-primary btn-outline-secondary add-button" (click)="save()">
-      {{'button.save' | translate}}
+    <button class="btn btn-primary add-button" [disabled]="!guideForm.valid" (click)="save()">
+      {{'button_save' | translate}}
     </button>
+  </div>
+
+  <div class="col-md-3">
+    <legend>{{'guide_tours' | translate}}</legend>
+    <table class="table text-center" *ngIf="guide?.tourEntitySet?.length > 0; else noTours">
+      <tbody>
+      <tr class="table" *ngFor="let tour of guide.tourEntitySet">
+        <td>
+          <img class="image-sm" src="{{tour.imageUrl}}" alt="Card image">
+        </td>
+        <td>
+          <span class="curs-pointer" (click)="viewTour(tour)">{{tour.theme}}</span>
+        </td>
+        <td>
+          <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="removeTourFromGuide(tour)">
+            {{'button_delete' | translate}}
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <legend>{{'tours_withoutGuide' | translate}}</legend>
+    <table class="table text-center" *ngIf="toursWithoutGuide; else noTours">
+      <tbody>
+      <tr class="table" *ngFor="let tour of toursWithoutGuide">
+        <td>
+          <img class="image-sm" src="{{tour.imageUrl}}" alt="Card image">
+        </td>
+        <td>
+          <span class="curs-pointer" (click)="viewTour(tour)">{{tour.theme}}</span>
+        </td>
+        <td>
+          <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="addTours(tour)">
+            {{'button_add' | translate}}
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <ng-template #noTours>
+      <div class="no-tours col-md-8 offset-md-2">
+        <h6 style="text-align: center; margin: 30px">No tours</h6>
+      </div>
+    </ng-template>
   </div>
 </div>

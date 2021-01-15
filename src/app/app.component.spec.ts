@@ -14,7 +14,7 @@ import {VisitorGuard} from "./shell/guards/visitor.guard";
 import {AuthService} from "./core/services/auth.service";
 import {AdminGuard} from './shell/guards/admin.guard';
 import {CookieService} from 'ngx-cookie-service';
-import {NavBarComponent} from "./features/nav-bar/components/nav-bar/nav-bar.component";
+import {NavBarComponent} from "./features/nav-bar/containers/nav-bar/nav-bar.component";
 import {NotFoundComponent} from "./features/not-found/components/not-found/not-found.component";
 import {GuidesCommonComponent} from "./features/guides/components/guides-common/guides-common.component";
 import {VisitorsComponent} from "./features/visitors/containers/visitors/visitors.component";

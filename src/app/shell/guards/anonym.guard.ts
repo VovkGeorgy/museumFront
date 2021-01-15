@@ -1,17 +1,15 @@
-import {Injectable} from '@angular/core';
-import {Router, CanActivate} from '@angular/router';
-import {CookieService} from "ngx-cookie-service";
+import {Injectable} from "@angular/core";
+import {CanActivate, Router} from "@angular/router";
 
 @Injectable()
 export class AnonymGuard implements CanActivate {
 
-  constructor(private router: Router,
-              private cookieService: CookieService) {
+  constructor(private router: Router) {
   }
 
   canActivate(): boolean {
-    if (this.cookieService.get('jwtAccess')) {
-      this.router.navigate(['/']);
+    if (localStorage.getItem("authToken")) {
+      this.router.navigate(["/"]);
       return false;
     } else {
       return true;

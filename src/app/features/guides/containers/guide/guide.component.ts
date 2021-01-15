@@ -1,26 +1,35 @@
-import {Component, OnInit} from '@angular/core';
-import {Guide} from '../../../../core/models/entity-models';
-import {GuidesService} from '../../services/guides.service';
-import {first} from 'rxjs/operators';
+import {Component, OnInit} from "@angular/core";
+import {Guide, Tour} from "../../../../core/models/entity-models";
+import {Router} from "@angular/router";
+import {select, Store} from "@ngrx/store";
+import * as guideReducer from "../../state-management/guide.reducer";
+import * as guideSelectors from "../../state-management/guide.selectors";
+import {AddGuide, AddToursToGuide, DeleteGuide, DeleteTourFromGuide, UpdateGuide} from "../../state-management/guide.actions";
+import {TourService} from "../../../tours/services/tour.service";
+import {first} from "rxjs/operators";
+
 
 @Component({
-  selector: 'app-guide',
-  templateUrl: './guide.component.html',
-  styleUrls: ['./guide.component.css']
+  selector: "app-guide",
+  templateUrl: "./guide.component.html",
+  styleUrls: ["./guide.component.css"]
 })
 export class GuideComponent implements OnInit {
 
+  guides$ = this.store.pipe(select(guideSelectors.getGuides));
   updatingGuide: Guide;
   isUpdateMode: boolean;
-  guides: Guide[];
   detailForm = false;
+  toursWithoutGuide: Tour[];
 
-  constructor(private guideService: GuidesService) {
+  constructor(private tourService: TourService,
+              private router: Router,
+              private store: Store<guideReducer.State>) {
   }
 
   ngOnInit() {
-    this.guideService.getAllGuides().subscribe((guides: []) => {
-      this.guides = guides;
+    this.tourService.getToursWithoutGuide().pipe(first()).subscribe(value => {
+      this.toursWithoutGuide = value;
     });
   }
 
@@ -37,26 +46,38 @@ export class GuideComponent implements OnInit {
   }
 
   deleteGuide($event: any) {
-    this.guideService.deleteGuide($event.guide.guideId).pipe(first()).subscribe(data => {
-      this.ngOnInit();
-    });
+    this.store.dispatch(new DeleteGuide($event.guide));
   }
 
   saveGuide($event: any) {
     this.detailForm = false;
-    this.guideService.addGuide($event.guide).pipe(first()).subscribe(guide => {
-      this.ngOnInit();
-    });
+    this.store.dispatch(new AddGuide($event.guide));
   }
 
   updateGuide($event: any) {
     this.detailForm = false;
-    this.guideService.updateGuide($event.guide.guideId, $event.guide).pipe(first()).subscribe(guide => {
-      this.ngOnInit();
-    });
+    this.store.dispatch(new UpdateGuide($event.guide));
   }
 
   closeDetail() {
     this.detailForm = false;
+  }
+
+  removeToursFromGuide($event: any) {
+    const toursIdArray = $event.tours.map((tour: Tour) => {
+      return tour.tourId;
+    });
+    this.store.dispatch(new DeleteTourFromGuide({tourIdsArray: toursIdArray, guideId: this.updatingGuide.guideId}));
+  }
+
+  addToursToGuide($event: any) {
+    const toursIdArray = $event.tours.map((tour: Tour) => {
+      return tour.tourId;
+    });
+    this.store.dispatch(new AddToursToGuide({tourIdsArray: toursIdArray, guideId: this.updatingGuide.guideId}));
+  }
+
+  viewTour($event) {
+    this.router.navigate(["/tours/view", {tourId: $event.tourId}]);
   }
 }

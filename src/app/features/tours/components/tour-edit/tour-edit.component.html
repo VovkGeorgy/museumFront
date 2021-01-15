@@ -1,43 +1,43 @@
 <div class="row col-md-12">
   <div class="col-md-6 offset-md-3">
     <fieldset [formGroup]="tourForm">
-      <legend>{{'tours.update' | translate}}</legend>
+      <legend>{{'tours_update' | translate}}</legend>
       <div class="form-group">
-        <label for="updateFio">{{'tours.theme' | translate}}</label>
+        <label for="updateFio">{{'tours_theme' | translate}}</label>
         <input class="form-control" id="updateFio" placeholder="theme"
                formControlName="theme">
       </div>
       <div class="form-group">
-        <label for="updateAge">{{'tours.typeOfExhibits' | translate}}</label>
+        <label for="updateAge">{{'tours_typeOfExhibits' | translate}}</label>
         <input class="form-control" id="updateAge" placeholder="typeOfExhibits"
                formControlName="typeOfExhibits">
       </div>
       <div class="form-group">
-        <label for="updateExperience">{{'tours.duration' | translate}}</label>
+        <label for="updateExperience">{{'tours_duration' | translate}}</label>
         <input type="number" class="form-control" id="updateExperience" placeholder="duration"
                formControlName="duration">
       </div>
       <div class="form-group">
-        <label for="updateLanguages">{{'tours.cost' | translate}}</label>
+        <label for="updateLanguages">{{'tours_cost' | translate}}</label>
         <input type="number" class="form-control" id="updateLanguages" placeholder="cost"
                formControlName="cost">
       </div>
       <div class="form-group">
-        <label for="updateTourId">{{'tours.imageUrl' | translate}}</label>
+        <label for="updateTourId">{{'tours_imageUrl' | translate}}</label>
         <input class="form-control" id="updateTourId" placeholder="imageUrl"
                formControlName="imageUrl">
       </div>
-      <button class="btn btn-primary" (click)="updateTour()">{{'button.update' | translate}}
+      <button class="btn btn-primary" (click)="updateTour()">{{'button_update' | translate}}
       </button>
     </fieldset>
   </div>
 </div>
 
 <ng-template #noGuides>
-  <div style="text-align: center"><h5>{{'tours.noGuides' |translate}}</h5></div>
+  <div style="text-align: center"><h5>{{'tours_noGuides' |translate}}</h5></div>
 </ng-template>
 
-<div style="text-align: center" *ngIf="guide != null"><h5>{{'tours.guides' |translate}}</h5></div>
+<div style="text-align: center" *ngIf="guide != null"><h5>{{'tours_guides' |translate}}</h5></div>
 
 <div class="row col-md-12" *ngIf="guide != null; else noGuides">
   <div class="col-md-8 offset-md-2">
@@ -45,12 +45,12 @@
       <thead>
       <tr>
         <th>Id</th>
-        <th>{{'guide.username' | translate}}</th>
-        <th>{{'guide.password' | translate}}</th>
-        <th>{{'guide.fio' | translate}}</th>
-        <th>{{'guide.age' | translate}}</th>
-        <th>{{'guide.experience' | translate}}</th>
-        <th>{{'guide.languages' | translate}}</th>
+        <th>{{'guide_username' | translate}}</th>
+        <th>{{'guide_password' | translate}}</th>
+        <th>{{'guide_fio' | translate}}</th>
+        <th>{{'guide_age' | translate}}</th>
+        <th>{{'guide_experience' | translate}}</th>
+        <th>{{'guide_languages' | translate}}</th>
       </tr>
       </thead>
       <tbody>
@@ -63,7 +63,7 @@
         <td class="align-middle">{{guide.experience}}</td>
         <td class="align-middle">{{guide.languages}}</td>
         <td>
-          <button class="btn btn-primary btn-outline-secondary" *ngIf="isAdmin()" (click)="removeGuideFromTour(guide)">{{'button.exclude' |
+          <button class="btn btn-primary btn-outline-secondary" *ngIf="isAdmin()" (click)="removeGuideFromTour(guide)">{{'button_exclude' |
             translate}}
           </button>
         </td>
@@ -74,10 +74,10 @@
 </div>
 
 <ng-template #noVisitors>
-  <div style="text-align: center"><h5>{{'tours.noVisitors' |translate}}</h5></div>
+  <div style="text-align: center"><h5>{{'tours_noVisitors' |translate}}</h5></div>
 </ng-template>
 
-<div style="text-align: center" *ngIf="visitors != null && visitors.length != 0"><h5>{{'tours.visitors' |translate}}</h5></div>
+<div style="text-align: center" *ngIf="visitors != null && visitors.length != 0"><h5>{{'tours_visitors' |translate}}</h5></div>
 
 <div class="row col-md-12" *ngIf="visitors != null && visitors.length != 0; else noVisitors">
   <div class="col-md-8 offset-md-2">
@@ -85,11 +85,11 @@
       <thead>
       <tr>
         <th>Id</th>
-        <th>{{'visitor.username' | translate}}</th>
-        <th>{{'visitor.password' | translate}}</th>
-        <th>{{'visitor.fio' | translate}}</th>
-        <th>{{'visitor.age' | translate}}</th>
-        <th>{{'visitor.email' | translate}}</th>
+        <th>{{'visitor_username' | translate}}</th>
+        <th>{{'visitor_password' | translate}}</th>
+        <th>{{'visitor_fio' | translate}}</th>
+        <th>{{'visitor_age' | translate}}</th>
+        <th>{{'visitor_email' | translate}}</th>
       </tr>
       </thead>
       <tbody>
@@ -102,7 +102,7 @@
         <td class="align-middle">{{visitor.email}}</td>
         <td>
           <button style="float: inherit" type="button" class="btn btn-primary btn-outline-secondary"
-                  (click)="removeVisitorFromTour(visitor)">{{'button.exclude' |
+                  (click)="removeVisitorFromTour(visitor)">{{'button_exclude' |
             translate}}
           </button>
         </td>
@@ -113,10 +113,10 @@
 </div>
 
 <ng-template #noExhibits>
-  <div style="text-align: center"><h5>{{'tours.noExhibits' |translate}}</h5></div>
+  <div style="text-align: center"><h5>{{'tours_noExhibits' |translate}}</h5></div>
 </ng-template>
 
-<div style="text-align: center" *ngIf="exhibits != null && exhibits.length != 0"><h5>{{'tours.exhibits' |translate}}</h5></div>
+<div style="text-align: center" *ngIf="exhibits != null && exhibits.length != 0"><h5>{{'tours_exhibits' |translate}}</h5></div>
 
 <div class="album py-5" *ngIf="exhibits != null && exhibits.length != 0; else noExhibits">
   <div class="container">
@@ -134,12 +134,12 @@
           </div>
           <div class="card-body">
             <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="viewExhibit(exhibit)">
-              {{'button.view' | translate}}
+              {{'button_view' | translate}}
             </button>
             <div style="float: right">
-              <small>{{'tours.removeFromTour'| translate}}</small>
+              <small style="margin-right: 10px;">{{'tours_removeFromTour'| translate}}</small>
               <button type="button" class="btn btn-sm btn btn-outline-primary" (click)="removeExhibitFromTour(exhibit)">
-                {{'button.delete'| translate}}
+                {{'button_delete'| translate}}
               </button>
             </div>
           </div>

@@ -26,6 +26,9 @@ export interface Tour {
   duration: number;
   cost: number;
   imageUrl: string;
+  guideEntity: Guide;
+  exhibitEntityList: Exhibit[];
+  visitorEntitySet: Visitor[];
 }
 
 export interface Visitor {

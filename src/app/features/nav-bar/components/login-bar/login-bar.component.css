@@ -1,0 +1,11 @@
+.curs-pointer {
+  cursor: pointer;
+}
+
+#navBarLoginButton{
+  margin-left: 20px;
+}
+
+#navBarSignupButton{
+  margin-left: 10px;
+}

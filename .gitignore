@@ -1,6 +1,7 @@
 # compiled output
 # dependencies
 /node_modules
+/e2e/reports
 
 # IDEs and editors
 /.idea
