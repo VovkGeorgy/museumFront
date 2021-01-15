@@ -1,8 +1,8 @@
 <div class="row col-md-12">
   <div class="col-md-6 offset-md-3">
-    <ngb-tabset #t="ngbTabset">
-      <ngb-tab id="tab-selectbyid1" title="{{'tabs.create' | translate}}">
-        <ng-template ngbTabContent>
+    <div ngbNav>
+      <div ngbNavItem id="tab-selectbyid1" title="{{'tabs.create' | translate}}">
+        <ng-template ngbNavContent>
           <fieldset [formGroup]="visitorForm">
             <legend>{{'visitor.title' | translate}}</legend>
             <div class="form-group">
@@ -30,14 +30,15 @@
               <input type="email" class="form-control" id="inputEmail" placeholder="temp@mail.net"
                      formControlName="email">
             </div>
-            <button class="btn btn-primary btn-outline-secondary" (click)="addEntityToBase()" >{{'button.add' | translate}}
+            <button class="btn btn-primary btn-outline-secondary"
+                    (click)="addEntityToBase()">{{'button.add' | translate}}
             </button>
           </fieldset>
         </ng-template>
-      </ngb-tab>
+      </div>
 
-      <ngb-tab id="tab-selectbyid2" title="{{'tabs.read' | translate}}">
-        <ng-template ngbTabContent>
+      <div ngbNavItem id="tab-selectbyid2" title="{{'tabs.read' | translate}}">
+        <ng-template ngbNavContent>
           <table class="table table-striped">
             <thead>
             <tr>
@@ -63,10 +64,10 @@
           <button class="btn btn-primary btn-outline-secondary" (click)="loadReadForm()">{{'button.update' | translate}}
           </button>
         </ng-template>
-      </ngb-tab>
+      </div>
 
-      <ngb-tab id="tab-selectbyid3" title="{{'tabs.update' | translate}}">
-        <ng-template ngbTabContent>
+      <div ngbNavItem id="tab-selectbyid3" title="{{'tabs.update' | translate}}">
+        <ng-template ngbNavContent>
           <table class="table table-striped" [hidden]="updateTableIsHidden">
             <thead>
             <tr>
@@ -122,14 +123,15 @@
               <input type="email" class="form-control" id="updateEmail" placeholder="test@tmail.com"
                      formControlName="email">
             </div>
-            <button class="btn btn-primary btn-outline-secondary" (click)="addUpdatedEntityToBase()">{{'button.update' | translate}}
+            <button class="btn btn-primary btn-outline-secondary"
+                    (click)="addUpdatedEntityToBase()">{{'button.update' | translate}}
             </button>
           </fieldset>
         </ng-template>
-      </ngb-tab>
+      </div>
 
-      <ngb-tab id="tab-selectbyid4" title="{{'tabs.delete' | translate}}">
-        <ng-template ngbTabContent>
+      <div ngbNavItem id="tab-selectbyid4" title="{{'tabs.delete' | translate}}">
+        <ng-template ngbNavContent>
           <table class="table table-striped">
             <thead>
             <tr>
@@ -150,7 +152,8 @@
               <td>{{visitor.age}}</td>
               <td>{{visitor.email}}</td>
               <td>
-                <button class="btn btn-primary btn-outline-secondary" (click)="deleteEntityInBase(visitor)">{{'button.delete' | translate}}
+                <button class="btn btn-primary btn-outline-secondary"
+                        (click)="deleteEntityInBase(visitor)">{{'button.delete' | translate}}
                 </button>
               </td>
             </tr>
@@ -159,7 +162,7 @@
           <button class="btn btn-primary btn-outline-secondary" (click)="loadReadForm()">{{'button.update' | translate}}
           </button>
         </ng-template>
-      </ngb-tab>
-    </ngb-tabset>
+      </div>
+    </div>
   </div>
 </div>
